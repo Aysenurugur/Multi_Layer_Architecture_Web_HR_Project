@@ -10,6 +10,5 @@ namespace Core.AbstractRepositories
 {
     public interface IDebitRepository : ICrudRepository<Debit>, IApprovementRepository<Debit>, IListRepository<Debit>
     {
-
     }
 }

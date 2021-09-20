@@ -5,8 +5,8 @@ namespace Core.AbstractRepositories.Generic
 {
     public interface IApprovementRepository<TEntity> where TEntity : class
     {
-        Task<bool> ApproveAsync(TEntity entity);
-        Task<bool> DisApproveAsync(TEntity entity);
-        Task SendVetoMessageAsync(VetoMessage vetoMessage, int userID);
+        Task SetStatusAsync(int id, bool status);
+        Task SendVetoMessageAsync(VetoMessage vetoMessage, string userID); //private yapılabilir
+        //Task<bool> DisApproveAsync(TEntity entity);
     }
 }
