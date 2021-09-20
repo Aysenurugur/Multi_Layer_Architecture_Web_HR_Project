@@ -1,20 +1,17 @@
-﻿using Data.Entities.Base_Entities;
+﻿using Data.Entities.Identity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data.Entities
 {
-    public class File 
+    public class File
     {
         public int FileID { get; set; }
-        public Guid UserID { get; set; }
+        public string UserID { get; set; }
         public int FileTypeID { get; set; }
         public byte[] PDFFile { get; set; }
+        public DateTime? CreatedDate { get; set; }
 
         public FileType FileType { get; set; }
-        //user nav prop gelecek
+        public User User { get; set; }
     }
 }

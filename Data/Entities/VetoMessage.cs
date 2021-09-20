@@ -1,9 +1,5 @@
 ﻿using Data.Entities.Base_Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Data.Entities.Identity;
 
 namespace Data.Entities
 {
@@ -13,11 +9,11 @@ namespace Data.Entities
         public int? DayOffID { get; set; }
         public int? DebitID { get; set; }
         public int? ExpenseID { get; set; }
-        public Guid VetodBy { get; set; } //userID yerine foreign key (az şekil yapalım)
-        public DateTime VetoDate { get; set; }
+        public string VetodBy { get; set; } //userID yerine foreign key (az şekil yapalım)
 
         public DayOff DayOff { get; set; } //nav prop
         public Debit Debit { get; set; }
         public Expense Expense { get; set; }
+        public User VetodByUser { get; set; }
     }
 }

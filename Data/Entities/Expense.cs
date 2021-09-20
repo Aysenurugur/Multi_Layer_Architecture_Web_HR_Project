@@ -1,16 +1,12 @@
 ﻿using Data.Entities.Base_Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Data.Entities.Identity;
 
 namespace Data.Entities
 {
     public class Expense : Title_Content
     {
         public int ExpenseID { get; set; }
-        public Guid UserID { get; set; }
+        public string UserID { get; set; }
         public int? FileID { get; set; }
         public int? VetoMessageID { get; set; }
         public byte[] Image { get; set; }
@@ -19,6 +15,6 @@ namespace Data.Entities
 
         public File File { get; set; } //nav prop
         public VetoMessage VetoMessage { get; set; }
-        //user nav prop gelecek
+        public User User { get; set; }
     }
 }
