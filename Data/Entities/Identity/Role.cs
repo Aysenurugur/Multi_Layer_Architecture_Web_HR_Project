@@ -5,6 +5,5 @@ namespace Data.Entities.Identity
 {
     public class Role : IdentityRole
     {
-
     }
 }
