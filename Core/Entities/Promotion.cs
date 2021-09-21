@@ -1,8 +1,8 @@
-﻿using Data.Entities.Base_Entities;
-using Data.Entities.Identity;
+﻿using Core.Entities.Base_Entities;
+using Core.Entities.Identity;
 using System;
 
-namespace Data.Entities
+namespace Core.Entities
 {
     public class Promotion : Title_Content
     {

@@ -1,13 +1,13 @@
-﻿using Data.Entities.Identity;
+﻿using Core.Entities.Identity;
 using System;
 
-namespace Data.Entities
+namespace Core.Entities
 {
     public class File
     {
-        public int FileID { get; set; }
-        public string UserID { get; set; }
-        public int FileTypeID { get; set; }
+        public int FileID { get; set; } //PK
+        public string UserID { get; set; } //FK
+        public int FileTypeID { get; set; } //FK
         public byte[] PDFFile { get; set; }
         public DateTime? CreatedDate { get; set; }
 

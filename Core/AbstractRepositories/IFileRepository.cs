@@ -1,5 +1,5 @@
 ﻿using Core.AbstractRepositories.Generic;
-using Data.Entities;
+using Core.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

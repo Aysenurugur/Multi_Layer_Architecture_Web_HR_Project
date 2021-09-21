@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Data.Entities.Base_Entities
+namespace Core.Entities.Base_Entities
 {
     public abstract class Title_Content
     {

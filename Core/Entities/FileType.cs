@@ -1,7 +1,7 @@
-﻿using Data.Entities.Base_Entities;
+﻿using Core.Entities.Base_Entities;
 using System.Collections.Generic;
 
-namespace Data.Entities
+namespace Core.Entities
 {
     public class FileType : Title_Content
     {

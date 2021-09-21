@@ -1,5 +1,5 @@
 ﻿using Core.AbstractRepositories.Generic;
-using Data.Entities.Identity;
+using Core.Entities.Identity;
 using System.Threading.Tasks;
 
 namespace Core.AbstractRepositories

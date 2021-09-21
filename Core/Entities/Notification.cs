@@ -1,7 +1,7 @@
-﻿using Data.Entities.Base_Entities;
-using Data.Entities.Identity;
+﻿using Core.Entities.Base_Entities;
+using Core.Entities.Identity;
 
-namespace Data.Entities
+namespace Core.Entities
 {
     public class Notification : Title_Content
     {

@@ -1,6 +1,6 @@
-﻿using Data.Entities.Base_Entities;
+﻿using Core.Entities.Base_Entities;
 
-namespace Data.Entities
+namespace Core.Entities
 {
     public class Shift : WorkState
     {

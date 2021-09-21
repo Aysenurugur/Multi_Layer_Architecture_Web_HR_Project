@@ -1,8 +1,8 @@
-﻿using Data.Entities.Identity;
+﻿using Core.Entities.Identity;
 using System;
 using System.Collections.Generic;
 
-namespace Data.Entities
+namespace Core.Entities
 {
     public class Company
     {

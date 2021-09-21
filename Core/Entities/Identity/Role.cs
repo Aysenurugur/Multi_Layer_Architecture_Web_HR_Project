@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 
-namespace Data.Entities.Identity
+namespace Core.Entities.Identity
 {
     public class Role : IdentityRole
     {

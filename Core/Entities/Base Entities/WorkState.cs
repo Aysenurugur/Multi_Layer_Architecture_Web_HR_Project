@@ -1,7 +1,7 @@
-﻿using Data.Entities.Identity;
+﻿using Core.Entities.Identity;
 using System;
 
-namespace Data.Entities.Base_Entities
+namespace Core.Entities.Base_Entities
 {
     public abstract class WorkState
     {
