@@ -21,25 +21,17 @@ namespace Data.Repositories
             get { return context as ProjectIdentityDbContext; }
         }
 
-        public async Task Deactivate(string userID)
+        public bool Login(string email, string password)
         {
-            User user = await GetByIDAsync(userID);
-            user.IsActive = false;
-            await DbContext.SaveChangesAsync();
-        }
-
-        public async Task<bool> Login(string email, string password)
-        {
-            User user = (User)DbContext.Users.Where(x => x.Email == email);
-
-            if (user == null||user.PasswordHash==password)  throw new Exception("Şifre veya mail adresi hatalı, bilgilerinizi kontrol ediniz.");
-
+            User user = DbContext.Users.Where(x => x.Email == email).FirstOrDefault();
+            if (user == null || user.PasswordHash != password) throw new Exception("Şifre veya mail adresi hatalı, bilgilerinizi kontrol ediniz.");
             return true;
         }
 
-        public Task SendVetoMessageAsync(VetoMessage vetoMessage, string userID)
+        public async Task SendVetoMessageAsync(VetoMessage vetoMessage, string userID)
         {
-            throw new NotImplementedException();
+            vetoMessage.VetodBy = userID;
+            await context.VetoMessages.AddAsync(vetoMessage);
         }
     }
 }

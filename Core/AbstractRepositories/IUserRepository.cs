@@ -7,8 +7,7 @@ namespace Core.AbstractRepositories
 {
     public interface IUserRepository : ICrudRepository<User>
     {
-        Task<bool> Login(string email, string password);
-        Task Deactivate(string userID);
+        bool Login(string email, string password);
         Task SendVetoMessageAsync(VetoMessage vetoMessage, string userID);
     }
 }
