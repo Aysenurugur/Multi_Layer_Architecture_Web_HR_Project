@@ -1,5 +1,6 @@
 ﻿using Core.Entities.Identity;
 using System;
+using System.Collections.Generic;
 
 namespace Core.Entities
 {
@@ -13,5 +14,6 @@ namespace Core.Entities
 
         public FileType FileType { get; set; }
         public User User { get; set; }
+        public ICollection<Expense> Expenses { get; set; }
     }
 }
