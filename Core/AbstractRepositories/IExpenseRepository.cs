@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Core.AbstractRepositories
 {
-    public interface IExpenseRepository : ICrudRepository<Expense>, IApprovementRepository<Expense>, IListRepository<Expense>
+    public interface IExpenseRepository : ICrudRepository<Expense>
     {
     }
 }
