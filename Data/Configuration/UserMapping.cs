@@ -1,4 +1,4 @@
-﻿,using Core.Entities;
+﻿using Core.Entities;
 using Core.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -16,9 +16,6 @@ namespace Data.Configuration
         {
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Id)
-                .UseIdentityColumn();
-
             builder.Property(x => x.FirstName)
                 .IsRequired()
                 .HasMaxLength(100);
@@ -34,7 +31,8 @@ namespace Data.Configuration
             builder.HasIndex(x => x.Email)
                 .IsUnique();
 
-            builder.HasAlternateKey(x => x.PhoneNumber);
+            builder.HasIndex(x => x.PhoneNumber)
+                .IsUnique();
 
             builder.HasOne(x => x.Company)
                 .WithMany(x => x.Users)
