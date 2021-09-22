@@ -23,29 +23,16 @@ namespace Data.Repositories
             get { return context as ProjectIdentityDbContext; }
         }
 
-        public async Task<int> CountCompaniesAsync(int companyID)
+        public async Task<int> CountCompaniesAsync()
         {
             return await DbContext.Companies.CountAsync();
         }
 
-        public async Task<IEnumerable<DayOff>> GetDayOffsAsync(int dayOffTypeID)
+        public IEnumerable<User> GetEmployeeListAsync(int companyID, out int employeeCount)
         {
-            return await DbContext.DayOffs.Where(x => x.DayOffTypeID == dayOffTypeID).ToListAsync();
-        }
-
-        public Task<IEnumerable<User>> GetEmployeeListAsync(int companyID, out int employeeCount)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Expense>> GetExpensesAsync(int expenseID)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<User>> GetManagerListAsync(int companyID, out int managerCount)
-        {
-            throw new NotImplementedException();
+            List<User> employees = DbContext.Users.Where(x => x.CompanyID == companyID).ToList();
+            employeeCount = employees.Count();
+            return employees;
         }
     }
 }

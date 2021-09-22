@@ -19,8 +19,6 @@ namespace Data.Repositories
         private ProjectIdentityDbContext DbContext
         {
             get { return context as ProjectIdentityDbContext; }
-        }
-
-      
+        }      
     }
 }
