@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.AbstractRepositories
 {
-    public interface IBreakInterface : ICrudRepository<Break> , IListRepository<Break>
+    public interface IBreakRepository : ICrudRepository<Break>
     {
     }
 }

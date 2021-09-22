@@ -3,7 +3,7 @@ using Core.Entities;
 
 namespace Core.AbstractRepositories
 {
-    public interface IPromotionRepository : ICrudRepository<Promotion>, IListRepository<Promotion>
+    public interface IPromotionRepository : ICrudRepository<Promotion>
     {
     }
 }

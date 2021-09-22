@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 
 namespace Core.AbstractRepositories
 {
-    public interface INotificationRepository : ICrudRepository<Notification>, IListRepository<Notification>
+    public interface INotificationRepository : ICrudRepository<Notification>
     {
-        Task<bool> ReadNotifications(List<Notification> notifications);
     }
 }

@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace Data.Repositories
 {
-    class CrudRepository<TEntity> : ICrudRepository<TEntity> where TEntity : class
+    public class CrudRepository<TEntity> : ICrudRepository<TEntity> where TEntity : class
     {
         protected readonly ProjectIdentityDbContext context;
 
-        public CrudRepository(ProjectIdentityDbContext _context)
+        public CrudRepository(ProjectIdentityDbContext context)
         {
-            this.context = _context;
+            this.context = context;
         }
 
         public async Task AddAsync(TEntity entity)

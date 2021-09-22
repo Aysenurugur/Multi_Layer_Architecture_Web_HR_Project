@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.AbstractRepositories
 {
-    public interface ICommentRepository : ICrudRepository<Comment>, IListRepository<Comment>
+    public interface ICommentRepository : ICrudRepository<Comment>
     {
     }
 }

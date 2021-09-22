@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.AbstractRepositories
 {
-    public interface IDebitRepository : ICrudRepository<Debit>, IApprovementRepository<Debit>, IListRepository<Debit>
+    public interface IDebitRepository : ICrudRepository<Debit>
     {
     }
 }

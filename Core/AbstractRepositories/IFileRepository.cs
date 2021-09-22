@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Core.AbstractRepositories
 {
-    public interface IFileRepository : ICrudRepository<File>, IListRepository<File>
+    public interface IFileRepository : ICrudRepository<File>
     {
     }
 }

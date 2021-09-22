@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Core.AbstractRepositories
 {
-    public interface IShiftRepository : ICrudRepository<Shift>, IListRepository<Shift>
+    public interface IShiftRepository : ICrudRepository<Shift>
     {
     }
 }

@@ -8,6 +8,5 @@ namespace Core.AbstractRepositories
 {
     public interface IEmployeeRepository 
     {
-        Task DeactivateAllEmployees(int companyID);
     }
 }

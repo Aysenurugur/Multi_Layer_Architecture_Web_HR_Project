@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.AbstractRepositories
 {
-    public interface IDayOffRepository : ICrudRepository<DayOff> , IApprovementRepository<DayOff>, IListRepository<DayOff>
+    public interface IDayOffRepository : ICrudRepository<DayOff>
     {
     }
 }
