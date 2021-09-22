@@ -20,7 +20,5 @@ namespace Data.Repositories
         {
             get { return context as ProjectIdentityDbContext; }
         }
-        
-
     }
 }
