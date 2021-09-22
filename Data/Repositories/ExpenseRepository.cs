@@ -20,18 +20,7 @@ namespace Data.Repositories
         {
             get { return context as ProjectIdentityDbContext; }
         }
-
-        public IEnumerable<Expense> GetAllByUserIDAsync(string userId)
-        {
-            return DbContext.Expenses.Where(x => x.UserID == userId).ToList();
-        }
-
-        //public async Task SendVetoMessageAsync(VetoMessage vetoMessage, string userID)
-        //{
-        //    vetoMessage.VetodBy = userID;
-        //    await context.VetoMessages.AddAsync(vetoMessage);
-        //}
-
+        
         public async Task SetStatusAsync(Expense expense, bool status)
         {
             expense.IsApproved = status;
