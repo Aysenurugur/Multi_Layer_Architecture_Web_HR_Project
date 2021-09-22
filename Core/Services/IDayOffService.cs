@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.AbstractRepositories
+namespace Core.Services
 {
-    public interface IEmployerRepository
+    public interface IDayOffService
     {
-       
     }
 }

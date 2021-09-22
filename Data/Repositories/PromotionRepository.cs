@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Data.Repositories
 {
-    class BreakRepository : CrudRepository<Break>, IBreakRepository
+    class PromotionRepository : CrudRepository<Promotion>, IPromotionRepository 
     {
-        public BreakRepository(ProjectIdentityDbContext context) : base(context)
+        public PromotionRepository(ProjectIdentityDbContext context) : base(context)
         {
         }
 
@@ -19,7 +19,5 @@ namespace Data.Repositories
         {
             get { return context as ProjectIdentityDbContext; }
         }
-
-       
     }
 }

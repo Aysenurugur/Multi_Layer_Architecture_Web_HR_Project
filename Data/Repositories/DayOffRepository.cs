@@ -1,5 +1,6 @@
 ﻿using Core.AbstractRepositories;
 using Core.Entities;
+using Core.Entities.Identity;
 using Data.Context;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Data.Repositories
 {
-    class BreakRepository : CrudRepository<Break>, IBreakRepository
+    class DayOffRepository : CrudRepository<DayOff> , IDayOffRepository
     {
-        public BreakRepository(ProjectIdentityDbContext context) : base(context)
+        public DayOffRepository(ProjectIdentityDbContext context) : base(context)
         {
         }
 
@@ -20,6 +21,6 @@ namespace Data.Repositories
             get { return context as ProjectIdentityDbContext; }
         }
 
-       
+      
     }
 }
