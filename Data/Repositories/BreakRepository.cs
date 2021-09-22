@@ -19,10 +19,5 @@ namespace Data.Repositories
         {
             get { return context as ProjectIdentityDbContext; }
         }
-
-        public IEnumerable<Break> GetAllByUserIDAsync(string userId)
-        {
-            return DbContext.Breaks.Where(x => x.UserID == userId).ToList();
-        }
     }
 }
