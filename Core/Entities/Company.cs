@@ -6,8 +6,8 @@ namespace Core.Entities
 {
     public class Company
     {
-        public int CompanyID { get; set; }
-        public int CommentID { get; set; }
+        public Guid CompanyID { get; set; }
+        public Guid CommentID { get; set; }
         public string CompanyName { get; set; }
         public string Address { get; set; }
         public short AllowedVacationDays { get; set; }

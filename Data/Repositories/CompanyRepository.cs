@@ -28,7 +28,7 @@ namespace Data.Repositories
             return await DbContext.Companies.CountAsync();
         }
 
-        public IEnumerable<User> GetEmployeeListAsync(int companyID, out int employeeCount)
+        public IEnumerable<User> GetEmployeeListAsync(Guid companyID, out int employeeCount)
         {
             List<User> employees = DbContext.Users.Where(x => x.CompanyID == companyID).ToList();
             employeeCount = employees.Count();

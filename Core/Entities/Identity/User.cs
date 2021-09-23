@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace Core.Entities.Identity
 {
-    public class User : IdentityUser
+    public class User : IdentityUser<Guid>
     {
-        public int? CompanyID { get; set; } //FK
+        public Guid CompanyID { get; set; } //FK
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime? BirthDate { get; set; }

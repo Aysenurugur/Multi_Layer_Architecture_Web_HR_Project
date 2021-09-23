@@ -1,9 +1,10 @@
 ﻿using Core.Entities.Base_Entities;
+using System;
 
 namespace Core.Entities
 {
     public class Shift : WorkState
     {
-        public int ShiftID { get; set; } //PK
+        public Guid ShiftID { get; set; } //PK
     }
 }

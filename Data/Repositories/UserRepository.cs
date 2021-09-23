@@ -28,7 +28,7 @@ namespace Data.Repositories
             return true;
         }
 
-        public async Task SendVetoMessageAsync(VetoMessage vetoMessage, string userID)
+        public async Task SendVetoMessageAsync(VetoMessage vetoMessage, Guid userID)
         {
             vetoMessage.VetodBy = userID;
             await context.VetoMessages.AddAsync(vetoMessage);

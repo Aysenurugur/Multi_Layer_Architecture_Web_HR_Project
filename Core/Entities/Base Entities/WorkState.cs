@@ -5,7 +5,7 @@ namespace Core.Entities.Base_Entities
 {
     public abstract class WorkState
     {
-        public string UserID { get; set; } //FK
+        public Guid UserID { get; set; } //FK
         public DateTime? BeginDate { get; set; }
         public DateTime? EndDate { get; set; }
 
