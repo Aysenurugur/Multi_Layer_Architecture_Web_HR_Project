@@ -15,9 +15,6 @@ namespace Data.Configuration
         {
             builder.HasKey(x => x.ShiftID);
 
-            builder.Property(x => x.ShiftID)
-                .UseIdentityColumn();
-
             builder.Property(x => x.BeginDate)
                 .HasColumnType("datetime2")
                 .IsRequired();

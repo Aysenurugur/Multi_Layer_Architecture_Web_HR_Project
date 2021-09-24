@@ -1,5 +1,6 @@
 ﻿using Core.Entities;
 using Core.Entities.Identity;
+using Data.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,22 @@ namespace Data.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.ApplyConfiguration(new BreakMapping());
+            builder.ApplyConfiguration(new CommentMapping());
+            builder.ApplyConfiguration(new CompanyMapping());
+            builder.ApplyConfiguration(new DayOffMapping());
+            builder.ApplyConfiguration(new DayOffTypeMapping());
+            builder.ApplyConfiguration(new DebitMapping());
+            builder.ApplyConfiguration(new ExpenseMapping());
+            builder.ApplyConfiguration(new FileMapping());
+            builder.ApplyConfiguration(new FileTypeMapping());
+            builder.ApplyConfiguration(new NotificationMapping());
+            builder.ApplyConfiguration(new PromotionMapping());
+            builder.ApplyConfiguration(new RoleMapping());
+            builder.ApplyConfiguration(new ShiftMapping());
+            builder.ApplyConfiguration(new UserMapping());
+            builder.ApplyConfiguration(new VetoMessageMapping());
+
             base.OnModelCreating(builder);
         }
 

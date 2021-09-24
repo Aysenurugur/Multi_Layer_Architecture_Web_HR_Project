@@ -15,9 +15,6 @@ namespace Data.Configuration
         {
             builder.HasKey(x => x.VetoMessageID);
 
-            builder.Property(x => x.VetoMessageID)
-                .UseIdentityColumn();
-
             builder.Property(x => x.Content)
                 .IsRequired();
 
@@ -27,6 +24,18 @@ namespace Data.Configuration
 
             builder.Property(x => x.Title)
                 .IsRequired();
+
+            builder.HasOne(x => x.DayOff)
+                .WithOne(x => x.VetoMessage)
+                .HasForeignKey<VetoMessage>(x => x.DayOffID);
+
+            builder.HasOne(x => x.Debit)
+                .WithOne(x => x.VetoMessage)
+                .HasForeignKey<VetoMessage>(x => x.DebitID);
+
+            builder.HasOne(x => x.Expense)
+                .WithOne(x => x.VetoMessage)
+                .HasForeignKey<VetoMessage>(x => x.ExpenseID);
         }
     }
 }

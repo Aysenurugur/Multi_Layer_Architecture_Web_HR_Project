@@ -8,13 +8,10 @@ namespace Core.Entities
     {
         public Guid ExpenseID { get; set; }
         public Guid UserID { get; set; }
-        public Guid? FileID { get; set; }
-        public Guid? VetoMessageID { get; set; }
         public byte[] Image { get; set; }
         public decimal TotalPrice { get; set; }
         public bool IsApproved { get; set; }
 
-        public File File { get; set; } //nav prop
         public VetoMessage VetoMessage { get; set; }
         public User User { get; set; }
     }

@@ -15,15 +15,8 @@ namespace Data.Configuration
         {
             builder.HasKey(x => x.DebitID);
 
-            builder.Property(x => x.DebitID)
-                .UseIdentityColumn();
-
             builder.Property(x => x.IsApproved)
                 .IsRequired();
-
-            builder.HasOne(x => x.VetoMessage)
-                .WithOne(x => x.Debit)
-                .HasForeignKey<VetoMessage>(x => x.VetoMessageID);
         }
     }
 }
