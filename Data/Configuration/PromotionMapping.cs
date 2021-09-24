@@ -15,9 +15,6 @@ namespace Data.Configuration
         {
             builder.HasKey(x => x.PromotionID);
 
-            builder.Property(x => x.PromotionID)
-                .UseIdentityColumn();
-
             builder.Property(x => x.Content)
                 .IsRequired();
 

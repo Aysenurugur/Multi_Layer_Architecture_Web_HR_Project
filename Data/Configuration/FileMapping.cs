@@ -15,9 +15,6 @@ namespace Data.Configuration
         {
             builder.HasKey(x => x.FileID);
 
-            builder.Property(x => x.FileID)
-                .UseIdentityColumn();
-
             builder.Property(x => x.CreatedDate)
                 .IsRequired()
                 .HasColumnType("datetime2");

@@ -14,9 +14,6 @@ namespace Data.Configuration
         public void Configure(EntityTypeBuilder<Role> builder)
         {
             builder.HasKey(x => x.Id);
-
-            builder.Property(x => x.Id)
-                .UseIdentityColumn();
         }
     }
 }

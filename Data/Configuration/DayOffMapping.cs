@@ -22,10 +22,6 @@ namespace Data.Configuration
             builder.HasOne(x => x.DayOffType)
                 .WithMany(x => x.DayOffs)
                 .HasForeignKey(x => x.DayOffTypeID);
-
-            builder.HasOne(x => x.VetoMessage)
-                .WithOne(x => x.DayOff)
-                .HasForeignKey<DayOff>(x => x.VetoMessageID);
         }
     }
 }

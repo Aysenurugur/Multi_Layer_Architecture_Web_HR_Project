@@ -15,9 +15,6 @@ namespace Data.Configuration
         {
             builder.HasKey(x => x.NotificationID);
 
-            builder.Property(x => x.NotificationID)
-                .UseIdentityColumn();
-
             builder.Property(x => x.CreatedDate)
                 .IsRequired()
                 .HasColumnType("datetime2");

@@ -15,9 +15,6 @@ namespace Data.Configuration
         {
             builder.HasKey(x => x.FileTypeID);
 
-            builder.Property(x => x.FileTypeID)
-                .UseIdentityColumn();
-
         }
     }
 }

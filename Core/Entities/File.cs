@@ -14,6 +14,5 @@ namespace Core.Entities
 
         public FileType FileType { get; set; }
         public User User { get; set; }
-        public ICollection<Expense> Expenses { get; set; }
     }
 }
