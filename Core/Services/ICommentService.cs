@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,10 @@ namespace Core.Services
 {
     public interface ICommentService
     {
+        Task<IEnumerable<Comment>> GetAllComments();
+        Task<Comment> GetCommentById(string id);
+        Task<Comment> CreateComment(Comment newComment);
+        Task UpdateComment(Comment commentToBeUpdated, Comment comment);
+        Task DeleteComment(Comment comment);
     }
 }
