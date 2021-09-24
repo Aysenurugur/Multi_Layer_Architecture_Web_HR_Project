@@ -19,6 +19,7 @@ namespace Core.AbstractUnitOfWork
         IPromotionRepository Promotion { get; }
         IShiftRepository Shift { get; }
         IUserRepository User { get; }
+        IFileRepository File { get; }
 
         Task<int> CommitAsync();
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,10 @@ namespace Core.Services
 {
     public interface IDebitService
     {
+        Task<IEnumerable<Debit>> GetAllDebits();
+        Task<Debit> GetDebitById(string id);
+        Task<Debit> CreateDebit(Debit newDebit);
+        Task UpdateDebit(Debit debit);
+        Task DeleteDebit(Debit debit);
     }
 }

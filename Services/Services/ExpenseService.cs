@@ -1,0 +1,48 @@
+﻿using Core.AbstractUnitOfWork;
+using Core.Entities;
+using Core.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Services.Services
+{
+    public class ExpenseService : IExpenseService
+    {
+        private readonly IUnitOfWork unitOfWork;
+        public ExpenseService(IUnitOfWork _unitOfWork)
+        {
+            this.unitOfWork = _unitOfWork;
+        }
+
+        public async Task<Expense> CreateExpense(Expense expense)
+        {
+            await unitOfWork.Expense.AddAsync(expense);
+            return expense;
+        }
+
+        public async Task DeleteExpense(Expense expense)
+        {
+            unitOfWork.Expense.RemoveAsync(expense);
+            await unitOfWork.CommitAsync();
+        }
+
+        public async Task<Expense> GetExpenseById(string id)
+        {
+            return await unitOfWork.Expense.GetByIDAsync(id);
+        }
+
+        public async Task<IEnumerable<Expense>> GetAllExpenses()
+        {
+            return await unitOfWork.Expense.GetAllAsync();
+        }
+
+        public async Task UpdateExpense(Expense expense)
+        {
+            expense.IsApproved = true;
+            await unitOfWork.CommitAsync();
+        }
+    }
+}
