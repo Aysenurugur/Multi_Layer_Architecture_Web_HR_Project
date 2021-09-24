@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 namespace Core.AbstractRepositories
 {
     public interface IUserRepository : ICrudRepository<User>
-    {
-        bool Login(string email, string password);
+    {        
         Task SendVetoMessageAsync(VetoMessage vetoMessage, Guid userID);
+        Task<User> GetUserByEmail(string mail);
+        Task<User> GetUserByPhone(string phone);
     }
 }

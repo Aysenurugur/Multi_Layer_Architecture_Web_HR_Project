@@ -8,7 +8,7 @@ namespace Core.AbstractRepositories.Generic
     public interface ICrudRepository<TEntity> where TEntity : class
     {
         Task<IEnumerable<TEntity>> GetAllAsync();
-        ValueTask<TEntity> GetByIDAsync(string id);
+        ValueTask<TEntity> GetByIDAsync(Guid id);
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
         Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
         Task AddAsync(TEntity entity);
