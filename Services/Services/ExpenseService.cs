@@ -29,7 +29,7 @@ namespace Services.Services
             await unitOfWork.CommitAsync();
         }
 
-        public async Task<Expense> GetExpenseById(string id)
+        public async Task<Expense> GetExpenseById(Guid id)
         {
             return await unitOfWork.Expense.GetByIDAsync(id);
         }
@@ -43,6 +43,11 @@ namespace Services.Services
         {
             expense.IsApproved = true;
             await unitOfWork.CommitAsync();
+        }
+
+        public Task<Expense> GetExpenseById(string id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

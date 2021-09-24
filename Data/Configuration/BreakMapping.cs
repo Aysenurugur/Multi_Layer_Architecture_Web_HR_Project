@@ -14,9 +14,6 @@ namespace Data.Configuration
         public void Configure(EntityTypeBuilder<Break> builder)
         {
             builder.HasKey(x => x.BreakID);
-
-            builder.Property(x => x.BreakID)
-                .UseIdentityColumn();
         }
     }
 }

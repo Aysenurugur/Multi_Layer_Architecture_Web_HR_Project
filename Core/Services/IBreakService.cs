@@ -10,7 +10,7 @@ namespace Core.Services
     public interface IBreakService
     {
         Task<IEnumerable<Break>> GetAllBreaks();
-        Task<Break> GetBreakById(string id);
+        Task<Break> GetBreakById(Guid id);
         Task<Break> CreateBreak(Break newBreak);
         Task UpdateBreak(Break breakToBeUpdated, Break _break);
         Task DeleteBreak(Break _break);

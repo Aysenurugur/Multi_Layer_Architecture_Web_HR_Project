@@ -35,7 +35,7 @@ namespace Services.Services
             return await unitOfWork.Promotion.GetAllAsync();
         }
 
-        public async Task<Promotion> GetPromotionById(string id)
+        public async Task<Promotion> GetPromotionById(Guid id)
         {
             return await unitOfWork.Promotion.GetByIDAsync(id);
         }

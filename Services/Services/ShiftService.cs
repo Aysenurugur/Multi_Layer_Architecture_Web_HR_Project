@@ -35,7 +35,7 @@ namespace Services.Services
             return await unitOfWork.Shift.GetAllAsync();
         }
 
-        public async Task<Shift> GetShiftById(string id)
+        public async Task<Shift> GetShiftById(Guid id)
         {
             return await unitOfWork.Shift.GetByIDAsync(id);
         }

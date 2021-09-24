@@ -34,7 +34,7 @@ namespace Services.Services
             return await unitOfWork.Comment.GetAllAsync();
         }
 
-        public async Task<Comment> GetCommentById(string id)
+        public async Task<Comment> GetCommentById(Guid id)
         {
             return await unitOfWork.Comment.GetByIDAsync(id);
         }

@@ -15,9 +15,6 @@ namespace Data.Configuration
         {
             builder.HasKey(x => x.CommentID);
 
-            builder.Property(x => x.CommentID)
-                .UseIdentityColumn();
-
             builder.Property(x => x.CreatedDate)
                 .HasColumnType("datetime2");
 

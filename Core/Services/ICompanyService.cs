@@ -10,7 +10,7 @@ namespace Core.Services
     public interface ICompanyService
     {
         Task<IEnumerable<Company>> GetAllCompanies();
-        Task<Company> GetCompanyById(String id);
+        Task<Company> GetCompanyById(Guid id);
         Task<Company> CreateCompany(Company company);
         Task UpdateCompany(Company companyToBeUpdated, Company company);
         Task DeleteCompany(Company company);

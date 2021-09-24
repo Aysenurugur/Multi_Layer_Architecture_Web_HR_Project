@@ -15,9 +15,6 @@ namespace Data.Configuration
         {
             builder.HasKey(x => x.DayOffTypeID);
 
-            builder.Property(x => x.DayOffTypeID)
-                .UseIdentityColumn();
-
             builder.Property(x => x.CreatedDate)
                 .IsRequired()
                 .HasColumnType("datetime2");

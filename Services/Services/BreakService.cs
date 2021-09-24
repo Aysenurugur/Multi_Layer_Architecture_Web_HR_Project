@@ -34,7 +34,7 @@ namespace Services.Services
             return await unitOfWork.Break.GetAllAsync();
         }
 
-        public async Task<Break> GetBreakById(string id)
+        public async Task<Break> GetBreakById(Guid id)
         {
             return await unitOfWork.Break.GetByIDAsync(id);
         }

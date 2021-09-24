@@ -10,7 +10,7 @@ namespace Core.Services
     public interface INotificationService
     {
         Task<IEnumerable<Notification>> GetAllNotifications();
-        Task<Notification> GetNotificationById(string id);
+        Task<Notification> GetNotificationById(Guid id);
         Task<Notification> CreateNotification(Notification newNotification);
         Task UpdateNotification(Notification notificationToBeUpdated, Notification notification);
         Task DeleteNotification(Notification notification);

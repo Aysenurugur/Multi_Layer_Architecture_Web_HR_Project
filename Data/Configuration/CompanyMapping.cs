@@ -15,9 +15,6 @@ namespace Data.Configuration
         {
             builder.HasKey(x => x.CompanyID);
 
-            builder.Property(x => x.CompanyID)
-                .UseIdentityColumn();
-
             builder.Property(x => x.ExpirationDate)
                 .HasColumnType("datetime2");
 

@@ -29,7 +29,7 @@ namespace Services.Services
             await unitOfWork.CommitAsync();
         }
 
-        public async Task<DayOff> GetDayOffById(string id)
+        public async Task<DayOff> GetDayOffById(Guid id)
         {
             return await unitOfWork.DayOff.GetByIDAsync(id);
         }

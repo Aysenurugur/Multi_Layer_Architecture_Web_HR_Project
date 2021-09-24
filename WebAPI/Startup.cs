@@ -1,10 +1,12 @@
 using Core.Models;
 using Core.Settings;
+using Data.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -61,6 +63,9 @@ namespace WebAPI
 
             services.Configure<Admin>(Configuration.GetSection("Admin"));
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+
+            services.AddDbContext<ProjectIdentityDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("MsSQLConnection")));
         }
 
 

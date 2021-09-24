@@ -10,7 +10,7 @@ namespace Core.Services
     public interface IDebitService
     {
         Task<IEnumerable<Debit>> GetAllDebits();
-        Task<Debit> GetDebitById(string id);
+        Task<Debit> GetDebitById(Guid id);
         Task<Debit> CreateDebit(Debit newDebit);
         Task UpdateDebit(Debit debit);
         Task DeleteDebit(Debit debit);

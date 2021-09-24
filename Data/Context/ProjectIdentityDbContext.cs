@@ -3,10 +3,11 @@ using Core.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Data.Context
 {
-    public class ProjectIdentityDbContext : IdentityDbContext<User, IdentityRole, string>
+    public class ProjectIdentityDbContext : IdentityDbContext<User, Role, Guid>
     {
         public ProjectIdentityDbContext(DbContextOptions<ProjectIdentityDbContext> dbContext) : base(dbContext)
         {

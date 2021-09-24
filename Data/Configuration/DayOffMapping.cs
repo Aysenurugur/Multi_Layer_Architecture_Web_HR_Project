@@ -15,9 +15,6 @@ namespace Data.Configuration
         {
             builder.HasKey(x => x.DayOffID);
 
-            builder.Property(x => x.DayOffID)
-                .UseIdentityColumn();
-
             builder.Property(x => x.IsApproved)
                 .IsRequired()
                 .HasColumnType("bit");

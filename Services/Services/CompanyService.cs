@@ -35,7 +35,7 @@ namespace Services.Services
             return await unitOfWork.Company.GetAllAsync();
         }
 
-        public async Task<Company> GetCompanyById(string id)
+        public async Task<Company> GetCompanyById(Guid id)
         {
             return await unitOfWork.Company.GetByIDAsync(id);
         }

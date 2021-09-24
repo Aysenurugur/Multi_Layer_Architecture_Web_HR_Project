@@ -10,7 +10,7 @@ namespace Core.Services
     public interface IDayOffService
     {
         Task<IEnumerable<DayOff>> GetAllDayOffs();
-        Task<DayOff> GetDayOffById(string id);
+        Task<DayOff> GetDayOffById(Guid id);
         Task<DayOff> CreateDayOff(DayOff newDayOff);
         Task UpdateDayOff(DayOff dayOff);
         Task DeleteDayOff(DayOff dayOff);

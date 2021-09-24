@@ -10,7 +10,7 @@ namespace Core.Services
     public interface IPromotionService
     {
         Task<IEnumerable<Promotion>> GetAllPromotions();
-        Task<Promotion> GetPromotionById(string id);
+        Task<Promotion> GetPromotionById(Guid id);
         Task<Promotion> CreatePromotion(Promotion newPromotion);
         Task UpdatePromotion(Promotion promotionToBeUpdated, Promotion promotion);
         Task DeletePromotion(Promotion promotion);

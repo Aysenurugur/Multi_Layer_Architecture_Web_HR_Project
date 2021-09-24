@@ -29,7 +29,7 @@ namespace Services.Services
             await unitOfWork.CommitAsync();
         }
 
-        public async Task<File> GetFileById(string id)
+        public async Task<File> GetFileById(Guid id)
         {
             return await unitOfWork.File.GetByIDAsync(id);
         }

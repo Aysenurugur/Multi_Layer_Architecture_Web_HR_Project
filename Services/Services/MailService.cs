@@ -1,14 +1,10 @@
-﻿using Core.Settings;
-using Core.Models;
+﻿using Core.Models;
+using Core.Settings;
 using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.Mail;
 using MimeKit;
 using System.Net;
+using System.Net.Mail;
+using System.Threading.Tasks;
 
 namespace Services.Services
 {

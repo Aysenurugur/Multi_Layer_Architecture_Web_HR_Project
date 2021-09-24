@@ -10,7 +10,7 @@ namespace Core.Services
     public interface IShiftService
     {
         Task<IEnumerable<Shift>> GetAllShifts();
-        Task<Shift> GetShiftById(string id);
+        Task<Shift> GetShiftById(Guid id);
         Task<Shift> CreateShift(Shift newShift);
         Task UpdateShift(Shift shiftToBeUpdated, Shift shift);
         Task DeleteShift(Shift shift);

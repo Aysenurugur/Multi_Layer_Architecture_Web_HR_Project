@@ -35,7 +35,7 @@ namespace Services.Services
             return await unitOfWork.Notification.GetAllAsync();
         }
 
-        public async Task<Notification> GetNotificationById(string id)
+        public async Task<Notification> GetNotificationById(Guid id)
         {
             return await unitOfWork.Notification.GetByIDAsync(id);
         }

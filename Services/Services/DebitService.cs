@@ -29,7 +29,7 @@ namespace Services.Services
             await unitOfWork.CommitAsync();
         }
 
-        public async Task<Debit> GetDebitById(string id)
+        public async Task<Debit> GetDebitById(Guid id)
         {
             return await unitOfWork.Debit.GetByIDAsync(id);
         }
