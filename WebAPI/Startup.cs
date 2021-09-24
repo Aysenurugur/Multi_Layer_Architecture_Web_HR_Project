@@ -1,11 +1,10 @@
-using Data.CustomPolicies;
-using Data.Entities.Identity;
+using Core.Models;
+using Core.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -59,6 +58,9 @@ namespace WebAPI
             //services.AddIdentity<User, Role>(options=>options.SignIn.RequireConfirmedEmail=true).AddEntityFrameworkStores(/*DbContext*/).AddPasswordValidator<CustomPasswordPolicy>().AddUserValidator<CustomEmailPolicy>(); 
 
             #endregion
+
+            services.Configure<Admin>(Configuration.GetSection("Admin"));
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
         }
 
 

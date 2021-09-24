@@ -2,6 +2,7 @@
 using Core.Entities;
 using Core.Entities.Identity;
 using Data.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +22,15 @@ namespace Data.Repositories
             get { return context as ProjectIdentityDbContext; }
         }
 
-        public bool Login(string email, string password)
+        public async Task<User> GetUserByPhone(string phone)
         {
-            User user = DbContext.Users.Where(x => x.Email == email).FirstOrDefault();
-            if (user == null || user.PasswordHash != password) throw new Exception("Şifre veya mail adresi hatalı, bilgilerinizi kontrol ediniz.");
-            return true;
+            return await DbContext.Users.Where(x => x.PhoneNumber == phone).FirstOrDefaultAsync();
         }
+
+        public async Task<User> GetUserByEmail(string mail)
+        {
+            return await DbContext.Users.Where(x => x.Email == mail).FirstOrDefaultAsync();
+        }        
 
         public async Task SendVetoMessageAsync(VetoMessage vetoMessage, Guid userID)
         {

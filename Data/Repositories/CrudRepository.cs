@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Data.Repositories
@@ -39,7 +38,7 @@ namespace Data.Repositories
             return await context.Set<TEntity>().ToListAsync();
         }
 
-        public ValueTask<TEntity> GetByIDAsync(string id)
+        public ValueTask<TEntity> GetByIDAsync(Guid id)
         {
             return context.Set<TEntity>().FindAsync(id);
         }
