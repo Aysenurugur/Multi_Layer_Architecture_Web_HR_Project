@@ -20,17 +20,7 @@ namespace Data.Repositories
         private ProjectIdentityDbContext DbContext
         {
             get { return context as ProjectIdentityDbContext; }
-        }
-
-        public async Task<User> GetUserByPhone(string phone)
-        {
-            return await DbContext.Users.Where(x => x.PhoneNumber == phone).FirstOrDefaultAsync();
-        }
-
-        public async Task<User> GetUserByEmail(string mail)
-        {
-            return await DbContext.Users.Where(x => x.Email == mail).FirstOrDefaultAsync();
-        }        
+        }     
 
         public async Task SendVetoMessageAsync(VetoMessage vetoMessage, Guid userID)
         {

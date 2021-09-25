@@ -5,6 +5,7 @@ using Core.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Services.Services
@@ -32,9 +33,18 @@ namespace Services.Services
 
         public async Task<bool> FindUserByPhoneNumber(string phone) //bu telefon numarası bir kullanıcıya ait mi değil mi diye kontrol eder
         {
-            User user = await unitOfWork.User.GetUserByPhone(phone);
+            User user = unitOfWork.User.Find(x => x.PhoneNumber == phone);
             if (user == null) { return await Task.FromResult(true); }
             return await Task.FromResult(false);
+        }
+
+        public async Task<bool> DeactivateAllEmployees(Guid companyId)
+        {
+            List<User> employees = (List<User>)unitOfWork.User.List(x => x.CompanyID == companyId);
+            
+            foreach (User item in employees) item.IsActive = false;
+            
+            return await unitOfWork.CommitAsync() > 0;
         }
     }
 }

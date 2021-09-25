@@ -7,7 +7,7 @@ namespace Core.Entities
     {
         public Guid DayOffID { get; set; } //PK
         public Guid DayOffTypeID { get; set; } //FK
-        public bool IsApproved { get; set; }
+        public bool? IsApproved { get; set; }
 
         public DayOffType DayOffType { get; set; } //nav prop
         public VetoMessage VetoMessage { get; set; }

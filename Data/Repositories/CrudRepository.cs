@@ -28,9 +28,14 @@ namespace Data.Repositories
             await context.Set<TEntity>().AddRangeAsync(entities);
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        public IEnumerable<TEntity> List(Expression<Func<TEntity, bool>> predicate)
         {
             return context.Set<TEntity>().Where(predicate);
+        }
+
+        public TEntity Find(Expression<Func<TEntity, bool>> predicate)
+        {
+            return context.Set<TEntity>().Where(predicate).FirstOrDefault();
         }
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()

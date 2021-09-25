@@ -7,7 +7,7 @@ namespace WebAPI.DTOs
 {
     public class RegisterEmployerDTO
     {
-        public int EmployerId { get; set; }
+        public Guid EmployerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

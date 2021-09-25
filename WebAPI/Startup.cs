@@ -1,6 +1,8 @@
+using Core.Entities.Identity;
 using Core.Models;
 using Core.Settings;
 using Data.Context;
+using Data.CustomPolicies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -49,15 +51,18 @@ namespace WebAPI
             services.ConfigureApplicationCookie(
                 options =>
                 {
-                    options.AccessDeniedPath = ""; // sonra eklenecek 
+                    options.AccessDeniedPath = ""; // sonra eklenecek MVC controller ve action
                     options.Cookie.Name = "AspNetCore.Identity.Application";
                     //options.Cookie.HttpOnly = false; // client-side tarafýndan cookie'ye eriþimi engelleme
                     //options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // HTTPS üzerinden cookieyi eriþebilir yapma
                     options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
-                    options.LoginPath = ""; // sonra eklenecek
+                    options.LoginPath = ""; // sonra eklenecek login mvc controller action
                     options.SlidingExpiration = true;
                 });
-            //services.AddIdentity<User, Role>(options=>options.SignIn.RequireConfirmedEmail=true).AddEntityFrameworkStores(/*DbContext*/).AddPasswordValidator<CustomPasswordPolicy>().AddUserValidator<CustomEmailPolicy>(); 
+            services.AddIdentity<User, Role>(options=>options.SignIn.RequireConfirmedEmail=true)
+                .AddEntityFrameworkStores<ProjectIdentityDbContext>()
+                .AddPasswordValidator<CustomPasswordPolicy>()
+                .AddUserValidator<CustomEmailPhonePolicy>(); 
 
             #endregion
 
