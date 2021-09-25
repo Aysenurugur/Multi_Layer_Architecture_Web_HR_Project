@@ -19,6 +19,7 @@ namespace Services.Services
 
         public async Task<File> CreateFile(File newFile)
         {
+            newFile.FileID = new Guid();
             await unitOfWork.File.AddAsync(newFile);
             return newFile;
         }
@@ -45,5 +46,12 @@ namespace Services.Services
             updateFile.FileID = file.FileID;
             await unitOfWork.CommitAsync();
         }
+
+        //public async Task<IEnumerable<File>> GetUserFiles(Guid userId)
+        //{
+        //    //List<File> files = (List<File>)
+                
+        //    return await unitOfWork.File.List(x => x.UserID == userId);
+        //}
     }
 }

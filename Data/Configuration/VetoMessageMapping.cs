@@ -27,15 +27,18 @@ namespace Data.Configuration
 
             builder.HasOne(x => x.DayOff)
                 .WithOne(x => x.VetoMessage)
-                .HasForeignKey<VetoMessage>(x => x.DayOffID);
+                .HasForeignKey<VetoMessage>(x => x.DayOffID)
+                .IsRequired(false);
 
             builder.HasOne(x => x.Debit)
                 .WithOne(x => x.VetoMessage)
-                .HasForeignKey<VetoMessage>(x => x.DebitID);
+                .HasForeignKey<VetoMessage>(x => x.DebitID)
+                .IsRequired(false);
 
             builder.HasOne(x => x.Expense)
                 .WithOne(x => x.VetoMessage)
-                .HasForeignKey<VetoMessage>(x => x.ExpenseID);
+                .HasForeignKey<VetoMessage>(x => x.ExpenseID)
+                .IsRequired(false);
         }
     }
 }

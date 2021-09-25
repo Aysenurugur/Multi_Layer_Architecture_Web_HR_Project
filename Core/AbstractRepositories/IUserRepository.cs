@@ -9,7 +9,5 @@ namespace Core.AbstractRepositories
     public interface IUserRepository : ICrudRepository<User>
     {        
         Task SendVetoMessageAsync(VetoMessage vetoMessage, Guid userID);
-        Task<User> GetUserByEmail(string mail);
-        Task<User> GetUserByPhone(string phone);
     }
 }

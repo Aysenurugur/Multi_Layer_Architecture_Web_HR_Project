@@ -10,5 +10,6 @@ namespace Core.Services
     {
         Task<bool> UserLoginAsync(string email, string password);
         Task<bool> FindUserByPhoneNumber(string phone);
+        Task<bool> DeactivateAllEmployees(Guid companyId);
     }
 }
