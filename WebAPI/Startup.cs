@@ -36,18 +36,6 @@ namespace WebAPI
 
             #region Identity Configuration 
 
-            services.Configure<IdentityOptions>(
-                options =>
-                {
-                    options.User.RequireUniqueEmail = true;
-
-                    options.Password.RequiredLength = 8;
-                    options.Password.RequireLowercase = true;
-                    options.Password.RequireUppercase = true;
-                    options.Password.RequireNonAlphanumeric = true;
-                    options.Password.RequireDigit = true;
-                });
-
             services.ConfigureApplicationCookie(
                 options =>
                 {
@@ -59,10 +47,20 @@ namespace WebAPI
                     options.LoginPath = ""; // sonra eklenecek login mvc controller action
                     options.SlidingExpiration = true;
                 });
-            services.AddIdentity<User, Role>(options=>options.SignIn.RequireConfirmedEmail=true)
+
+            services.AddIdentity<User, Role>(options =>
+            {
+                options.SignIn.RequireConfirmedEmail = true;
+                options.User.RequireUniqueEmail = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireDigit = true;
+            })
                 .AddEntityFrameworkStores<ProjectIdentityDbContext>()
                 .AddPasswordValidator<CustomPasswordPolicy>()
-                .AddUserValidator<CustomEmailPhonePolicy>(); 
+                .AddUserValidator<CustomEmailPhonePolicy>();
 
             #endregion
 
@@ -70,7 +68,7 @@ namespace WebAPI
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
 
             services.AddDbContext<ProjectIdentityDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("MsSQLConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("SQLConnection")));
         }
 
 

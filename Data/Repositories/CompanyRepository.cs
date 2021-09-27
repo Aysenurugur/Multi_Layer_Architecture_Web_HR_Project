@@ -22,17 +22,5 @@ namespace Data.Repositories
         {
             get { return context as ProjectIdentityDbContext; }
         }
-
-        public async Task<int> CountCompaniesAsync()
-        {
-            return await DbContext.Companies.CountAsync();
-        }
-
-        public IEnumerable<User> GetEmployeeListAsync(Guid companyID, out int employeeCount)
-        {
-            List<User> employees = DbContext.Users.Where(x => x.CompanyID == companyID).ToList();
-            employeeCount = employees.Count();
-            return employees;
-        }
     }
 }

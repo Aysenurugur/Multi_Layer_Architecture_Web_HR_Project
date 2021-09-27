@@ -14,5 +14,6 @@ namespace Core.Services
         Task<DayOff> CreateDayOff(DayOff newDayOff);
         Task UpdateDayOff(DayOff dayOff);
         Task DeleteDayOff(DayOff dayOff);
+        Task<IEnumerable<DayOff>> GetDayOffsByDayOffType(Guid companyId);
     }
 }

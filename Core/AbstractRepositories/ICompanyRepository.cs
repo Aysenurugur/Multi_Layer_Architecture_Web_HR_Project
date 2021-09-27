@@ -9,8 +9,5 @@ namespace Core.AbstractRepositories
 {
     public interface ICompanyRepository : ICrudRepository<Company>
     {
-        Task<int> CountCompaniesAsync();
-        IEnumerable<User> GetEmployeeListAsync(Guid companyID, out int employeeCount);
-
     }
 }
