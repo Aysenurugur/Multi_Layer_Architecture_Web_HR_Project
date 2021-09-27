@@ -13,14 +13,12 @@ namespace Services.Services
     public class UserService : IUserService
     {
         readonly IUnitOfWork unitOfWork;
-        Admin admin;
         UserManager<User> userManager;
 
-        public UserService(IUnitOfWork unitOfWork, UserManager<User> userManager, IOptions<Admin> options)
+        public UserService(IUnitOfWork unitOfWork, UserManager<User> userManager)
         {
             this.unitOfWork = unitOfWork;
             this.userManager = userManager;
-            admin = options.Value;
         }
 
         public async Task<bool> UserLoginAsync(string email, string password)
@@ -29,7 +27,7 @@ namespace Services.Services
             if (user == null || userManager.PasswordHasher.VerifyHashedPassword(user, user.PasswordHash, password) == PasswordVerificationResult.Failed)
             { throw new Exception("Mail adresi veya şifre hatalı, bilgilerinizi kontrol ediniz."); }
             return await Task.FromResult(true);
-        }        
+        }
 
         public async Task<bool> FindUserByPhoneNumberAsync(string phone) //bu telefon numarası bir kullanıcıya ait mi değil mi diye kontrol eder
         {
@@ -41,9 +39,9 @@ namespace Services.Services
         public async Task<bool> DeactivateAllEmployeesAsync(Guid companyId)
         {
             List<User> employees = (List<User>)unitOfWork.User.List(x => x.CompanyID == companyId);
-            
+
             foreach (User item in employees) item.IsActive = false;
-            
+
             return await unitOfWork.CommitAsync() > 0;
         }
 
@@ -71,6 +69,34 @@ namespace Services.Services
         public IEnumerable<User> GetUsers()
         {
             return userManager.Users;
+        }
+
+        public IEnumerable<User> GetEmployeesWithClosingBirthdays(Guid companyId) 
+        {
+            List<User> employees = new List<User>();
+            foreach (User item in unitOfWork.User.List(x => x.CompanyID == companyId))
+            {
+                DateTime today = DateTime.Today;
+                DateTime next = new DateTime(today.Year, item.BirthDate.Value.Month, item.BirthDate.Value.Day);
+                if (next < today) next = next.AddYears(1);
+                int numDays = (next - today).Days;
+                if (numDays <= 30) employees.Add(item);
+            }
+            return employees;
+        }
+
+        public IEnumerable<User> GetActiveEmployees(Guid companyId, out int empCount)
+        {
+            List<User> employees = (List<User>)unitOfWork.User.List(x => x.CompanyID == companyId && x.IsActive);
+            empCount = employees.Count;
+            return employees;
+        }
+
+        public IEnumerable<User> GetPassiveEmployees(Guid companyId, out int empCount)
+        {
+            List<User> employees = (List<User>)unitOfWork.User.List(x => x.CompanyID == companyId && !x.IsActive);
+            empCount = employees.Count;
+            return employees;
         }
     }
 }
