@@ -1,3 +1,5 @@
+using Core.AbstractUnitOfWork;
+using Data.UnitOfWork;
 using Core.Entities.Identity;
 using Core.Models;
 using Core.Settings;
@@ -18,6 +20,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAPI.Mapping;
+using Services.Services;
+using Core.Services;
 
 namespace WebAPI
 {
@@ -72,6 +76,11 @@ namespace WebAPI
                 options.UseSqlServer(Configuration.GetConnectionString("SQLConnection")));
 
             services.AddAutoMapper(typeof(Startup));
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICompanyService, CompanyService>();
+            services.AddScoped<IAdminService, AdminService>();
         }
 
 

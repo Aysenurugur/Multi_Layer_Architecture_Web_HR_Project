@@ -22,6 +22,7 @@ namespace WebAPI.Controllers
         {
             this.companyService = companyService;
             this.mapper = mapper;
+            this.adminService = adminService;
         }
 
         [HttpGet]
@@ -37,6 +38,7 @@ namespace WebAPI.Controllers
             {
                 return BadRequest();
             }
+
         }
 
         [HttpPut("{id}")]
@@ -59,7 +61,7 @@ namespace WebAPI.Controllers
             try
             {
                 bool check = await adminService.AdminLoginAsync(loginDTO.Email, loginDTO.Password);
-                return Ok(check);
+                return Ok(check); //ajax success de dönen data true ise buraya yönlendir, değilse şöyle işlem yap
             }
             catch (Exception)
             {

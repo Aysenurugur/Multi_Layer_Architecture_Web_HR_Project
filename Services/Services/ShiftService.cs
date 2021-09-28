@@ -39,5 +39,12 @@ namespace Services.Services
             unitOfWork.Shift.Update(shift);
             await unitOfWork.CommitAsync();
         }
+
+        public async Task<IEnumerable<Shift>> GetShiftsByUserId(Guid userId)
+        {
+            List<Shift> shift = (List<Shift>)unitOfWork.Break.List(x => x.UserID == userId);
+            return await Task.FromResult(shift);
+
+        }
     }
 }

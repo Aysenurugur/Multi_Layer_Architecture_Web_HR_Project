@@ -38,5 +38,12 @@ namespace Services.Services
             unitOfWork.Break.Update(_break);
             await unitOfWork.CommitAsync();
         }
+
+        public async Task<IEnumerable<Break>> GetBreaksByUserId(Guid UserId)
+        {
+            List<Break> breaks = (List<Break>)unitOfWork.Break.List(x => x.UserID == UserId);
+            return await Task.FromResult(breaks);
+
+        }
     }
 }
