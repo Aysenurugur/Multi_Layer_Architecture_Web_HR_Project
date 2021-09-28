@@ -11,5 +11,6 @@ namespace Core.Services
         Task<Break> GetBreakById(Guid id);
         Task<Break> CreateBreak(Break newBreak);
         Task UpdateBreak(Break _break);
+        Task<IEnumerable<Break>> GetBreaksByUserId(Guid UserId);
     }
 }

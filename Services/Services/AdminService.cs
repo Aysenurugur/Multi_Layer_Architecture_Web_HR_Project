@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Services.Services
 {
-    class AdminService : IAdminService
+    public class AdminService : IAdminService
     {
         Admin admin;
         IUnitOfWork unitOfWork;

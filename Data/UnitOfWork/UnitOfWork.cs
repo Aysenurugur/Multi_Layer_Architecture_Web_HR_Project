@@ -2,15 +2,11 @@
 using Core.AbstractUnitOfWork;
 using Data.Context;
 using Data.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Data.UnitOfWork
 {
-    class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly ProjectIdentityDbContext context;
         private BreakRepository BreakRepository;

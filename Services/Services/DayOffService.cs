@@ -51,6 +51,19 @@ namespace Services.Services
             return await Task.FromResult(dayOffs);
         }
 
+        public async Task<IEnumerable<DayOff>> WaitingApprovementDayOffs(Guid companyId)
+        {
+            List<User> employees = (List<User>)unitOfWork.User.List(x => x.CompanyID == companyId);
+            List<DayOff> dayOffs = new List<DayOff>();
+            foreach (User item in employees)
+            {
+                dayOffs.AddRange(item.DayOffs.Where(x => x.IsApproved == null));
+
+            }
+            return await Task.FromResult(dayOffs);
+
+        }
+
         //public async Task<IEnumerable<DayOff>> GetDayOffsByDayOffType(Guid companyId,Guid dayOffTypeId) //hem day off type a göre hem de verilen şirkete göre day off lar gelsin
         //{
         //    List<User> employees = (List<User>)unitOfWork.User.List(x => x.CompanyID == companyId);
