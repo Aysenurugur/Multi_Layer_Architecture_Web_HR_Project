@@ -24,12 +24,6 @@ namespace Services.Services
             return newPromotion;
         }
 
-        public async Task DeletePromotion(Promotion promotion)
-        {
-            unitOfWork.Promotion.RemoveAsync(promotion);
-            await unitOfWork.CommitAsync();
-        }
-
         public async Task<IEnumerable<Promotion>> GetAllPromotions()
         {
             return await unitOfWork.Promotion.GetAllAsync();
@@ -40,9 +34,9 @@ namespace Services.Services
             return await unitOfWork.Promotion.GetByIDAsync(id);
         }
 
-        public async Task UpdatePromotion(Promotion promotionToBeUpdated, Promotion promotion)
+        public async Task UpdatePromotion(Promotion promotion)
         {
-            promotionToBeUpdated.PromotionID = promotion.PromotionID;
+            unitOfWork.Promotion.Update(promotion);
             await unitOfWork.CommitAsync();
         }
     }

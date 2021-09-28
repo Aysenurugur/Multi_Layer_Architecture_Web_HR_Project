@@ -24,12 +24,6 @@ namespace Services.Services
             return newNotification;
         }
 
-        public async Task DeleteNotification(Notification notification)
-        {
-            unitOfWork.Notification.RemoveAsync(notification);
-            await unitOfWork.CommitAsync();
-        }
-
         public async Task<IEnumerable<Notification>> GetAllNotifications()
         {
             return await unitOfWork.Notification.GetAllAsync();
@@ -40,10 +34,9 @@ namespace Services.Services
             return await unitOfWork.Notification.GetByIDAsync(id);
         }
 
-        public async Task UpdateNotification(Notification notificationToBeUpdated, Notification notification)
+        public Task<IEnumerable<Notification>> GetNotificationsByUserId(Guid userId)
         {
-            notificationToBeUpdated.NotificationID = notification.NotificationID;
-            await unitOfWork.CommitAsync();
+            return Task.FromResult(unitOfWork.Notification.List(x => x.UserID == userId));
         }
     }
 }

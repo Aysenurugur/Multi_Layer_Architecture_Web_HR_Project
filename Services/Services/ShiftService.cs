@@ -24,12 +24,6 @@ namespace Services.Services
             return newShift;
         }
 
-        public async Task DeleteShift(Shift shift)
-        {
-            unitOfWork.Shift.RemoveAsync(shift);
-            await unitOfWork.CommitAsync();
-        }
-
         public async Task<IEnumerable<Shift>> GetAllShifts()
         {
             return await unitOfWork.Shift.GetAllAsync();
@@ -40,9 +34,9 @@ namespace Services.Services
             return await unitOfWork.Shift.GetByIDAsync(id);
         }
 
-        public async Task UpdateShift(Shift shiftToBeUpdated, Shift shift)
+        public async Task UpdateShift(Shift shift)
         {
-            shiftToBeUpdated.ShiftID = shift.ShiftID;
+            unitOfWork.Shift.Update(shift);
             await unitOfWork.CommitAsync();
         }
     }

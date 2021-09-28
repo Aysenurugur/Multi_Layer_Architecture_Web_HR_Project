@@ -12,7 +12,7 @@ namespace Core.Services
         Task<IEnumerable<File>> GetAllFiles();
         Task<File> GetFileById(Guid id);
         Task<File> CreateFile(File newFile);
-        Task UpdateFile(File file, File updateFile);
-        Task DeleteFile(File file);
+        Task UpdateFile(File file);
+        Task<IEnumerable<File>> GetUserFiles(Guid userId);
     }
 }

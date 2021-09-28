@@ -23,12 +23,6 @@ namespace Services.Services
             return newBreak;
         }
 
-        public async Task DeleteBreak(Break _break)
-        {
-            unitOfWork.Break.RemoveAsync(_break);
-            await unitOfWork.CommitAsync();
-        }
-
         public async Task<IEnumerable<Break>> GetAllBreaks()
         {
             return await unitOfWork.Break.GetAllAsync();
@@ -39,9 +33,9 @@ namespace Services.Services
             return await unitOfWork.Break.GetByIDAsync(id);
         }
 
-        public async Task UpdateBreak(Break breakToBeUpdated, Break _break)
+        public async Task UpdateBreak(Break _break)
         {
-            breakToBeUpdated.BreakID = _break.BreakID;
+            unitOfWork.Break.Update(_break);
             await unitOfWork.CommitAsync();
         }
     }

@@ -13,6 +13,5 @@ namespace Core.Services
         Task<Expense> GetExpenseById(Guid id);
         Task<Expense> CreateExpense(Expense expense);
         Task UpdateExpense(Expense expense);
-        Task DeleteExpense(Expense expense);
     }
 }

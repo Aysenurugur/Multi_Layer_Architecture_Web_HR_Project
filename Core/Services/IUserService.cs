@@ -12,6 +12,7 @@ namespace Core.Services
         Task<bool> DeactivateAllEmployeesAsync(Guid companyId);
         Task<bool> RegisterAsync(User user);
         Task<bool> SetUserStatusAsync(Guid userId, bool status);
+        Task<bool> UpdateUserInfoAsync(User user);
         IEnumerable<User> GetUsers();
         IEnumerable<User> GetEmployeesWithClosingBirthdays(Guid companyId);
         IEnumerable<User> GetActiveEmployees(Guid companyId, out int empCount);

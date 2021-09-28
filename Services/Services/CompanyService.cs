@@ -24,12 +24,6 @@ namespace Services.Services
             return newCompany;
         }
 
-        public async Task DeleteCompany(Company company)
-        {
-            unitOfWork.Company.RemoveAsync(company);
-            await unitOfWork.CommitAsync();
-        }
-
         public async Task<IEnumerable<Company>> GetAllCompanies()
         {
             return await unitOfWork.Company.GetAllAsync();
@@ -40,10 +34,17 @@ namespace Services.Services
             return await unitOfWork.Company.GetByIDAsync(id);
         }
 
-        public async Task UpdateCompany(Company companyToBeUpdated, Company company)
+        public async Task UpdateCompany(Company company)
         {
-            companyToBeUpdated.CompanyID = company.CompanyID;
+            unitOfWork.Company.Update(company);
             await unitOfWork.CommitAsync();
+        }
+
+        public async Task<bool> DeactivateCompany(Guid companyId)
+        {
+            Company company = await unitOfWork.Company.GetByIDAsync(companyId);
+            company.IsActive = false;
+            return await unitOfWork.CommitAsync() > 0;
         }
     }
 }

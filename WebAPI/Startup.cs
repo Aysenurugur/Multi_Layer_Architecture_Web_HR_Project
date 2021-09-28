@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAPI.Mapping;
 
 namespace WebAPI
 {
@@ -69,6 +70,8 @@ namespace WebAPI
 
             services.AddDbContext<ProjectIdentityDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("SQLConnection")));
+
+            services.AddAutoMapper(typeof(Startup));
         }
 
 

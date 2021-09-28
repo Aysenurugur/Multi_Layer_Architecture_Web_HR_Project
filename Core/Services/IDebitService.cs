@@ -13,6 +13,5 @@ namespace Core.Services
         Task<Debit> GetDebitById(Guid id);
         Task<Debit> CreateDebit(Debit newDebit);
         Task UpdateDebit(Debit debit);
-        Task DeleteDebit(Debit debit);
     }
 }

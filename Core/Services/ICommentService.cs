@@ -12,7 +12,6 @@ namespace Core.Services
         Task<IEnumerable<Comment>> GetAllComments();
         Task<Comment> GetCommentById(Guid id);
         Task<Comment> CreateComment(Comment newComment);
-        Task UpdateComment(Comment commentToBeUpdated, Comment comment);
-        Task DeleteComment(Comment comment);
+        Task UpdateComment(Comment comment);
     }
 }

@@ -24,12 +24,6 @@ namespace Services.Services
             return newFile;
         }
 
-        public async Task DeleteFile(File file)
-        {
-            unitOfWork.File.RemoveAsync(file);
-            await unitOfWork.CommitAsync();
-        }
-
         public async Task<File> GetFileById(Guid id)
         {
             return await unitOfWork.File.GetByIDAsync(id);
@@ -40,18 +34,17 @@ namespace Services.Services
             return await unitOfWork.File.GetAllAsync();
         }
 
-        public async Task UpdateFile(File file, File updateFile)
+        public async Task UpdateFile(File file)
         {
-            updateFile.PDFFile = file.PDFFile;
-            updateFile.FileID = file.FileID;
+            unitOfWork.File.Update(file);
             await unitOfWork.CommitAsync();
         }
 
-        //public async Task<IEnumerable<File>> GetUserFiles(Guid userId)
-        //{
-        //    //List<File> files = (List<File>)
-                
-        //    return await unitOfWork.File.List(x => x.UserID == userId);
-        //}
+        public async Task<IEnumerable<File>> GetUserFiles(Guid userId)
+        {
+            List<File> files = (List<File>)unitOfWork.File.List(x => x.UserID == userId);
+
+            return await Task.FromResult(files);
+        }
     }
 }

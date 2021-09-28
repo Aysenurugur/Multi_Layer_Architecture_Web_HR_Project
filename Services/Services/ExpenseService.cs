@@ -23,12 +23,6 @@ namespace Services.Services
             return expense;
         }
 
-        public async Task DeleteExpense(Expense expense)
-        {
-            unitOfWork.Expense.RemoveAsync(expense);
-            await unitOfWork.CommitAsync();
-        }
-
         public async Task<Expense> GetExpenseById(Guid id)
         {
             return await unitOfWork.Expense.GetByIDAsync(id);
@@ -41,7 +35,7 @@ namespace Services.Services
 
         public async Task UpdateExpense(Expense expense)
         {
-            expense.IsApproved = true;
+            unitOfWork.Expense.Update(expense);
             await unitOfWork.CommitAsync();
         }
 
