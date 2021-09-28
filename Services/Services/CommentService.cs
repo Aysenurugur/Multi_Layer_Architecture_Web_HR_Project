@@ -23,12 +23,6 @@ namespace Services.Services
             return newComment;
         }
 
-        public async Task DeleteComment(Comment comment)
-        {
-            unitOfWork.Comment.RemoveAsync(comment);
-            await unitOfWork.CommitAsync();
-        }
-
         public async Task<IEnumerable<Comment>> GetAllComments()
         {
             return await unitOfWork.Comment.GetAllAsync();
@@ -39,9 +33,9 @@ namespace Services.Services
             return await unitOfWork.Comment.GetByIDAsync(id);
         }
 
-        public async Task UpdateComment(Comment commentToBeUpdated, Comment comment)
+        public async Task UpdateComment(Comment comment)
         {
-            commentToBeUpdated.CommentID = comment.CommentID;
+            unitOfWork.Comment.Update(comment);
             await unitOfWork.CommitAsync();
         }
     }

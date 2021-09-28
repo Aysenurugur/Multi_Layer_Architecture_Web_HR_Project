@@ -12,7 +12,6 @@ namespace Core.Services
         Task<IEnumerable<Shift>> GetAllShifts();
         Task<Shift> GetShiftById(Guid id);
         Task<Shift> CreateShift(Shift newShift);
-        Task UpdateShift(Shift shiftToBeUpdated, Shift shift);
-        Task DeleteShift(Shift shift);
+        Task UpdateShift(Shift shift);
     }
 }

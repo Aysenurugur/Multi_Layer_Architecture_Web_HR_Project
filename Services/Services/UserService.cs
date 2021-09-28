@@ -59,9 +59,8 @@ namespace Services.Services
             return await unitOfWork.CommitAsync() > 0;
         }
 
-        public async Task<bool> UpdateUserInfoAsync(Guid userId)
+        public async Task<bool> UpdateUserInfoAsync(User user)
         {
-            User user = await userManager.FindByIdAsync(userId.ToString());
             await userManager.UpdateAsync(user);
             return await unitOfWork.CommitAsync() > 0;
         }

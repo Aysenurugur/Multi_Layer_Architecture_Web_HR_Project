@@ -14,8 +14,6 @@ namespace Core.AbstractRepositories.Generic
         Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
         Task AddAsync(TEntity entity);
         Task AddRangeAsync(IEnumerable<TEntity> entities);
-        void RemoveAsync(TEntity entity);
-        void RemoveRangeAsync(IEnumerable<TEntity> entities);
         void Update(TEntity entity);
     }
 }

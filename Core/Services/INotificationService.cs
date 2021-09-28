@@ -12,7 +12,6 @@ namespace Core.Services
         Task<IEnumerable<Notification>> GetAllNotifications();
         Task<Notification> GetNotificationById(Guid id);
         Task<Notification> CreateNotification(Notification newNotification);
-        Task UpdateNotification(Notification notificationToBeUpdated, Notification notification);
-        Task DeleteNotification(Notification notification);
+        Task<IEnumerable<Notification>> GetNotificationsByUserId(Guid userId);
     }
 }

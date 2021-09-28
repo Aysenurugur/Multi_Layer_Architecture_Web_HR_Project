@@ -23,12 +23,6 @@ namespace Services.Services
             return newDebit;
         }
 
-        public async Task DeleteDebit(Debit debit)
-        {
-            unitOfWork.Debit.RemoveAsync(debit);
-            await unitOfWork.CommitAsync();
-        }
-
         public async Task<Debit> GetDebitById(Guid id)
         {
             return await unitOfWork.Debit.GetByIDAsync(id);
@@ -41,7 +35,7 @@ namespace Services.Services
 
         public async Task UpdateDebit(Debit debit)
         {
-            debit.IsApproved = true;
+            unitOfWork.Debit.Update(debit);
             await unitOfWork.CommitAsync();
         }
     }

@@ -24,12 +24,6 @@ namespace Services.Services
             return newDayOff;
         }
 
-        public async Task DeleteDayOff(DayOff dayOff)
-        {
-            unitOfWork.DayOff.RemoveAsync(dayOff);
-            await unitOfWork.CommitAsync();
-        }
-
         public async Task<DayOff> GetDayOffById(Guid id)
         {
             return await unitOfWork.DayOff.GetByIDAsync(id);
@@ -42,11 +36,11 @@ namespace Services.Services
 
         public async Task UpdateDayOff(DayOff dayOff)
         {
-            dayOff.IsApproved = true;
+            unitOfWork.DayOff.Update(dayOff);
             await unitOfWork.CommitAsync();
         }
 
-        public async Task<IEnumerable<DayOff>> GetDayOffsByDayOffType(Guid companyId)
+        public async Task<IEnumerable<DayOff>> GetDayOffsByCompany(Guid companyId)
         {
             List<User> employees = (List<User>)unitOfWork.User.List(x => x.CompanyID == companyId);
             List<DayOff> dayOffs = new List<DayOff>();
