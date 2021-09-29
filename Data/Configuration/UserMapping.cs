@@ -25,7 +25,6 @@ namespace Data.Configuration
                 .HasMaxLength(100);
 
             builder.Property(x => x.BirthDate)
-                .IsRequired()
                 .HasColumnType("datetime2");
 
             builder.HasIndex(x => x.Email)
@@ -73,6 +72,15 @@ namespace Data.Configuration
             builder.HasMany<Promotion>(x => x.Promotions)
                 .WithOne(x => x.User)
                 .HasForeignKey(x => x.UserID);
+
+            //builder.Ignore(x => x.AccessFailedCount);
+            //builder.Ignore(x => x.ConcurrencyStamp);
+            //builder.Ignore(x => x.EmailConfirmed);
+            //builder.Ignore(x => x.LockoutEnabled);
+            //builder.Ignore(x => x.LockoutEnd);
+            //builder.Ignore(x => x.NormalizedUserName);
+            //builder.Ignore(x => x.PhoneNumberConfirmed);
+            //builder.Ignore(x => x.UserName);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Core.Services
     {
         Task<IEnumerable<Company>> GetAllCompanies();
         Task<Company> GetCompanyById(Guid id);
-        Task<Company> CreateCompany(Company company);
+        Task CreateCompany(Company company);
         Task UpdateCompany(Company company);
         Task<bool> DeactivateCompany(Guid companyId);
     }

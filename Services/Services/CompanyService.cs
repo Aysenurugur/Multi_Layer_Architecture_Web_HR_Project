@@ -18,10 +18,10 @@ namespace Services.Services
             this.unitOfWork = _unitOfWork;
         }
 
-        public async Task<Company> CreateCompany(Company newCompany)
+        public async Task CreateCompany(Company newCompany)
         {
             await unitOfWork.Company.AddAsync(newCompany);
-            return newCompany;
+            await unitOfWork.CommitAsync();
         }
 
         public async Task<IEnumerable<Company>> GetAllCompanies()

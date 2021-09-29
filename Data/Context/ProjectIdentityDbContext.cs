@@ -31,6 +31,8 @@ namespace Data.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
+
             builder.ApplyConfiguration(new BreakMapping());
             builder.ApplyConfiguration(new CommentMapping());
             builder.ApplyConfiguration(new CompanyMapping());
@@ -46,9 +48,6 @@ namespace Data.Context
             builder.ApplyConfiguration(new ShiftMapping());
             builder.ApplyConfiguration(new UserMapping());
             builder.ApplyConfiguration(new VetoMessageMapping());
-
-            base.OnModelCreating(builder);
         }
-
     }
 }

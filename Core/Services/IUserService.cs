@@ -7,15 +7,17 @@ namespace Core.Services
 {
     public interface IUserService
     {
+        Task<User> GetUserById(Guid userId);
         Task<bool> UserLoginAsync(string email, string password);
-        Task<bool> FindUserByPhoneNumberAsync(string phone);
+        Task<bool> CheckUserPhoneNumberAsync(string phone);
+        Task<bool> CheckUserMailAsync(string email);
         Task<bool> DeactivateAllEmployeesAsync(Guid companyId);
-        Task<bool> RegisterAsync(User user);
+        Task<IEnumerable<string>> RegisterAsync(User user, string password);
         Task<bool> SetUserStatusAsync(Guid userId, bool status);
+        Task<bool> CheckIfRoleIsManager(Guid id);
         Task<bool> UpdateUserInfoAsync(User user);
         IEnumerable<User> GetUsers();
         IEnumerable<User> GetEmployeesWithClosingBirthdays(Guid companyId);
-        IEnumerable<User> GetActiveEmployees(Guid companyId, out int empCount);
-        IEnumerable<User> GetPassiveEmployees(Guid companyId, out int empCount);
+        IEnumerable<User> GetEmployees(Guid companyId, bool isActive, out int empCount);
     }
 }

@@ -23,7 +23,6 @@ namespace Data.Configuration
                 .HasMaxLength(250);
 
             builder.Property(x => x.Address)
-                .IsRequired()
                 .HasMaxLength(250);
         }
     }

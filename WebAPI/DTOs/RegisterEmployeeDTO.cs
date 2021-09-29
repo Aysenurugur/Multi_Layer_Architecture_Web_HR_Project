@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace WebAPI.DTOs
 {
-    public class RegiterEmployeeDTO
+    public class RegisterEmployeeDTO
     {
         public Guid Id { get; set; }
+        public Guid CompanyID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -17,6 +18,5 @@ namespace WebAPI.DTOs
         public DateTime HiredDate { get; set; }
         public byte[] Photo { get; set; }
         public string Title { get; set; }
-        public string Department { get; set; }
     }
 }
