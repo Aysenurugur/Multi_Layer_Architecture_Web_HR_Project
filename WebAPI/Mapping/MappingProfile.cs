@@ -9,14 +9,16 @@ namespace WebAPI.Mapping
     {
         public MappingProfile()
         {
-            //GET
+            //Entity to DTO
             CreateMap<Comment, CommentDTO>();
             CreateMap<Company, CompanyDTO>();
             CreateMap<User, EmployeeDetailsDTO>();
+            CreateMap<User, UserDTO>();
 
-            //POST
+            //DTO to Entity
             CreateMap<RegisterEmployerDTO, User>();
             CreateMap<RegisterEmployeeDTO, User>();
+            CreateMap<UserDTO, User>();
         }
     }
 }
