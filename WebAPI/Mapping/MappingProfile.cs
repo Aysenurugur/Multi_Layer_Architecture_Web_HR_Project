@@ -9,9 +9,14 @@ namespace WebAPI.Mapping
     {
         public MappingProfile()
         {
+            //GET
             CreateMap<Comment, CommentDTO>();
             CreateMap<Company, CompanyDTO>();
             CreateMap<User, EmployeeDetailsDTO>();
+
+            //POST
+            CreateMap<RegisterEmployerDTO, User>();
+            CreateMap<RegisterEmployeeDTO, User>();
         }
     }
 }

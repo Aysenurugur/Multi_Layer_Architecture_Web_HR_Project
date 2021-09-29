@@ -21,6 +21,10 @@ namespace Services.Services
             this.userManager = userManager;
         }
 
+        public async Task<User> GetUserById(Guid userId)
+        {
+            return await userManager.FindByIdAsync(userId.ToString());
+        }
         public async Task<bool> UserLoginAsync(string email, string password)
         {
             User user = await userManager.FindByEmailAsync(email);
@@ -29,10 +33,17 @@ namespace Services.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> FindUserByPhoneNumberAsync(string phone) //bu telefon numarası bir kullanıcıya ait mi değil mi diye kontrol eder
+        public async Task<bool> CheckUserPhoneNumberAsync(string phone) //bu telefon numarası bir kullanıcıya ait mi değil mi diye kontrol eder
         {
             User user = unitOfWork.User.Find(x => x.PhoneNumber == phone);
             if (user == null) { return await Task.FromResult(true); }
+            return await Task.FromResult(false);
+        }
+
+        public async Task<bool> CheckUserMailAsync(string email)
+        {
+            User user = await userManager.FindByEmailAsync(email);
+            if (user == null) return await Task.FromResult(true);
             return await Task.FromResult(false);
         }
 
@@ -45,11 +56,18 @@ namespace Services.Services
             return await unitOfWork.CommitAsync() > 0;
         }
 
-        public async Task<bool> RegisterAsync(User user)
+        public async Task<IEnumerable<string>> RegisterAsync(User user, string password)
         {
-            user.Id = new Guid();
-            await userManager.CreateAsync(user);
-            return await unitOfWork.CommitAsync() > 0;
+            List<string> errors = new List<string>();
+
+            user.UserName = user.Email.Split('@')[0]; //username hatası aldığım için çözüm olarak unique data girmek oldu.            
+            var result = await userManager.CreateAsync(user, password);
+
+            if (result.Succeeded && errors.Count == 0) { return null; }//hatasız         
+            foreach (var error in result.Errors) { errors.Add(error.Description); }
+
+            await unitOfWork.CommitAsync();
+            return errors;
         }
 
         public async Task<bool> SetUserStatusAsync(Guid userId, bool status)
@@ -70,7 +88,7 @@ namespace Services.Services
             return userManager.Users;
         }
 
-        public IEnumerable<User> GetEmployeesWithClosingBirthdays(Guid companyId) 
+        public IEnumerable<User> GetEmployeesWithClosingBirthdays(Guid companyId)
         {
             List<User> employees = new List<User>();
             foreach (User item in unitOfWork.User.List(x => x.CompanyID == companyId))
@@ -84,18 +102,17 @@ namespace Services.Services
             return employees;
         }
 
-        public IEnumerable<User> GetActiveEmployees(Guid companyId, out int empCount)
+        public IEnumerable<User> GetEmployees(Guid companyId, bool isActive, out int empCount)
         {
-            List<User> employees = (List<User>)unitOfWork.User.List(x => x.CompanyID == companyId && x.IsActive);
+            List<User> employees = (List<User>)unitOfWork.User.List(x => x.CompanyID == companyId && x.IsActive == isActive);
             empCount = employees.Count;
             return employees;
         }
 
-        public IEnumerable<User> GetPassiveEmployees(Guid companyId, out int empCount)
+        public async Task<bool> CheckIfRoleIsManager(Guid id)
         {
-            List<User> employees = (List<User>)unitOfWork.User.List(x => x.CompanyID == companyId && !x.IsActive);
-            empCount = employees.Count;
-            return employees;
+            User user = await GetUserById(id);
+            return await userManager.IsInRoleAsync(user, "Manager");
         }
     }
 }
