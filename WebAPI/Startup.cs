@@ -83,6 +83,8 @@ namespace WebAPI
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<IDayOffService, DayOffService>();
+            services.AddScoped<IDayOffTypeService, DayOffTypeService>();
         }
 
 

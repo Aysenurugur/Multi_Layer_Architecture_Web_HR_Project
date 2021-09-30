@@ -1,4 +1,5 @@
 ﻿using Core.AbstractRepositories;
+using Core.AbstractRepositories.Generic;
 using Core.AbstractUnitOfWork;
 using Data.Context;
 using Data.Repositories;
@@ -13,6 +14,7 @@ namespace Data.UnitOfWork
         private CommentRepository CommentRepository;
         private CompanyRepository CompanyRepository;
         private DayOffRepository DayOffRepository;
+        private DayOffTypeRepository DayOffTypeRepository;
         private DebitRepository DebitRepository;
         private ExpenseRepository ExpenseRepository;
         private NotificationRepository NotificationRepository;
@@ -29,6 +31,7 @@ namespace Data.UnitOfWork
         public ICommentRepository Comment => CommentRepository = CommentRepository ?? new CommentRepository(context);
         public ICompanyRepository Company => CompanyRepository = CompanyRepository ?? new CompanyRepository(context);
         public IDayOffRepository DayOff => DayOffRepository = DayOffRepository ?? new DayOffRepository(context);
+        public IDayOffTypeRepository DayOffType => DayOffTypeRepository = DayOffTypeRepository ?? new DayOffTypeRepository(context);
         public IDebitRepository Debit => DebitRepository = DebitRepository ?? new DebitRepository(context);
         public IExpenseRepository Expense => ExpenseRepository = ExpenseRepository ?? new ExpenseRepository(context);
         public INotificationRepository Notification => NotificationRepository = NotificationRepository ?? new NotificationRepository(context);

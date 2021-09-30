@@ -18,11 +18,13 @@ namespace WebAPI.Controllers
         ICompanyService companyService;
         IMapper mapper;
         IAdminService adminService;
-        public AdminController(ICompanyService companyService, IMapper mapper, IAdminService adminService)
+        IDayOffTypeService dayOffTypeService;
+        public AdminController(ICompanyService companyService, IMapper mapper, IAdminService adminService, IDayOffTypeService dayOffTypeService)
         {
             this.companyService = companyService;
             this.mapper = mapper;
             this.adminService = adminService;
+            this.dayOffTypeService = dayOffTypeService;
         }
 
         [HttpGet]
@@ -71,7 +73,22 @@ namespace WebAPI.Controllers
             
         }
 
-        // GetDayOFFType
-        // CreateDayOffType
+        [HttpGet]
+        public async Task<IActionResult> GetDayOffTypes() //Test edildi.
+        {
+            try
+            {
+                var dayOffTypes = await dayOffTypeService.GetAllDayOffTypes();
+                var dayOffTypeDTOs = mapper.Map<IEnumerable<DayOffType>, IEnumerable<DayOffTypeDTO>>(dayOffTypes);
+                return Ok(dayOffTypeDTOs);
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
+        }
+        
+
     }
 }
