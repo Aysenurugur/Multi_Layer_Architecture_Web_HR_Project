@@ -13,7 +13,9 @@ namespace WebAPI.Mapping
             CreateMap<Comment, CommentDTO>();
             CreateMap<Company, CompanyDTO>();
             CreateMap<User, EmployeeDetailsDTO>();
-            
+            CreateMap<DayOff, EmployeeDayOffDTO>();
+            CreateMap<User, UserDTO>();
+
             //DTO to Entity
             CreateMap<RegisterEmployerDTO, User>();
             CreateMap<RegisterEmployeeDTO, User>();
