@@ -8,7 +8,7 @@ namespace WebAPI.DTOs
     public class CompanyDTO
     {
         // site anasayası için 
-        public Guid Id { get; set; }
+        public Guid CompanyID { get; set; }
         public string CompanyName { get; set; }
         public byte[] Logo { get; set; }
     }
