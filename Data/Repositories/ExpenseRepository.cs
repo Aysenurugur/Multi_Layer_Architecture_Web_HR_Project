@@ -1,6 +1,7 @@
 ﻿using Core.AbstractRepositories;
 using Core.Entities;
 using Data.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,11 @@ namespace Data.Repositories
         {
             expense.IsApproved = status;
             await DbContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<Expense>> GetExpensesByCompanyAsync(Guid id)
+        {
+            return await DbContext.Expenses.Include(x => x.User).Where(x => x.User.Company.CompanyID == id).ToListAsync();
         }
     }
 }

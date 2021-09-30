@@ -12,6 +12,7 @@ namespace Core.Services
         Task<IEnumerable<Debit>> GetAllDebits();
         Task<Debit> GetDebitById(Guid id);
         Task<Debit> CreateDebit(Debit newDebit);
-        Task UpdateDebit(Debit debit);
+        Task<bool> SetDebitStatus(Guid id, bool status);
+        IEnumerable<Debit> GetDebitByEmployeeId(Guid employeeId);
     }
 }

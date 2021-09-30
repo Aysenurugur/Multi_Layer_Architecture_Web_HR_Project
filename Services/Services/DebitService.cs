@@ -1,5 +1,6 @@
 ﻿using Core.AbstractUnitOfWork;
 using Core.Entities;
+using Core.Entities.Identity;
 using Core.Services;
 using System;
 using System.Collections.Generic;
@@ -33,10 +34,18 @@ namespace Services.Services
             return await unitOfWork.Debit.GetAllAsync();
         }
 
-        public async Task UpdateDebit(Debit debit)
+        public async Task<bool> SetDebitStatus(Guid id, bool status)
         {
+            Debit debit = await unitOfWork.Debit.GetByIDAsync(id);
+            debit.IsApproved = status;
             unitOfWork.Debit.Update(debit);
-            await unitOfWork.CommitAsync();
+            bool check = await unitOfWork.CommitAsync() > 0;
+            return await Task.FromResult(check);
+        }
+
+        public IEnumerable<Debit> GetDebitByEmployeeId(Guid employeeId)
+        {
+            return unitOfWork.Debit.List(x => x.UserID == employeeId);
         }
     }
 }

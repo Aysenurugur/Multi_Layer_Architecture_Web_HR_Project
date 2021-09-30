@@ -13,5 +13,6 @@ namespace Core.Services
         Task<Comment> GetCommentById(Guid id);
         Task<Comment> CreateComment(Comment newComment);
         Task UpdateComment(Comment comment);
+        Comment GetCommentByCompanyId(Guid companyId);
     }
 }
