@@ -15,11 +15,14 @@ namespace WebAPI.Mapping
             CreateMap<User, EmployeeDetailsDTO>();
             CreateMap<DayOff, EmployeeDayOffDTO>();
             CreateMap<User, UserDTO>();
+            CreateMap<DayOffType, DayOffTypeDTO>();
+
 
             //DTO to Entity
             CreateMap<RegisterEmployerDTO, User>();
             CreateMap<RegisterEmployeeDTO, User>();
             CreateMap<UserDTO, User>();
+            CreateMap<DayOffTypeDTO, DayOffType>();
         }
     }
 }

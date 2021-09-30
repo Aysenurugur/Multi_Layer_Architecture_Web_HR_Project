@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCompanyById(Guid id)
+        public async Task<IActionResult> GetCompanyById(Guid id)  //Test edildi.
         {
             try
             {
