@@ -69,6 +69,8 @@ namespace WebAPI
 
             #endregion
 
+            
+
             services.Configure<Admin>(Configuration.GetSection("Admin"));
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
 
@@ -81,6 +83,8 @@ namespace WebAPI
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<IDayOffService, DayOffService>();
+            services.AddScoped<IDayOffTypeService, DayOffTypeService>();
         }
 
 

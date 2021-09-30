@@ -15,9 +15,10 @@ namespace Core.Services
         Task<IEnumerable<string>> RegisterAsync(User user, string password);
         Task<bool> SetUserStatusAsync(Guid userId, bool status);
         Task<bool> CheckIfRoleIsManager(Guid id);
-        Task<bool> UpdateUserInfoAsync(User user);
+        Task<List<string>> UpdateUserInfoAsync(User user);
         IEnumerable<User> GetUsers();
         IEnumerable<User> GetEmployeesWithClosingBirthdays(Guid companyId);
         IEnumerable<User> GetEmployees(Guid companyId, bool isActive, out int empCount);
+        Task<User> GetUserByEmailAsync(string mail);
     }
 }

@@ -49,7 +49,7 @@ namespace Services.Services
 
         public async Task<bool> DeactivateAllEmployeesAsync(Guid companyId)
         {
-            List<User> employees = (List<User>)unitOfWork.User.List(x => x.CompanyID == companyId);
+            List<User> employees = (List<User>)unitOfWork.User.List(x => x.CompanyID == companyId && x.IsActive);
 
             foreach (User item in employees) item.IsActive = false;
 
@@ -60,10 +60,11 @@ namespace Services.Services
         {
             List<string> errors = new List<string>();
 
-            user.UserName = user.Email.Split('@')[0]; //username hatası aldığım için çözüm olarak unique data girmek oldu.            
-            var result = await userManager.CreateAsync(user, password);
+            user.UserName = user.Email.Split('@')[0]; //username hatası aldığım için çözüm olarak unique data girmek oldu.    
+            user.IsActive = true;
 
-            if (result.Succeeded && errors.Count == 0) { return null; }//hatasız         
+            var result = await userManager.CreateAsync(user, password);
+            if (result.Succeeded && errors.Count == 0) { return null; } //hatasız
             foreach (var error in result.Errors) { errors.Add(error.Description); }
 
             await unitOfWork.CommitAsync();
@@ -77,10 +78,16 @@ namespace Services.Services
             return await unitOfWork.CommitAsync() > 0;
         }
 
-        public async Task<bool> UpdateUserInfoAsync(User user)
+        public async Task<List<string>> UpdateUserInfoAsync(User user) 
         {
-            await userManager.UpdateAsync(user);
-            return await unitOfWork.CommitAsync() > 0;
+            List<string> errors = new List<string>();
+            var result = await userManager.UpdateAsync(user);
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors) { errors.Add(error.Description); }
+            }
+            await unitOfWork.CommitAsync();
+            return errors;
         }
 
         public IEnumerable<User> GetUsers()
@@ -114,5 +121,11 @@ namespace Services.Services
             User user = await GetUserById(id);
             return await userManager.IsInRoleAsync(user, "Manager");
         }
+
+        public async Task<User> GetUserByEmailAsync(string mail)
+        {
+            return await userManager.FindByEmailAsync(mail);
+        }
     }
 }
+//salı günü 5 ekim 13.30 

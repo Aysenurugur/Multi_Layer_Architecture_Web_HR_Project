@@ -1,4 +1,5 @@
 ﻿using Core.AbstractRepositories;
+using Core.AbstractRepositories.Generic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace Core.AbstractUnitOfWork
         ICommentRepository Comment { get; }
         ICompanyRepository Company { get; }
         IDayOffRepository DayOff { get; }
+        IDayOffTypeRepository DayOffType { get; }
         IDebitRepository Debit { get; }
         IExpenseRepository Expense { get; }
         INotificationRepository Notification { get; }

@@ -27,7 +27,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterEmployerDTO employerDTO)
+        public async Task<IActionResult> Register(RegisterEmployerDTO employerDTO) //test edild
         {
             try
             {
@@ -44,7 +44,9 @@ namespace WebAPI.Controllers
                 user.CompanyID = company.CompanyID;
                 var result = await userService.RegisterAsync(user, employerDTO.Password);
                 if (result != null) return BadRequest(result); //result list dolu ise error ları ekranda göster
-                return Ok(user);
+                UserDTO userDTO = mapper.Map<User, UserDTO>(user);
+
+                return Ok(userDTO);
             }
             catch (Exception)
             {
@@ -53,7 +55,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(RegisterEmployeeDTO employeeDTO)
+        public async Task<IActionResult> Add(RegisterEmployeeDTO employeeDTO) 
         {
             try
             {
@@ -85,6 +87,22 @@ namespace WebAPI.Controllers
                 if (await userService.CheckIfRoleIsManager(id)) check = await userService.DeactivateAllEmployeesAsync(user.CompanyID);
                 else check = await userService.SetUserStatusAsync(id, false);
                 return Ok(check);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginDTO loginDTO) //test edildi
+        {
+            try
+            {
+                bool check = await userService.UserLoginAsync(loginDTO.Email, loginDTO.Password);
+                if (!check) return BadRequest("Bilgilerinizi kontrol ediniz.");
+                UserDTO user = mapper.Map<User, UserDTO>(await userService.GetUserByEmailAsync(loginDTO.Email));
+                return Ok(user);
             }
             catch (Exception)
             {
