@@ -20,6 +20,7 @@ namespace Services.Services
         public async Task<Expense> CreateExpense(Expense expense)
         {
             await unitOfWork.Expense.AddAsync(expense);
+            await unitOfWork.CommitAsync();
             return expense;
         }
 
@@ -33,15 +34,23 @@ namespace Services.Services
             return await unitOfWork.Expense.GetAllAsync();
         }
 
-        public async Task UpdateExpense(Expense expense)
+        public async Task<bool> SetExpenseStatus(Guid id, bool status)
         {
+            Expense expense = await unitOfWork.Expense.GetByIDAsync(id);
+            expense.IsApproved = status;
             unitOfWork.Expense.Update(expense);
-            await unitOfWork.CommitAsync();
+            bool check = await unitOfWork.CommitAsync() > 0;
+            return await Task.FromResult(check);
         }
 
-        public Task<Expense> GetExpenseById(string id)
+        public IEnumerable<Expense> GetExpensesByEmployeeId(Guid employeeId)
         {
-            throw new NotImplementedException();
+            return unitOfWork.Expense.List(x => x.UserID == employeeId);
+        }
+
+        public async Task<IEnumerable<Expense>> GetExpenseByCompanyId(Guid companyId)
+        {
+            return await unitOfWork.Expense.GetExpensesByCompanyAsync(companyId);
         }
     }
 }

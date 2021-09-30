@@ -20,6 +20,7 @@ namespace Services.Services
         public async Task<Comment> CreateComment(Comment newComment)
         {
             await unitOfWork.Comment.AddAsync(newComment);
+            await unitOfWork.CommitAsync();
             return newComment;
         }
 
@@ -37,6 +38,11 @@ namespace Services.Services
         {
             unitOfWork.Comment.Update(comment);
             await unitOfWork.CommitAsync();
+        }
+
+        public Comment GetCommentByCompanyId(Guid companyId)
+        {
+            return unitOfWork.Comment.Find(x => x.CompanyID == companyId);
         }
     }
 }

@@ -33,10 +33,13 @@ namespace Services.Services
             return await unitOfWork.DayOff.GetAllAsync();
         }
 
-        public async Task UpdateDayOff(DayOff dayOff)
+        public async Task<bool> SetDayOffStatus(Guid id, bool status)
         {
+            DayOff dayOff = await unitOfWork.DayOff.GetByIDAsync(id);
+            dayOff.IsApproved = status;
             unitOfWork.DayOff.Update(dayOff);
-            await unitOfWork.CommitAsync();
+            bool check = await unitOfWork.CommitAsync() > 0;
+            return await Task.FromResult(check);
         }
 
         public async Task<IEnumerable<DayOff>> GetDayOffsByCompany(Guid companyId)
@@ -61,20 +64,6 @@ namespace Services.Services
             }
             return await Task.FromResult(dayOffs);
 
-        }
-
-        public async Task<IEnumerable<DayOff>> GetDayOffsByDayOffType(Guid companyId, Guid dayOffTypeId) //hem day off type a göre hem de verilen şirkete göre day off lar gelsin
-        {
-            List<User> employees = (List<User>)unitOfWork.User.List(x => x.CompanyID == companyId);
-            List<DayOff> dayOffs = new List<DayOff>();
-            foreach (User item in employees)
-            {
-                foreach (DayOff dayOff in item.DayOffs)
-                {
-                    if (dayOff.DayOffTypeID == dayOffTypeId) dayOffs.Add(dayOff);
-                }
-            }
-            return await Task.FromResult(dayOffs);
         }
 
     }

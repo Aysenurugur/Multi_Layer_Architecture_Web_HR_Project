@@ -10,8 +10,8 @@ namespace Core.Services
         Task<IEnumerable<DayOff>> GetAllDayOffs();
         Task<DayOff> GetDayOffById(Guid id);
         Task<DayOff> CreateDayOff(DayOff newDayOff);
-        Task UpdateDayOff(DayOff dayOff);
         Task<IEnumerable<DayOff>> GetDayOffsByCompany(Guid companyId);
         Task<IEnumerable<DayOff>> WaitingApprovementDayOffs(Guid companyId);
+        Task<bool> SetDayOffStatus(Guid id, bool status);
     }
 }

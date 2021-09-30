@@ -12,6 +12,8 @@ namespace Core.Services
         Task<IEnumerable<Expense>> GetAllExpenses();
         Task<Expense> GetExpenseById(Guid id);
         Task<Expense> CreateExpense(Expense expense);
-        Task UpdateExpense(Expense expense);
+        Task<bool> SetExpenseStatus(Guid id, bool status);
+        IEnumerable<Expense> GetExpensesByEmployeeId(Guid employeeId);
+        Task<IEnumerable<Expense>> GetExpenseByCompanyId(Guid companyId);
     }
 }
