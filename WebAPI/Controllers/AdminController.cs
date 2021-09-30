@@ -66,7 +66,12 @@ namespace WebAPI.Controllers
             catch (Exception)
             {
                 return BadRequest();
+         
             }
+            
         }
+
+        // GetDayOFFType
+        // CreateDayOffType
     }
 }

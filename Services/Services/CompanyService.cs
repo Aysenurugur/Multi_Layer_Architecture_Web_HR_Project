@@ -1,5 +1,6 @@
 ﻿using Core.AbstractUnitOfWork;
 using Core.Entities;
+using Core.Entities.Identity;
 using Core.Services;
 using System;
 using System.Collections.Generic;
@@ -46,5 +47,13 @@ namespace Services.Services
             company.IsActive = false;
             return await unitOfWork.CommitAsync() > 0;
         }
+
+        public async Task<IEnumerable<User>> GetEmployeesByCompanyId(Guid companyId)
+        {
+            List<User> employees = (List<User>)unitOfWork.User.List(x => x.CompanyID == companyId);
+            return await Task.FromResult(employees);
+
+        }
+        
     }
 }

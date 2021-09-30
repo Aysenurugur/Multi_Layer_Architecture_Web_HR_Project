@@ -13,6 +13,7 @@ namespace WebAPI.Mapping
             CreateMap<Comment, CommentDTO>();
             CreateMap<Company, CompanyDTO>();
             CreateMap<User, EmployeeDetailsDTO>();
+            CreateMap<DayOff, EmployeeDayOffDTO>();
 
             //POST
             CreateMap<RegisterEmployerDTO, User>();
