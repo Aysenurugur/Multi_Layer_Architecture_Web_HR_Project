@@ -49,7 +49,7 @@ namespace Services.Services
 
         public async Task<bool> DeactivateAllEmployeesAsync(Guid companyId)
         {
-            List<User> employees = (List<User>)unitOfWork.User.List(x => x.CompanyID == companyId);
+            List<User> employees = (List<User>)unitOfWork.User.List(x => x.CompanyID == companyId && x.IsActive);
 
             foreach (User item in employees) item.IsActive = false;
 
@@ -78,7 +78,7 @@ namespace Services.Services
             return await unitOfWork.CommitAsync() > 0;
         }
 
-        public async Task<List<string>> UpdateUserInfoAsync(User user) //custom policy hazırlanacak
+        public async Task<List<string>> UpdateUserInfoAsync(User user) 
         {
             List<string> errors = new List<string>();
             var result = await userManager.UpdateAsync(user);

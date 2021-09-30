@@ -27,7 +27,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterEmployerDTO employerDTO)
+        public async Task<IActionResult> Register(RegisterEmployerDTO employerDTO) //test edild
         {
             try
             {
@@ -55,7 +55,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(RegisterEmployeeDTO employeeDTO)
+        public async Task<IActionResult> Add(RegisterEmployeeDTO employeeDTO) 
         {
             try
             {
@@ -95,7 +95,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginDTO loginDTO)
+        public async Task<IActionResult> Login(LoginDTO loginDTO) //test edildi
         {
             try
             {
