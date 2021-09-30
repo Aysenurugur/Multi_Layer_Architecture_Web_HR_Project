@@ -24,7 +24,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetComments()
+        public async Task<IActionResult> GetComments() //test edildi
         {
             var comments = await commentService.GetAllComments();
             var commentDTO = mapper.Map<IEnumerable<Comment>, IEnumerable<CommentDTO>>(comments);
@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetCommentByCompanyId(Guid id)
+        public IActionResult GetCommentByCompanyId(Guid id) //test edildi
         {
             var comment = commentService.GetCommentByCompanyId(id);
             var commentDTO = mapper.Map<Comment, CommentDTO>(comment);
@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CommentDTO commentDTO)
+        public async Task<IActionResult> Create(CommentDTO commentDTO) //test edildi
         {
             commentDTO.CommentId = Guid.NewGuid();
             var commentToCreate = mapper.Map<CommentDTO, Comment>(commentDTO);

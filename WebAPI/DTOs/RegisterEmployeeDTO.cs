@@ -12,9 +12,9 @@ namespace WebAPI.DTOs
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public string Phone { get; set; }
+        public string PhoneNumber { get; set; }
         public DateTime BirthDate { get; set; }
-        public bool Gender { get; set; }
+        public bool IsWoman { get; set; }
         public DateTime HiredDate { get; set; }
         public byte[] Photo { get; set; }
         public string Title { get; set; }

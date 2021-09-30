@@ -41,7 +41,7 @@ namespace Data.CustomPolicies
                     Description = "Telefon numaranız yanlış" //mesajı sonra düzeltiriz
                 };
                 errors.Add(error);
-            }
+            }            
             return errors.Count == 0 ? IdentityResult.Success : IdentityResult.Failed(errors.ToArray());
         }
     }

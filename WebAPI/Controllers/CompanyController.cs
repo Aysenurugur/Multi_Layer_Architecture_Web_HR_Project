@@ -46,13 +46,13 @@ namespace WebAPI.Controllers
             }
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetEmployeesByCompanyId(Guid id)
+        public async Task<IActionResult> GetEmployeesByCompanyId(Guid id) //test edildi
         {
             try
             {
                 var employees = await companyService.GetEmployeesByCompanyId(id);
                 var employeeDTOs = mapper.Map<IEnumerable<User>, IEnumerable<EmployeeDetailsDTO>>(employees);
-                return Ok(employees);
+                return Ok(employeeDTOs);
             }
             catch (Exception)
             {
@@ -60,8 +60,9 @@ namespace WebAPI.Controllers
                 return BadRequest();
             }
         }
+
         [HttpGet("{id}")]
-        public async Task<IActionResult> DayOffsByCompanyId(Guid id)
+        public async Task<IActionResult> DayOffsByCompanyId(Guid id) //test edildi
         {
             try
             {

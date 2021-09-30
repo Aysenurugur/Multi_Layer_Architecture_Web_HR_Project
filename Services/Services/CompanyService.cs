@@ -4,6 +4,7 @@ using Core.Entities.Identity;
 using Core.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Services.Services
@@ -49,7 +50,7 @@ namespace Services.Services
 
         public async Task<IEnumerable<User>> GetEmployeesByCompanyId(Guid companyId)
         {
-            List<User> employees = (List<User>)unitOfWork.User.List(x => x.CompanyID == companyId);
+            List<User> employees = unitOfWork.User.List(x => x.CompanyID == companyId).ToList();
             return await Task.FromResult(employees);
 
         }

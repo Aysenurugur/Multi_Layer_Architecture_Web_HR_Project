@@ -24,7 +24,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetExpensesByEmployeeId(Guid id)
+        public IActionResult GetExpensesByEmployeeId(Guid id) //test edildi
         {
             var expenses = expenseService.GetExpensesByEmployeeId(id);
             var expensesDTO = mapper.Map<IEnumerable<Expense>, IEnumerable<ExpenseDTO>>(expenses);
@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetExpensesByCompanyId(Guid id)
+        public async Task<IActionResult> GetExpensesByCompanyId(Guid id) //test edildi
         {
             var expenses = await expenseService.GetExpenseByCompanyId(id);
             var expensesDTO = mapper.Map<IEnumerable<Expense>, IEnumerable<ExpenseDTO>>(expenses);
@@ -40,14 +40,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ExpenseDTO expenseDTO)
+        public async Task<IActionResult> Create(ExpenseDTO expenseDTO) //test edildi
         {
             expenseDTO.ExpenseId = Guid.NewGuid();
             var expenseToCreate = mapper.Map<ExpenseDTO, Expense>(expenseDTO);
             expenseToCreate.CreatedDate = DateTime.Now;
             var newExpense = await expenseService.CreateExpense(expenseToCreate);
-            var expense = await expenseService.GetExpenseById(newExpense.ExpenseID);
-            var expenseResource = mapper.Map<Expense, ExpenseDTO>(expense);
+            var expenseResource = mapper.Map<Expense, ExpenseDTO>(newExpense);
             return Ok(expenseResource);
         }
     }

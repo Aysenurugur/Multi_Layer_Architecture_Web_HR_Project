@@ -42,7 +42,7 @@ namespace WebAPI.Controllers
 
                 await companyService.CreateCompany(company);
                 user.CompanyID = company.CompanyID;
-                var result = await userService.RegisterAsync(user, employerDTO.Password);
+                var result = await userService.RegisterAsync(user, employerDTO.Password, "Employer");
                 if (result != null) return BadRequest(result); //result list dolu ise error ları ekranda göster
                 UserDTO userDTO = mapper.Map<User, UserDTO>(user);
 
@@ -55,21 +55,18 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(RegisterEmployeeDTO employeeDTO) 
+        public async Task<IActionResult> Add(RegisterEmployeeDTO employeeDTO) //test edildi
         {
             try
             {
-                bool checkMail = await userService.CheckUserMailAsync(employeeDTO.Email);
-                bool checkPhone = await userService.CheckUserPhoneNumberAsync(employeeDTO.Phone);
-
-                if (!checkMail) return BadRequest("Geçerli bir mail adresi kullanın.");
-                if (!checkPhone) return BadRequest("Geçerli bir telefon numarası kullanın.");
-
                 User user = mapper.Map<RegisterEmployeeDTO, User>(employeeDTO);
                 user.Id = new Guid();
 
-                var check = await userService.RegisterAsync(user, null);
-                return Ok(check);
+                var result = await userService.RegisterAsync(user, userService.CreateRandomPassword(), "");
+                if (result != null) return BadRequest(result); //result list dolu ise error ları ekranda göster
+
+                UserDTO userDTO = mapper.Map<User, UserDTO>(user);
+                return Ok(userDTO);
             }
             catch (Exception)
             {
@@ -78,13 +75,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeactivateUser(Guid id)
+        public async Task<IActionResult> DeactivateUser(Guid id) //test edildi
         {
             try
             {
                 User user = await userService.GetUserById(id);
                 bool check;
-                if (await userService.CheckIfRoleIsManager(id)) check = await userService.DeactivateAllEmployeesAsync(user.CompanyID);
+                if (await userService.CheckIfRoleIsEmployerAsync(id)) check = await userService.DeactivateAllEmployeesAsync(user.CompanyID);
                 else check = await userService.SetUserStatusAsync(id, false);
                 return Ok(check);
             }
@@ -101,8 +98,12 @@ namespace WebAPI.Controllers
             {
                 bool check = await userService.UserLoginAsync(loginDTO.Email, loginDTO.Password);
                 if (!check) return BadRequest("Bilgilerinizi kontrol ediniz.");
-                UserDTO user = mapper.Map<User, UserDTO>(await userService.GetUserByEmailAsync(loginDTO.Email));
-                return Ok(user);
+                User user = await userService.GetUserByEmailAsync(loginDTO.Email);
+
+                if (!user.IsActive) return BadRequest("Artık aktif bir üye değilsiniz.");
+
+                UserDTO userDTO = mapper.Map<User, UserDTO>(user);
+                return Ok(userDTO);
             }
             catch (Exception)
             {

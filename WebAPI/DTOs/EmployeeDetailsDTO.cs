@@ -10,7 +10,8 @@ namespace WebAPI.DTOs
         // Manager anasayfa izin talepleri - doğum günleri - mesai talepleri - ödeme talepleri (adsoyad-tarih)
         // Manager çalışanlar sayfası (foto-adsoyad-title-numara)
         public Guid Id { get; set; }
-        public string FullName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public byte[] Photo { get; set; }
         public string Title { get; set; }
         public string Phone { get; set; }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Services.Services
@@ -14,17 +15,20 @@ namespace Services.Services
     {
         readonly IUnitOfWork unitOfWork;
         UserManager<User> userManager;
+        ICompanyService companyService;
 
-        public UserService(IUnitOfWork unitOfWork, UserManager<User> userManager)
+        public UserService(IUnitOfWork unitOfWork, UserManager<User> userManager, ICompanyService companyService)
         {
             this.unitOfWork = unitOfWork;
             this.userManager = userManager;
+            this.companyService = companyService;
         }
 
         public async Task<User> GetUserById(Guid userId)
         {
             return await userManager.FindByIdAsync(userId.ToString());
         }
+
         public async Task<bool> UserLoginAsync(string email, string password)
         {
             User user = await userManager.FindByEmailAsync(email);
@@ -49,19 +53,21 @@ namespace Services.Services
 
         public async Task<bool> DeactivateAllEmployeesAsync(Guid companyId)
         {
-            List<User> employees = (List<User>)unitOfWork.User.List(x => x.CompanyID == companyId && x.IsActive);
+            List<User> employees = unitOfWork.User.List(x => x.CompanyID == companyId && x.IsActive).ToList();
 
             foreach (User item in employees) item.IsActive = false;
+            await companyService.DeactivateCompany(companyId);
 
             return await unitOfWork.CommitAsync() > 0;
         }
 
-        public async Task<IEnumerable<string>> RegisterAsync(User user, string password)
+        public async Task<IEnumerable<string>> RegisterAsync(User user, string password, string role)
         {
             List<string> errors = new List<string>();
 
             user.UserName = user.Email.Split('@')[0]; //username hatası aldığım için çözüm olarak unique data girmek oldu.    
             user.IsActive = true;
+            //await userManager.AddToRoleAsync(user, role);
 
             var result = await userManager.CreateAsync(user, password);
             if (result.Succeeded && errors.Count == 0) { return null; } //hatasız
@@ -116,15 +122,31 @@ namespace Services.Services
             return employees;
         }
 
-        public async Task<bool> CheckIfRoleIsManager(Guid id)
+        public async Task<bool> CheckIfRoleIsEmployerAsync(Guid id)
         {
             User user = await GetUserById(id);
-            return await userManager.IsInRoleAsync(user, "Manager");
+            return await userManager.IsInRoleAsync(user, "Employer");
         }
 
         public async Task<User> GetUserByEmailAsync(string mail)
         {
             return await userManager.FindByEmailAsync(mail);
+        }
+
+        public string CreateRandomPassword()
+        {            
+            char[] letters = { 'A', 'B', 'C', 'Ç', 'D', 'E', 'F', 'G', 'Ğ', 'H', 'I', 'İ', 'J', 'K', 'L', 'M', 'N', 'O', 'Ö', 'P', 'R', 'S', 'Ş', 'T', 'U', 'Ü', 'V', 'Y', 'Z', 'X', 'W', 'Q' };
+            char[] numbers = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            char[] specialCharacters = { '.', ',', '/', '!', '?', '+', '-', '_' };
+            string password = string.Empty;            
+            Random rnd = new Random();
+
+            for (int i = 0; i < 3; i++)
+            {
+                password += letters[rnd.Next(0, 31)] + letters[rnd.Next(0, 31)].ToString().ToLower() + numbers[rnd.Next(0, 9)] + specialCharacters[rnd.Next(0, 7)];
+            }
+
+            return password;
         }
     }
 }

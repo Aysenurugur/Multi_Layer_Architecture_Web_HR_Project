@@ -19,16 +19,18 @@ namespace WebAPI.Controllers
         IMapper mapper;
         IAdminService adminService;
         IDayOffTypeService dayOffTypeService;
-        public AdminController(ICompanyService companyService, IMapper mapper, IAdminService adminService, IDayOffTypeService dayOffTypeService)
+        IUserService userService;
+        public AdminController(ICompanyService companyService, IMapper mapper, IAdminService adminService, IDayOffTypeService dayOffTypeService, IUserService userService)
         {
             this.companyService = companyService;
             this.mapper = mapper;
             this.adminService = adminService;
             this.dayOffTypeService = dayOffTypeService;
+            this.userService = userService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Companies()
+        public async Task<IActionResult> Companies() //test edildi
         {
             try
             {
@@ -43,13 +45,13 @@ namespace WebAPI.Controllers
 
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> DeactivateCompany(Guid id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeactivateCompany(Guid id) //test edildi
         {
             try
             {
-                bool check = await companyService.DeactivateCompany(id);
-                return Ok(check); 
+                bool check = await companyService.DeactivateCompany(id) && await userService.DeactivateAllEmployeesAsync(id);
+                return Ok(check);
             }
             catch (Exception)
             {
@@ -58,7 +60,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginDTO loginDTO)
+        public async Task<IActionResult> Login(LoginDTO loginDTO) //test edildi
         {
             try
             {
@@ -92,3 +94,5 @@ namespace WebAPI.Controllers
 
     }
 }
+//"email" : "deneme@gmail.com",
+//    "password" : "Abceeee8."

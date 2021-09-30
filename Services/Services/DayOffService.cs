@@ -44,18 +44,18 @@ namespace Services.Services
 
         public async Task<IEnumerable<DayOff>> GetDayOffsByCompany(Guid companyId)
         {
-            List<User> employees = (List<User>)unitOfWork.User.List(x => x.CompanyID == companyId);
+            List<User> employees = unitOfWork.User.List(x => x.CompanyID == companyId).ToList();
             List<DayOff> dayOffs = new List<DayOff>();
             foreach (User item in employees)
             {
-                dayOffs.AddRange(item.DayOffs);
+                if (item.DayOffs != null) dayOffs.AddRange(item.DayOffs);
             }
             return await Task.FromResult(dayOffs);
         }
 
         public async Task<IEnumerable<DayOff>> WaitingApprovementDayOffs(Guid companyId)
         {
-            List<User> employees = (List<User>)unitOfWork.User.List(x => x.CompanyID == companyId);
+            List<User> employees = unitOfWork.User.List(x => x.CompanyID == companyId).ToList();
             List<DayOff> dayOffs = new List<DayOff>();
             foreach (User item in employees)
             {

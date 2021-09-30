@@ -16,6 +16,7 @@ namespace WebAPI.Mapping
             CreateMap<DayOff, EmployeeDayOffDTO>();
             CreateMap<User, UserDTO>();
             CreateMap<DayOffType, DayOffTypeDTO>();
+            CreateMap<Expense, ExpenseDTO>();
 
 
             //DTO to Entity
@@ -23,6 +24,8 @@ namespace WebAPI.Mapping
             CreateMap<RegisterEmployeeDTO, User>();
             CreateMap<UserDTO, User>();
             CreateMap<DayOffTypeDTO, DayOffType>();
+            CreateMap<CommentDTO, Comment>();
+            CreateMap<ExpenseDTO, Expense>();
         }
     }
 }
