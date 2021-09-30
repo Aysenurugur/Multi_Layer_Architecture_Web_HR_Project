@@ -40,9 +40,11 @@ namespace Services.Services
 
         public async Task<IEnumerable<Shift>> GetShiftsByUserId(Guid userId)
         {
-            List<Shift> shift = (List<Shift>)unitOfWork.Break.List(x => x.UserID == userId);
+            List<Shift> shift = (List<Shift>)unitOfWork.Shift.List(x => x.UserID == userId);
             return await Task.FromResult(shift);
 
         }
+
+
     }
 }
