@@ -69,6 +69,8 @@ namespace WebAPI
 
             #endregion
 
+            
+
             services.Configure<Admin>(Configuration.GetSection("Admin"));
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
 

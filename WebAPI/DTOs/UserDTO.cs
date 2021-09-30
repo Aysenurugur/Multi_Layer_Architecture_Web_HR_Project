@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace WebAPI.DTOs
 {
-    public class CompanyDTO
+    public class UserDTO
     {
-        // site anasayası için 
+        public Guid Id { get; set; }
         public Guid CompanyID { get; set; }
-        public string CompanyName { get; set; }
-        public byte[] Logo { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }

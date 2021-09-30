@@ -4,13 +4,11 @@ using Core.Entities.Identity;
 using Core.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Services.Services
 {
-    public class CompanyService :ICompanyService
+    public class CompanyService : ICompanyService
     {
         private readonly IUnitOfWork unitOfWork;
 
@@ -21,6 +19,7 @@ namespace Services.Services
 
         public async Task CreateCompany(Company newCompany)
         {
+            newCompany.IsActive = true;
             await unitOfWork.Company.AddAsync(newCompany);
             await unitOfWork.CommitAsync();
         }
