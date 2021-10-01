@@ -87,6 +87,7 @@ namespace WebAPI
             services.AddScoped<IDayOffTypeService, DayOffTypeService>();
             services.AddScoped<ICommentService, CommentService>();
             services.AddScoped<IExpenseService, ExpenseService>();
+            services.AddScoped<IFileTypeService, FileTypeService>();
         }
 
 
