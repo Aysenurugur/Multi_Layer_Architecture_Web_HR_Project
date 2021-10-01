@@ -66,5 +66,10 @@ namespace Services.Services
 
         }
 
+        public IEnumerable<DayOff> GetDayOffsByUserId(Guid userId)
+        {
+            return unitOfWork.DayOff.List(x => x.UserID == userId);
+        }
+
     }
 }
