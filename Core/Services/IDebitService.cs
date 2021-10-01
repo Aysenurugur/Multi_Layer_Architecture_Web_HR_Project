@@ -13,6 +13,6 @@ namespace Core.Services
         Task<Debit> GetDebitById(Guid id);
         Task<Debit> CreateDebit(Debit newDebit);
         Task<bool> SetDebitStatus(Guid id, bool status);
-        IEnumerable<Debit> GetDebitByEmployeeId(Guid employeeId);
+        IEnumerable<Debit> GetDebitsByEmployeeId(Guid employeeId);
     }
 }

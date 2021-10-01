@@ -21,10 +21,11 @@ namespace Services.Services
         public async Task<Debit> CreateDebit(Debit newDebit)
         {
             await unitOfWork.Debit.AddAsync(newDebit);
+            await unitOfWork.CommitAsync();
             return newDebit;
         }
 
-        public async Task<Debit> GetDebitById(Guid id)
+        public async Task<Debit> GetDebitById(Guid id) 
         {
             return await unitOfWork.Debit.GetByIDAsync(id);
         }
@@ -43,7 +44,7 @@ namespace Services.Services
             return await Task.FromResult(check);
         }
 
-        public IEnumerable<Debit> GetDebitByEmployeeId(Guid employeeId)
+        public IEnumerable<Debit> GetDebitsByEmployeeId(Guid employeeId)
         {
             return unitOfWork.Debit.List(x => x.UserID == employeeId);
         }
