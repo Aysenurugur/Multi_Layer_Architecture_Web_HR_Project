@@ -1,11 +1,11 @@
-﻿using Core.Entities;
+﻿using AutoMapper;
+using Core.Entities;
 using Core.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using WebAPI.DTOs;
 
 namespace WebAPI.Controllers
 {
@@ -14,24 +14,27 @@ namespace WebAPI.Controllers
     public class DebitController : ControllerBase
     {
         private readonly IDebitService debitService;
-        public DebitController(IDebitService _debitService)
+        IMapper mapper;
+        public DebitController(IDebitService _debitService, IMapper mapper)
         {
             this.debitService = _debitService;
+            this.mapper = mapper;
         }
 
         [HttpGet("{id}")]
         public IActionResult GetDebitsByEmployeeId(Guid id) // test edildi
         {
-            var debits = debitService.GetDebitsByEmployeeId(id);
+            var debits = mapper.Map<IEnumerable<Debit>, IEnumerable<DebitDTO>>(debitService.GetDebitsByEmployeeId(id));
             return Ok(debits);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Debit debit) //test edildi
+        public async Task<IActionResult> Create(DebitDTO debitDTO) //test edildi
         {
-            debit.DebitID = Guid.NewGuid(); // bunları service tarafında yazsak sanki daha mı mantıklı ?? 
+            Debit debit = mapper.Map<DebitDTO, Debit>(debitDTO);
             debit.CreatedDate = DateTime.Now;
-            var newDebit =await debitService.CreateDebit(debit);
+            var newDebit = mapper.Map<Debit, DebitDTO>(await debitService.CreateDebit(debit));
+
             return Ok(newDebit);
         }
     }
