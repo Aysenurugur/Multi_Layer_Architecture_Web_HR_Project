@@ -6,5 +6,6 @@ namespace Core.Entities
     public class Break : WorkState
     {
         public Guid BreakID { get; set; } //PK
+       
     }
 }
