@@ -8,9 +8,11 @@ namespace WebAPI.DTOs
     public class ShiftDTO
     {
         //Manager vardiya sayfası
-        public Guid Id { get; set; }
+        public Guid ShiftID { get; set; }
+        public Guid UserID { get; set; }
         public string FullName { get; set; }
         public DateTime? BeginDate { get; set; }
+        public DateTime? EndDate { get; set; }
         
     }
 }

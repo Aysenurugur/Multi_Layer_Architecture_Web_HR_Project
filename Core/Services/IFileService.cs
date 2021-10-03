@@ -9,10 +9,10 @@ namespace Core.Services
 {
     public interface IFileService
     {
-        Task<IEnumerable<File>> GetAllFiles();
-        Task<File> GetFileById(Guid id);
-        Task<File> CreateFile(File newFile);
-        Task UpdateFile(File file);
-        Task<IEnumerable<File>> GetUserFiles(Guid userId);
+        Task<IEnumerable<File>> GetAllFilesAsync();
+        Task<File> GetFileByIdAsync(Guid id);
+        Task<File> CreateFileAsync(File newFile);
+        Task UpdateFileAsync(File file);
+        Task<IEnumerable<File>> GetUserFilesAsync(Guid userId);
     }
 }

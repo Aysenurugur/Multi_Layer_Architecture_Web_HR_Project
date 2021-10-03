@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Services.Services
 {
-    class PromotionService : IPromotionService
+    public class PromotionService : IPromotionService
     {
         private readonly IUnitOfWork unitOfWork;
 

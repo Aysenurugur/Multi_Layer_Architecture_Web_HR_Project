@@ -20,5 +20,16 @@ namespace Data.Repositories
         {
             get { return context as ProjectIdentityDbContext; }
         }
+
+        public async Task<FileType> CreateFileTypeAsync(FileType newFileType)
+        {
+            await DbContext.FileTypes.AddAsync(newFileType);
+            return newFileType;
+        }
+
+        public async Task<IEnumerable<FileType>> GetFileTypesAsync()
+        {
+            return await Task.FromResult(DbContext.FileTypes);
+        }
     }
 }

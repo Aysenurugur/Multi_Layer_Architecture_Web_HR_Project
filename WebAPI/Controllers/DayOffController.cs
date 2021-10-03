@@ -28,8 +28,8 @@ namespace WebAPI.Controllers
         {
             try
             {
-                var dayOffs = await dayOffService.GetAllDayOffs();
-                var dayOffDTO = mapper.Map<IEnumerable<DayOff>, IEnumerable<DayOffDTO>>(dayOffs);
+                IEnumerable<DayOff> dayOffs = await dayOffService.GetAllDayOffs();
+                IEnumerable<DayOffDTO> dayOffDTO = mapper.Map<IEnumerable<DayOff>, IEnumerable<DayOffDTO>>(dayOffs);
                 return Ok(dayOffDTO);
             }
             catch (Exception)
@@ -45,9 +45,9 @@ namespace WebAPI.Controllers
         {
             try
             {
-                var dayOffs = dayOffService.GetDayOffsByUserId(userId);
-                var dayOffDTO= mapper.Map<IEnumerable<DayOff>, IEnumerable<DayOffDTO>>(dayOffs);
-                return Ok(dayOffDTO);
+                var dayOffs = await dayOffService.GetDayOffsByUserId(userId);
+                var dayOffDTO = mapper.Map<IEnumerable<DayOff>, IEnumerable<DayOffDTO>>(dayOffs);
+                return  Ok(dayOffDTO);
             }
             catch (Exception)
             {

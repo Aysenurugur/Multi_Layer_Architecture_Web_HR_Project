@@ -20,6 +20,7 @@ namespace Services.Services
         public async Task<Break> CreateBreak(Break newBreak)
         {
             await unitOfWork.Break.AddAsync(newBreak);
+            await unitOfWork.CommitAsync();
             return newBreak;
         }
 
@@ -41,7 +42,7 @@ namespace Services.Services
 
         public async Task<IEnumerable<Break>> GetBreaksByUserId(Guid UserId)
         {
-            List<Break> breaks = (List<Break>)unitOfWork.Break.List(x => x.UserID == UserId);
+            List<Break> breaks = unitOfWork.Break.List(x => x.UserID == UserId).ToList();
             return await Task.FromResult(breaks);
 
         }

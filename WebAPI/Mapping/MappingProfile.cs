@@ -19,6 +19,9 @@ namespace WebAPI.Mapping
             CreateMap<Expense, ExpenseDTO>();
             CreateMap<DayOff, DayOffDTO>();
             CreateMap<Break, BreakDTO>();
+            CreateMap<Shift, ShiftDTO>();
+            CreateMap<File, FileDTO>();
+            CreateMap<FileType, FileTypeDTO>();
 
 
             //DTO to Entity
@@ -30,6 +33,9 @@ namespace WebAPI.Mapping
             CreateMap<ExpenseDTO, Expense>();
             CreateMap<DayOffDTO, DayOff>();
             CreateMap<BreakDTO, Break>();
+            CreateMap<ShiftDTO, Shift>();
+            CreateMap<FileDTO, File>();
+            CreateMap<FileTypeDTO, FileType>();
         }
     }
 }

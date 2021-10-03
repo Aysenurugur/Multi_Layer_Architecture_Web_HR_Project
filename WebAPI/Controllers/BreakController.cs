@@ -4,7 +4,6 @@ using Core.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using WebAPI.DTOs;
 
@@ -22,58 +21,53 @@ namespace WebAPI.Controllers
             this.breakService = breakService;
             this.mapper = mapper;
         }
+
         [HttpGet]
-        public async Task<IActionResult> GetBreaks()
+        public async Task<IActionResult> GetBreaks() //test edildi
         {
             try
             {
-                var breaks = await breakService.GetAllBreaks();
-                var breakDTO = mapper.Map<IEnumerable<Break>, IEnumerable<BreakDTO>>(breaks);
+                IEnumerable<Break> breaks = await breakService.GetAllBreaks();
+                IEnumerable<BreakDTO> breakDTO = mapper.Map<IEnumerable<Break>, IEnumerable<BreakDTO>>(breaks);
                 return Ok(breakDTO);
             }
             catch (Exception)
             {
-
                 return BadRequest();
             }
 
         }
 
-        //[HttpGet("{id}")]
-        //public async Task<IActionResult> GetBreaksByUserId(Guid userId)
-        //{
-        //    try
-        //    {
-        //        var _breaks = breakService.GetBreaksByUserId(userId);
-        //        var breakDTO = mapper.Map<IEnumerable<Break>, IEnumerable<BreakDTO>>(_breaks);
-        //        return Ok(breakDTO);
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        return BadRequest();
-        //    }
-        //}
-
-        [HttpPost]
-        public async Task<IActionResult> CreateBreak(BreakDTO breakDTO)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetBreaksByUserId(Guid id) //test edildi
         {
             try
             {
-                breakDTO.BreakID= Guid.NewGuid();
-                var breakToCreate = mapper.Map<BreakDTO, Break>(breakDTO);
-                var newbreak = await breakService.CreateBreak(breakToCreate);
-                var _break = await breakService.GetBreakById(newbreak.BreakID);
-                var breakResource = mapper.Map<Break, BreakDTO>(_break);
+                IEnumerable<Break> _breaks = await breakService.GetBreaksByUserId(id);
+                IEnumerable<BreakDTO> breakDTO = mapper.Map<IEnumerable<Break>, IEnumerable<BreakDTO>>(_breaks);
+                return Ok(breakDTO);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateBreak(BreakDTO breakDTO) //test edildi
+        {
+            try
+            {
+                breakDTO.BreakID = Guid.NewGuid();
+                Break breakToCreate = mapper.Map<BreakDTO, Break>(breakDTO);
+                await breakService.CreateBreak(breakToCreate);
+                BreakDTO breakResource = mapper.Map<Break, BreakDTO>(breakToCreate);
                 return Ok(breakResource);
             }
             catch (Exception)
             {
-
                 return BadRequest();
             }
-
-
         }
     }
 }

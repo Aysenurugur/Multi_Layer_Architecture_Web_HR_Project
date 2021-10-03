@@ -17,16 +17,16 @@ namespace Services.Services
             this.unitOfWork = _unitOfWork;
         }
 
-        public async Task<FileType> CreateFileType(FileType newFileType)
+        public async Task<FileType> CreateFileTypeAsync(FileType newFileType)
         {
-            await unitOfWork.FileType.AddAsync(newFileType);
+            await unitOfWork.File.CreateFileTypeAsync(newFileType);
             await unitOfWork.CommitAsync();
             return newFileType;
         }
 
-        public async Task<IEnumerable<FileType>> GetFileTypes()
+        public async Task<IEnumerable<FileType>> GetFileTypesAsync()
         {
-            return await unitOfWork.FileType.GetAllAsync();
+            return await unitOfWork.File.GetFileTypesAsync();
         }
     }
 }
