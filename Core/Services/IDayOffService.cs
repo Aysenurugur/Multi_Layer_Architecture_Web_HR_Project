@@ -13,6 +13,6 @@ namespace Core.Services
         Task<IEnumerable<DayOff>> GetDayOffsByCompany(Guid companyId);
         Task<IEnumerable<DayOff>> WaitingApprovementDayOffs(Guid companyId);
         Task<bool> SetDayOffStatus(Guid id, bool status);
-        IEnumerable<DayOff> GetDayOffsByUserId(Guid userId);
+        Task<IEnumerable<DayOff>> GetDayOffsByUserId(Guid userId);
     }
 }

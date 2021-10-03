@@ -17,32 +17,33 @@ namespace Services.Services
             this.unitOfWork = _unitOfWork;
         }
 
-        public async Task<File> CreateFile(File newFile)
+        public async Task<File> CreateFileAsync(File newFile)
         {
-            newFile.FileID = new Guid();
+            newFile.CreatedDate = DateTime.Now;
             await unitOfWork.File.AddAsync(newFile);
+            await unitOfWork.CommitAsync();
             return newFile;
         }
 
-        public async Task<File> GetFileById(Guid id)
+        public async Task<File> GetFileByIdAsync(Guid id)
         {
             return await unitOfWork.File.GetByIDAsync(id);
         }
 
-        public async Task<IEnumerable<File>> GetAllFiles()
+        public async Task<IEnumerable<File>> GetAllFilesAsync()
         {
             return await unitOfWork.File.GetAllAsync();
         }
 
-        public async Task UpdateFile(File file)
+        public async Task UpdateFileAsync(File file)
         {
             unitOfWork.File.Update(file);
             await unitOfWork.CommitAsync();
         }
 
-        public async Task<IEnumerable<File>> GetUserFiles(Guid userId)
+        public async Task<IEnumerable<File>> GetUserFilesAsync(Guid userId)
         {
-            List<File> files = (List<File>)unitOfWork.File.List(x => x.UserID == userId);
+            List<File> files = unitOfWork.File.List(x => x.UserID == userId).ToList();
 
             return await Task.FromResult(files);
         }

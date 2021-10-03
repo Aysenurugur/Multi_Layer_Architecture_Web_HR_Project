@@ -79,16 +79,26 @@ namespace WebAPI
 
             services.AddAutoMapper(typeof(Startup));
 
+            #region AddScoped Methods
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<IBreakService, BreakService>();
+            services.AddScoped<ICommentService, CommentService>();
+            services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<IDayOffService, DayOffService>();
             services.AddScoped<IDayOffTypeService, DayOffTypeService>();
-            services.AddScoped<ICommentService, CommentService>();
-            services.AddScoped<IExpenseService, ExpenseService>();
-            services.AddScoped<IFileTypeService, FileTypeService>();
             services.AddScoped<IDebitService, DebitService>();
+            services.AddScoped<IExpenseService, ExpenseService>();
+            services.AddScoped<IFileService, FileService>();
+            services.AddScoped<IFileTypeService, FileTypeService>();
+            services.AddScoped<IMailService, MailService>();
+            services.AddScoped<INotificationService, NotificationService>();
+            services.AddScoped<IPromotionService, PromotionService>();
+            services.AddScoped<IShiftService, ShiftService>();
+            services.AddScoped<IUserService, UserService>();
+
+            #endregion
         }
 
 

@@ -7,5 +7,7 @@ namespace Core.AbstractRepositories
 {
     public interface IFileRepository : ICrudRepository<File>
     {
+        Task<IEnumerable<FileType>> GetFileTypesAsync();
+        Task<FileType> CreateFileTypeAsync(FileType newFileType);
     }
 }

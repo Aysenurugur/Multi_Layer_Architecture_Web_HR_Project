@@ -1,14 +1,11 @@
 ﻿using Core.Models;
+using Core.Services;
 using Core.Settings;
-using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
-using MimeKit;
-using System.Net;
-using System.Threading.Tasks;
 
 namespace Services.Services
 {
-    class MailService
+    public class MailService : IMailService
     {
         private readonly MailSettings mailSettings;
         public MailService(IOptions<MailSettings> mailSettings)

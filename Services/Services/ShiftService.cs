@@ -3,6 +3,7 @@ using Core.Entities;
 using Core.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Services.Services
@@ -16,31 +17,32 @@ namespace Services.Services
             this.unitOfWork = _unitOfWork;
         }
 
-        public async Task<Shift> CreateShift(Shift newShift)
+        public async Task<Shift> CreateShiftAsync(Shift newShift)
         {
             await unitOfWork.Shift.AddAsync(newShift);
+            await unitOfWork.CommitAsync();
             return newShift;
         }
 
-        public async Task<IEnumerable<Shift>> GetAllShifts()
+        public async Task<IEnumerable<Shift>> GetAllShiftsAsync()
         {
             return await unitOfWork.Shift.GetAllAsync();
         }
 
-        public async Task<Shift> GetShiftById(Guid id)
+        public async Task<Shift> GetShiftByIdAsync(Guid id)
         {
             return await unitOfWork.Shift.GetByIDAsync(id);
         }
 
-        public async Task UpdateShift(Shift shift)
+        public async Task UpdateShiftAsync(Shift shift)
         {
             unitOfWork.Shift.Update(shift);
             await unitOfWork.CommitAsync();
         }
 
-        public async Task<IEnumerable<Shift>> GetShiftsByUserId(Guid userId)
+        public async Task<IEnumerable<Shift>> GetShiftsByUserIdAsync(Guid userId)
         {
-            List<Shift> shift = (List<Shift>)unitOfWork.Shift.List(x => x.UserID == userId);
+            List<Shift> shift = unitOfWork.Shift.List(x => x.UserID == userId).ToList();
             return await Task.FromResult(shift);
 
         }

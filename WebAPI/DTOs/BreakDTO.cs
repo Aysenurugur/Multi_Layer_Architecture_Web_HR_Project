@@ -8,7 +8,8 @@ namespace WebAPI.DTOs
     public class BreakDTO
     {
         public Guid BreakID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public Guid UserID { get; set; }
+        public DateTime BeginDate { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }

@@ -11,9 +11,7 @@ namespace Core.AbstractRepositories.Generic
         ValueTask<TEntity> GetByIDAsync(Guid id);
         IEnumerable<TEntity> List(Expression<Func<TEntity, bool>> predicate);
         TEntity Find(Expression<Func<TEntity, bool>> predicate);
-        Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
         Task AddAsync(TEntity entity);
-        Task AddRangeAsync(IEnumerable<TEntity> entities);
         void Update(TEntity entity);
     }
 }

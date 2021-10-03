@@ -9,7 +9,7 @@ namespace Core.Services
 {
     public interface IFileTypeService
     {
-        Task<IEnumerable<FileType>> GetFileTypes();
-        Task<FileType> CreateFileType(FileType newFileType);
+        Task<IEnumerable<FileType>> GetFileTypesAsync();
+        Task<FileType> CreateFileTypeAsync(FileType newFileType);
     }
 }
