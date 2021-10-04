@@ -69,5 +69,14 @@ namespace WebAPI.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateBreak(BreakDTO breakDTO)
+        {
+            Break breakToBeUpdated = await breakService.GetBreakById(breakDTO.BreakID);
+            Break updatedBreak = mapper.Map(breakDTO, breakToBeUpdated);
+            await breakService.UpdateBreak(updatedBreak);
+            return Ok(mapper.Map<Break, BreakDTO>(updatedBreak));
+        }
     }
 }

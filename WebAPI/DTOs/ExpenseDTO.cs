@@ -12,5 +12,6 @@ namespace WebAPI.DTOs
         public decimal TotalPrice { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
+        public bool IsApproved { get; set; }
     }
 }

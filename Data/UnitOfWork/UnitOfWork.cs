@@ -22,7 +22,6 @@ namespace Data.UnitOfWork
         private ShiftRepository ShiftRepository;
         private UserRepository UserRepository;
         private FileRepository FileRepository;
-        private FileTypeRepository FileTypeRepository;
         public UnitOfWork(ProjectIdentityDbContext context)
         {
             this.context = context;
@@ -39,9 +38,7 @@ namespace Data.UnitOfWork
         public IPromotionRepository Promotion => PromotionRepository = PromotionRepository ?? new PromotionRepository(context);
         public IShiftRepository Shift => ShiftRepository = ShiftRepository ?? new ShiftRepository(context);
         public IUserRepository User => UserRepository = UserRepository ?? new UserRepository(context);
-
         public IFileRepository File => FileRepository = FileRepository ?? new FileRepository(context);
-        public IFileTypeRepository FileType => FileTypeRepository = FileTypeRepository ?? new FileTypeRepository(context);
 
         public async Task<int> CommitAsync()
         {

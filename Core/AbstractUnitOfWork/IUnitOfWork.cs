@@ -22,7 +22,6 @@ namespace Core.AbstractUnitOfWork
         IShiftRepository Shift { get; }
         IUserRepository User { get; }
         IFileRepository File { get; }
-        IFileTypeRepository FileType { get; }
 
         Task<int> CommitAsync();
     }

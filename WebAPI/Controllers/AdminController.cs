@@ -75,23 +75,6 @@ namespace WebAPI.Controllers
             
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetDayOffTypes() //Test edildi.
-        {
-            try
-            {
-                var dayOffTypes = await dayOffTypeService.GetAllDayOffTypes();
-                var dayOffTypeDTOs = mapper.Map<IEnumerable<DayOffType>, IEnumerable<DayOffTypeDTO>>(dayOffTypes);
-                return Ok(dayOffTypeDTOs);
-            }
-            catch (Exception)
-            {
-
-                return BadRequest();
-            }
-        }
-        
-
     }
 }
 //"email" : "deneme@gmail.com",

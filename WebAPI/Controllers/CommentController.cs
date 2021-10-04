@@ -50,5 +50,13 @@ namespace WebAPI.Controllers
             var commentResource = mapper.Map<Comment, CommentDTO>(comment);
             return Ok(commentResource);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(CommentDTO commentDTO)
+        {
+            Comment comment = mapper.Map<CommentDTO, Comment>(commentDTO);
+            await commentService.UpdateComment(comment);
+            return Ok(mapper.Map<Comment, CommentDTO>(comment));
+        }
     }
 }

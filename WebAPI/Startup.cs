@@ -97,6 +97,7 @@ namespace WebAPI
             services.AddScoped<IPromotionService, PromotionService>();
             services.AddScoped<IShiftService, ShiftService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IVetoMessageService, VetoMessageService>();
 
             #endregion
         }

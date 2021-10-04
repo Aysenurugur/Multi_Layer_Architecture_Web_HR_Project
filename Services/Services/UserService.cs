@@ -101,7 +101,7 @@ namespace Services.Services
             return userManager.Users;
         }
 
-        public IEnumerable<User> GetEmployeesWithClosingBirthdays(Guid companyId)
+        public async Task<IEnumerable<User>> GetEmployeesWithClosingBirthdays(Guid companyId)
         {
             List<User> employees = new List<User>();
             foreach (User item in unitOfWork.User.List(x => x.CompanyID == companyId))
@@ -112,7 +112,7 @@ namespace Services.Services
                 int numDays = (next - today).Days;
                 if (numDays <= 30) employees.Add(item);
             }
-            return employees;
+            return await Task.FromResult(employees);
         }
 
         public IEnumerable<User> GetEmployees(Guid companyId, bool isActive, out int empCount)
@@ -150,4 +150,4 @@ namespace Services.Services
         }
     }
 }
-//salı günü 5 ekim 13.30 
+

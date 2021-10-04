@@ -26,14 +26,25 @@ namespace Data.Repositories
             return DbContext.Set<User>().Where(predicate).FirstOrDefault();
         }
 
+        public async Task<IEnumerable<VetoMessage>> GetUserVetoMessages(Guid userId)
+        {
+            List<VetoMessage> vetoMessages = new List<VetoMessage>();
+            foreach (VetoMessage item in DbContext.VetoMessages)
+            {
+                if (item.DayOff != null && item.DayOff.UserID == userId) vetoMessages.Add(item);
+                if (item.Debit != null && item.Debit.UserID == userId) vetoMessages.Add(item);
+                if (item.Expense != null && item.Expense.UserID == userId) vetoMessages.Add(item);
+            }
+            return await Task.FromResult(vetoMessages);
+        }
+
         public IEnumerable<User> List(Expression<Func<User, bool>> predicate)
         {
             return DbContext.Set<User>().Where(predicate);
         }
 
-        public async Task SendVetoMessageAsync(VetoMessage vetoMessage, Guid userID)
+        public async Task SendVetoMessageAsync(VetoMessage vetoMessage)
         {
-            vetoMessage.VetodBy = userID;
             await DbContext.VetoMessages.AddAsync(vetoMessage);
         }
     }

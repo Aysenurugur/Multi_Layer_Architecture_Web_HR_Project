@@ -8,7 +8,7 @@ namespace Core.Entities
     {
         public Guid DebitID { get; set; }
         public Guid UserID { get; set; }
-        public bool IsApproved { get; set; }
+        public bool? IsApproved { get; set; }
 
         public VetoMessage VetoMessage { get; set; } //nav prop
         public User User { get; set; }

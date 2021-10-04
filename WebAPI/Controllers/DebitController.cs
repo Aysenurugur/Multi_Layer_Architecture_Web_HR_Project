@@ -33,9 +33,18 @@ namespace WebAPI.Controllers
         {
             Debit debit = mapper.Map<DebitDTO, Debit>(debitDTO);
             debit.CreatedDate = DateTime.Now;
-            var newDebit = mapper.Map<Debit, DebitDTO>(await debitService.CreateDebit(debit));
+            DebitDTO newDebit = mapper.Map<Debit, DebitDTO>(await debitService.CreateDebit(debit));
 
             return Ok(newDebit);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> SetDebitStatus(DebitDTO debitDTO)
+        {
+            Debit debit = mapper.Map<DebitDTO, Debit>(debitDTO);
+            await debitService.SetDebitStatus(debitDTO.DebitID, (bool)debitDTO.IsApproved);
+            if ((bool)debitDTO.IsApproved) return Ok(true); //success te if(data) diye işlem yapabiliriz, eğer false ise veto message ekranı açılır
+            return Ok(false);
         }
     }
 }

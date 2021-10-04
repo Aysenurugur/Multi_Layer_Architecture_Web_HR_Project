@@ -17,6 +17,7 @@ namespace Core.Entities.Identity
         public DateTime? HiredDate { get; set; }
         public string Title { get; set; } // Unvan
         public string Department { get; set; }
+        public decimal? Salary { get; set; }
 
         public Company Company { get; set; }
         public ICollection<Debit> Debits { get; set; }
