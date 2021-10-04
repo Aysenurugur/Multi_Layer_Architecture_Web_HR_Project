@@ -49,5 +49,14 @@ namespace WebAPI.Controllers
             var expenseResource = mapper.Map<Expense, ExpenseDTO>(newExpense);
             return Ok(expenseResource);
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> SetExpenseStatus(ExpenseDTO expenseDTO)
+        {
+            Expense expense = mapper.Map<ExpenseDTO, Expense>(expenseDTO);
+            await expenseService.SetExpenseStatus(expenseDTO.ExpenseId, expenseDTO.IsApproved);
+            if (expenseDTO.IsApproved) return Ok(true); //success te if(data) diye işlem yapabiliriz, eğer false ise veto message ekranı açılır
+            return Ok(false); 
+        }
     }
 }

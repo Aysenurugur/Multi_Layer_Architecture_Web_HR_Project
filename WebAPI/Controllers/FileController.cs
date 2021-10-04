@@ -64,9 +64,11 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateFile(FileDTO fileDTO)
+        public async Task<IActionResult> UpdateFile(FileDTO fileDTO) //test edildi
         {
-            File file = mapper.Map<FileDTO, File>(fileDTO);
+            File fileToBeUpdated = await fileService.GetFileByIdAsync(fileDTO.FileID);
+            fileDTO.CreatedDate = fileToBeUpdated.CreatedDate;
+            File file = mapper.Map(fileDTO, fileToBeUpdated);
             await fileService.UpdateFileAsync(file);
             return Ok(mapper.Map<File, FileDTO>(file));
         }

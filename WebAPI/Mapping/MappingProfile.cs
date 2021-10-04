@@ -22,6 +22,9 @@ namespace WebAPI.Mapping
             CreateMap<Shift, ShiftDTO>();
             CreateMap<File, FileDTO>();
             CreateMap<FileType, FileTypeDTO>();
+            CreateMap<VetoMessage, VetoMessageDTO>();
+            CreateMap<User, UpdateUserDTO>();
+            CreateMap<Company, UpdateCompanyDTO>();
 
 
             //DTO to Entity
@@ -36,6 +39,9 @@ namespace WebAPI.Mapping
             CreateMap<ShiftDTO, Shift>();
             CreateMap<FileDTO, File>();
             CreateMap<FileTypeDTO, FileType>();
+            CreateMap<VetoMessageDTO, VetoMessage>();
+            CreateMap<UpdateUserDTO, User>();
+            CreateMap<UpdateCompanyDTO, Company>();
         }
     }
 }

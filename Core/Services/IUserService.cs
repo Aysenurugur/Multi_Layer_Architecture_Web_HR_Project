@@ -17,7 +17,7 @@ namespace Core.Services
         Task<bool> CheckIfRoleIsEmployerAsync(Guid id);
         Task<List<string>> UpdateUserInfoAsync(User user);
         IEnumerable<User> GetUsers();
-        IEnumerable<User> GetEmployeesWithClosingBirthdays(Guid companyId);
+        Task<IEnumerable<User>> GetEmployeesWithClosingBirthdays(Guid companyId);
         IEnumerable<User> GetEmployees(Guid companyId, bool isActive, out int empCount);
         Task<User> GetUserByEmailAsync(string mail);
         string CreateRandomPassword();

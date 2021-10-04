@@ -110,5 +110,22 @@ namespace WebAPI.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateUserInfo(UpdateUserDTO userDTO)
+        {
+            User user = mapper.Map<UpdateUserDTO, User>(userDTO);
+            List<string> errors = await userService.UpdateUserInfoAsync(user);
+            if (errors != null) return BadRequest(errors);
+            return Ok(user);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetEmployeeBirthdays(Guid id)
+        {
+            IEnumerable<User> users = await userService.GetEmployeesWithClosingBirthdays(id);
+            IEnumerable<UserBirthdayDTO> userBirthdays = mapper.Map<IEnumerable<User>, IEnumerable<UserBirthdayDTO>>(users);
+            return Ok(userBirthdays);
+        }
     }
 }
