@@ -18,26 +18,31 @@ namespace Services.Services
             this.unitOfWork = _unitOfWork;
         }
 
-        public async Task<Promotion> CreatePromotion(Promotion newPromotion)
+        public async Task<Promotion> CreatePromotionAsync(Promotion newPromotion)
         {
             await unitOfWork.Promotion.AddAsync(newPromotion);
             return newPromotion;
         }
 
-        public async Task<IEnumerable<Promotion>> GetAllPromotions()
+        public async Task<IEnumerable<Promotion>> GetAllPromotionsAsync()
         {
             return await unitOfWork.Promotion.GetAllAsync();
         }
 
-        public async Task<Promotion> GetPromotionById(Guid id)
+        public async Task<Promotion> GetPromotionByIdAsync(Guid id)
         {
             return await unitOfWork.Promotion.GetByIDAsync(id);
         }
 
-        public async Task UpdatePromotion(Promotion promotion)
+        public async Task UpdatePromotionAsync(Promotion promotion)
         {
             unitOfWork.Promotion.Update(promotion);
             await unitOfWork.CommitAsync();
+        }
+
+        public async Task<IEnumerable<Promotion>> GetPromotionsByIserIdAsync(Guid userId)
+        {
+            return await Task.FromResult(unitOfWork.Promotion.List(x => x.UserID == userId).ToList());
         }
     }
 }

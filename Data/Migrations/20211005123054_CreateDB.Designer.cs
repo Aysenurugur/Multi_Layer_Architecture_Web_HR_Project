@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ProjectIdentityDbContext))]
-    [Migration("20210929102624_CreateDB")]
+    [Migration("20211005123054_CreateDB")]
     partial class CreateDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -172,7 +172,8 @@ namespace Data.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsApproved")
+                    b.Property<bool?>("IsApproved")
+                        .IsRequired()
                         .HasColumnType("bit");
 
                     b.Property<string>("Title")
@@ -375,6 +376,9 @@ namespace Data.Migrations
 
                     b.Property<byte[]>("Photo")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<decimal?>("Salary")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");

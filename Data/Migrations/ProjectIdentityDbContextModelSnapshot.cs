@@ -170,7 +170,8 @@ namespace Data.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsApproved")
+                    b.Property<bool?>("IsApproved")
+                        .IsRequired()
                         .HasColumnType("bit");
 
                     b.Property<string>("Title")
@@ -373,6 +374,9 @@ namespace Data.Migrations
 
                     b.Property<byte[]>("Photo")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<decimal?>("Salary")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");

@@ -29,8 +29,6 @@ namespace WebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterEmployerDTO employerDTO) //test edild
         {
-            try
-            {
                 Company company = new Company()
                 {
                     CompanyID = new Guid(),
@@ -47,11 +45,13 @@ namespace WebAPI.Controllers
                 UserDTO userDTO = mapper.Map<User, UserDTO>(user);
 
                 return Ok(userDTO);
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
+            //try
+            //{
+            //}
+            //catch (Exception)
+            //{
+            //    return BadRequest();
+            //}
         }
 
         [HttpPost]
@@ -111,10 +111,20 @@ namespace WebAPI.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUserById(Guid id) //test edildi
+        {
+            User user = await userService.GetUserById(id);
+            UpdateUserDTO userDTO = mapper.Map<User, UpdateUserDTO>(user);
+            return Ok(userDTO);
+        }
+
+        [HttpPut] //burada kontrol front end tarafında yapılmalı, value het türlü atanmalı, değiştirilmese bile boş gelmemeli
         public async Task<IActionResult> UpdateUserInfo(UpdateUserDTO userDTO)
         {
-            User user = mapper.Map<UpdateUserDTO, User>(userDTO);
+            User userToBeUpdated = await userService.GetUserById(userDTO.Id);
+            User user = mapper.Map(userDTO, userToBeUpdated);
+            user.IsActive = true;
             List<string> errors = await userService.UpdateUserInfoAsync(user);
             if (errors != null) return BadRequest(errors);
             return Ok(user);
