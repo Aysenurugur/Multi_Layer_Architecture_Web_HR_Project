@@ -25,6 +25,7 @@ namespace WebAPI.Mapping
             CreateMap<VetoMessage, VetoMessageDTO>();
             CreateMap<User, UpdateUserDTO>();
             CreateMap<Company, UpdateCompanyDTO>();
+            CreateMap<Promotion, PromotionDTO>();
 
 
             //DTO to Entity
@@ -42,6 +43,7 @@ namespace WebAPI.Mapping
             CreateMap<VetoMessageDTO, VetoMessage>();
             CreateMap<UpdateUserDTO, User>();
             CreateMap<UpdateCompanyDTO, Company>();
+            CreateMap<PromotionDTO, Promotion>();
         }
     }
 }

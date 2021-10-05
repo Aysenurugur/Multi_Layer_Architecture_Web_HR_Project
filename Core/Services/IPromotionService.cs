@@ -9,9 +9,10 @@ namespace Core.Services
 {
     public interface IPromotionService
     {
-        Task<IEnumerable<Promotion>> GetAllPromotions();
-        Task<Promotion> GetPromotionById(Guid id);
-        Task<Promotion> CreatePromotion(Promotion newPromotion);
-        Task UpdatePromotion(Promotion promotion);
+        Task<IEnumerable<Promotion>> GetAllPromotionsAsync();
+        Task<Promotion> GetPromotionByIdAsync(Guid id);
+        Task<Promotion> CreatePromotionAsync(Promotion newPromotion);
+        Task UpdatePromotionAsync(Promotion promotion);
+        Task<IEnumerable<Promotion>> GetPromotionsByIserIdAsync(Guid userId);
     }
 }

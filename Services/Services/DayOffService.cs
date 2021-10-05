@@ -60,10 +60,8 @@ namespace Services.Services
             foreach (User item in employees)
             {
                 dayOffs.AddRange(item.DayOffs.Where(x => x.IsApproved == null));
-
             }
             return await Task.FromResult(dayOffs);
-
         }
 
         public async Task<IEnumerable<DayOff>> GetDayOffsByUserId(Guid userId)
