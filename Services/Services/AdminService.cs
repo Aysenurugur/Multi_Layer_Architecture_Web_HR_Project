@@ -26,13 +26,5 @@ namespace Services.Services
             if (email == admin.Email && password == admin.Password) { return await Task.FromResult(true); } //admin giriş yapmış ise API DE YAP BURAYI
             return await Task.FromResult(false);
         }
-        public async Task<bool> SetCompanyStatus(Guid companyId, bool status)
-        {
-            Company company = await unitOfWork.Company.GetByIDAsync(companyId);
-            company.IsActive = status;
-            unitOfWork.Company.Update(company);
-            bool check = await unitOfWork.CommitAsync() > 0;
-            return await Task.FromResult(check);
-        }
     }
 }

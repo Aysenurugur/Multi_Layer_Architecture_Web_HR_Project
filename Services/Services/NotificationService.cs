@@ -18,25 +18,28 @@ namespace Services.Services
             this.unitOfWork = _unitOfWork;
         }
 
-        public async Task<Notification> CreateNotification(Notification newNotification)
+        public async Task<Notification> CreateNotificationAsync(Notification newNotification)
         {
             await unitOfWork.Notification.AddAsync(newNotification);
+            await unitOfWork.CommitAsync();
             return newNotification;
         }
 
-        public async Task<IEnumerable<Notification>> GetAllNotifications()
-        {
-            return await unitOfWork.Notification.GetAllAsync();
-        }
-
-        public async Task<Notification> GetNotificationById(Guid id)
+        public async Task<Notification> GetNotificationByIdAsync(Guid id)
         {
             return await unitOfWork.Notification.GetByIDAsync(id);
         }
 
-        public Task<IEnumerable<Notification>> GetNotificationsByUserId(Guid userId)
+        public async Task<IEnumerable<Notification>> GetNotificationsByUserIdAsync(Guid userId)
         {
-            return Task.FromResult(unitOfWork.Notification.List(x => x.UserID == userId));
+            return await Task.FromResult(unitOfWork.Notification.List(x => x.UserID == userId && !x.IsSeen));
+        }
+
+        public async Task ReadNotificationAsync(Guid notificationId)
+        {
+            Notification notification = await GetNotificationByIdAsync(notificationId);
+            notification.IsSeen = true;
+            await unitOfWork.CommitAsync();
         }
     }
 }
