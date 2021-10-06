@@ -264,7 +264,7 @@ namespace Data.Migrations
                 {
                     DayOffID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DayOffTypeID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsApproved = table.Column<bool>(type: "bit", nullable: false),
+                    IsApproved = table.Column<bool>(type: "bit", nullable: true),
                     UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     BeginDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -292,7 +292,7 @@ namespace Data.Migrations
                 {
                     DebitID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsApproved = table.Column<bool>(type: "bit", nullable: false),
+                    IsApproved = table.Column<bool>(type: "bit", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -316,7 +316,7 @@ namespace Data.Migrations
                     UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Image = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    IsApproved = table.Column<bool>(type: "bit", nullable: false),
+                    IsApproved = table.Column<bool>(type: "bit", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)

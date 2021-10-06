@@ -10,7 +10,7 @@ namespace Core.Entities
         public Guid UserID { get; set; }
         public byte[] Image { get; set; }
         public decimal TotalPrice { get; set; }
-        public bool IsApproved { get; set; }
+        public bool? IsApproved { get; set; }
 
         public VetoMessage VetoMessage { get; set; }
         public User User { get; set; }

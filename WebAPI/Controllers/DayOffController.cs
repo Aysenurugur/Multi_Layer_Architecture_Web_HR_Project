@@ -23,31 +23,14 @@ namespace WebAPI.Controllers
             this.mapper = mapper;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetDayOffs()
-        {
-            try
-            {
-                IEnumerable<DayOff> dayOffs = await dayOffService.GetAllDayOffs();
-                IEnumerable<DayOffDTO> dayOffDTO = mapper.Map<IEnumerable<DayOff>, IEnumerable<DayOffDTO>>(dayOffs);
-                return Ok(dayOffDTO);
-            }
-            catch (Exception)
-            {
-
-                return BadRequest();
-            }
-            
-        }
-
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetDayOffsByUserId(Guid userId)
+        public async Task<IActionResult> GetDayOffsByUserId(Guid id) //test edildi
         {
             try
             {
-                var dayOffs = await dayOffService.GetDayOffsByUserId(userId);
+                var dayOffs = await dayOffService.GetDayOffsByUserId(id);
                 var dayOffDTO = mapper.Map<IEnumerable<DayOff>, IEnumerable<DayOffDTO>>(dayOffs);
-                return  Ok(dayOffDTO);
+                return Ok(dayOffDTO);
             }
             catch (Exception)
             {
@@ -57,24 +40,21 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateDayOff(DayOffDTO dayOffDTO)
+        public async Task<IActionResult> CreateDayOff(DayOffDTO dayOffDTO) //test edildi
         {
             try
             {
                 dayOffDTO.DayOffID = Guid.NewGuid();
-                var dayOffToCreate = mapper.Map<DayOffDTO, DayOff>(dayOffDTO);
-                var newdayOff = await dayOffService.CreateDayOff(dayOffToCreate);
-                var dayOff = await dayOffService.GetDayOffById(newdayOff.DayOffID);
-                var dayOffResource = mapper.Map<DayOff, DayOffDTO>(dayOff);
-                return Ok(dayOffResource);
+                DayOff dayOffToCreate = mapper.Map<DayOffDTO, DayOff>(dayOffDTO);
+                DayOff newdayOff = await dayOffService.CreateDayOff(dayOffToCreate);
+                DayOffDTO createdDayOffDTO = mapper.Map<DayOff, DayOffDTO>(newdayOff);
+                return Ok(createdDayOffDTO);
             }
             catch (Exception)
             {
 
                 return BadRequest();
             }
-           
-
         }
     }
 }

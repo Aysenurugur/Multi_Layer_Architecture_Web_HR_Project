@@ -20,6 +20,7 @@ namespace Services.Services
         public async Task<DayOff> CreateDayOff(DayOff newDayOff)
         {
             await unitOfWork.DayOff.AddAsync(newDayOff);
+            await unitOfWork.CommitAsync();
             return newDayOff;
         }
 

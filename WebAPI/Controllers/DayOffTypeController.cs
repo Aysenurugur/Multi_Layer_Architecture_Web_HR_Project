@@ -24,7 +24,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetDayOffTypes()
+        public async Task<IActionResult> GetDayOffTypes() //test edildi
         {
             try
             {
@@ -39,13 +39,15 @@ namespace WebAPI.Controllers
             }
 
         }
+
         [HttpPost]
-        public async Task<IActionResult> CreateDayOffType(DayOffTypeDTO dayOffTypeDTO)
+        public async Task<IActionResult> CreateDayOffType(DayOffTypeDTO dayOffTypeDTO) //test edildi
         {
             try
             {
                 dayOffTypeDTO.DayOffTypeID = Guid.NewGuid();
                 var dayOffTypeToCreate = mapper.Map<DayOffTypeDTO, DayOffType>(dayOffTypeDTO);
+                dayOffTypeToCreate.CreatedDate = DateTime.Now;
                 var newDayOffType = await dayOffTypeService.CreateDayOffType(dayOffTypeToCreate);
                 var dayOffType = await dayOffTypeService.GetDayOffById(newDayOffType.DayOffTypeID);
                 var dayOffTypeResource = mapper.Map<DayOffType, DayOffTypeDTO>(dayOffType);
@@ -57,8 +59,5 @@ namespace WebAPI.Controllers
                 return BadRequest();
             }
         }
-
-       
-
     }
 }

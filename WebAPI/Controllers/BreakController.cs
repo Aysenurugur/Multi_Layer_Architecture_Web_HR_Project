@@ -71,12 +71,19 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateBreak(BreakDTO breakDTO)
+        public async Task<IActionResult> UpdateBreak(BreakDTO breakDTO) //test edildi
         {
-            Break breakToBeUpdated = await breakService.GetBreakById(breakDTO.BreakID);
-            Break updatedBreak = mapper.Map(breakDTO, breakToBeUpdated);
-            await breakService.UpdateBreak(updatedBreak);
-            return Ok(mapper.Map<Break, BreakDTO>(updatedBreak));
+            try
+            {
+                Break breakToBeUpdated = await breakService.GetBreakById(breakDTO.BreakID);
+                Break updatedBreak = mapper.Map(breakDTO, breakToBeUpdated);
+                await breakService.UpdateBreak(updatedBreak);
+                return Ok(mapper.Map<Break, BreakDTO>(updatedBreak));
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
     }
 }

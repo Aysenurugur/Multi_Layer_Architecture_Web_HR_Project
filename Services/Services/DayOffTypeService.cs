@@ -20,6 +20,7 @@ namespace Services.Services
         public async Task<DayOffType> CreateDayOffType(DayOffType newDayOffType)
         {
             await unitOfWork.DayOffType.AddAsync(newDayOffType);
+            await unitOfWork.CommitAsync();
             return newDayOffType;
         }
 
@@ -27,6 +28,7 @@ namespace Services.Services
         {
             return await unitOfWork.DayOffType.GetAllAsync();
         }
+
         public async Task<DayOffType> GetDayOffById(Guid id)
         {
             return await unitOfWork.DayOffType.GetByIDAsync(id);

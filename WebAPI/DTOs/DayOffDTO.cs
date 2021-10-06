@@ -8,11 +8,10 @@ namespace WebAPI.DTOs
     public class DayOffDTO
     {
         public Guid DayOffID { get; set; }
+        public Guid UserID { get; set; }
         public Guid DayOffTypeID { get; set; }
         public DateTime? BeginDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public string Title { get; set; }
-        public string Content { get; set; }
         public bool? IsApproved { get; set; }
     }
 }

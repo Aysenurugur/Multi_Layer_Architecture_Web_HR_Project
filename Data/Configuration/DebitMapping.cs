@@ -16,7 +16,7 @@ namespace Data.Configuration
             builder.HasKey(x => x.DebitID);
 
             builder.Property(x => x.IsApproved)
-                .IsRequired();
+                .IsRequired(false);
         }
     }
 }
