@@ -52,11 +52,18 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(CommentDTO commentDTO)
+        public async Task<IActionResult> Update(CommentDTO commentDTO) //test edildi
         {
-            Comment comment = mapper.Map<CommentDTO, Comment>(commentDTO);
-            await commentService.UpdateComment(comment);
-            return Ok(mapper.Map<Comment, CommentDTO>(comment));
+            try
+            {
+                Comment comment = mapper.Map<CommentDTO, Comment>(commentDTO);
+                await commentService.UpdateComment(comment);
+                return Ok(mapper.Map<Comment, CommentDTO>(comment));
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
     }
 }

@@ -28,6 +28,7 @@ namespace Services.Services
         {
             return await unitOfWork.DayOffType.GetAllAsync();
         }
+
         public async Task<DayOffType> GetDayOffById(Guid id)
         {
             return await unitOfWork.DayOffType.GetByIDAsync(id);

@@ -78,11 +78,18 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut] 
-        public async Task<IActionResult> UpdateCompanyInfo(UpdateCompanyDTO companyDTO)
+        public async Task<IActionResult> UpdateCompany(UpdateCompanyDTO companyDTO) //teste edildi
         {
-            Company company = mapper.Map<UpdateCompanyDTO, Company>(companyDTO);
-            await companyService.UpdateCompany(company);
-            return Ok(mapper.Map<Company, CompanyDTO>(company));
+            try
+            {
+                Company company = mapper.Map<UpdateCompanyDTO, Company>(companyDTO);
+                await companyService.UpdateCompany(company);
+                return Ok(mapper.Map<Company, CompanyDTO>(company));
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
     }
 }

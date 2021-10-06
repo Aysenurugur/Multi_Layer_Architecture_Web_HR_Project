@@ -84,7 +84,7 @@ namespace Services.Services
             return await unitOfWork.CommitAsync() > 0;
         }
 
-        public async Task<List<string>> UpdateUserInfoAsync(User user) 
+        public async Task<List<string>> UpdateUserInfoAsync(User user)
         {
             List<string> errors = new List<string>();
             var result = await userManager.UpdateAsync(user);
@@ -106,11 +106,14 @@ namespace Services.Services
             List<User> employees = new List<User>();
             foreach (User item in unitOfWork.User.List(x => x.CompanyID == companyId))
             {
-                DateTime today = DateTime.Today;
-                DateTime next = new DateTime(today.Year, item.BirthDate.Value.Month, item.BirthDate.Value.Day);
-                if (next < today) next = next.AddYears(1);
-                int numDays = (next - today).Days;
-                if (numDays <= 30) employees.Add(item);
+                if (item.BirthDate != null)
+                {
+                    DateTime today = DateTime.Today;
+                    DateTime next = new DateTime(today.Year, item.BirthDate.Value.Month, item.BirthDate.Value.Day);
+                    if (next < today) next = next.AddYears(1);
+                    int numDays = (next - today).Days;
+                    if (numDays <= 30) employees.Add(item);
+                }
             }
             return await Task.FromResult(employees);
         }
@@ -134,11 +137,11 @@ namespace Services.Services
         }
 
         public string CreateRandomPassword()
-        {            
+        {
             char[] letters = { 'A', 'B', 'C', 'Ç', 'D', 'E', 'F', 'G', 'Ğ', 'H', 'I', 'İ', 'J', 'K', 'L', 'M', 'N', 'O', 'Ö', 'P', 'R', 'S', 'Ş', 'T', 'U', 'Ü', 'V', 'Y', 'Z', 'X', 'W', 'Q' };
             char[] numbers = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
             char[] specialCharacters = { '.', ',', '/', '!', '?', '+', '-', '_' };
-            string password = string.Empty;            
+            string password = string.Empty;
             Random rnd = new Random();
 
             for (int i = 0; i < 3; i++)

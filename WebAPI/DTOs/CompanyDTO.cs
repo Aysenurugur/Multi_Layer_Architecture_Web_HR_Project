@@ -11,5 +11,6 @@ namespace WebAPI.DTOs
         public Guid CompanyID { get; set; }
         public string CompanyName { get; set; }
         public byte[] Logo { get; set; }
+        public string Address { get; set; }
     }
 }

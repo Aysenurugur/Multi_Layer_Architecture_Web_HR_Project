@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Core.Entities;
 using Core.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +25,7 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetDayOffTypes() //Kontrol edildi.
+
         {
             try
             {
@@ -39,20 +40,20 @@ namespace WebAPI.Controllers
             }
 
         }
+
         [HttpPost]
         public async Task<IActionResult> CreateDayOffType(DayOffTypeDTO dayOffTypeDTO) //Kontrol edildi.
+
         {
             
                 dayOffTypeDTO.DayOffTypeID = Guid.NewGuid();
                 var dayOffTypeToCreate = mapper.Map<DayOffTypeDTO, DayOffType>(dayOffTypeDTO);
+                dayOffTypeToCreate.CreatedDate = DateTime.Now;
                 var newDayOffType = await dayOffTypeService.CreateDayOffType(dayOffTypeToCreate);
                 var dayOffType = await dayOffTypeService.GetDayOffById(newDayOffType.DayOffTypeID);
                 var dayOffTypeResource = mapper.Map<DayOffType, DayOffTypeDTO>(dayOffType);
                 return Ok(dayOffTypeResource);
             
         }
-
-       
-
     }
 }

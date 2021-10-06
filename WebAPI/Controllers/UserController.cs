@@ -29,6 +29,8 @@ namespace WebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterEmployerDTO employerDTO) //test edild
         {
+            try
+            {
                 Company company = new Company()
                 {
                     CompanyID = new Guid(),
@@ -45,13 +47,11 @@ namespace WebAPI.Controllers
                 UserDTO userDTO = mapper.Map<User, UserDTO>(user);
 
                 return Ok(userDTO);
-            //try
-            //{
-            //}
-            //catch (Exception)
-            //{
-            //    return BadRequest();
-            //}
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPost]
@@ -114,9 +114,16 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById(Guid id) //test edildi
         {
-            User user = await userService.GetUserById(id);
-            UpdateUserDTO userDTO = mapper.Map<User, UpdateUserDTO>(user);
-            return Ok(userDTO);
+            try
+            {
+                User user = await userService.GetUserById(id);
+                UpdateUserDTO userDTO = mapper.Map<User, UpdateUserDTO>(user);
+                return Ok(userDTO);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPut] //burada kontrol front end tarafında yapılmalı, value het türlü atanmalı, değiştirilmese bile boş gelmemeli
@@ -131,11 +138,18 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetEmployeeBirthdays(Guid id)
+        public async Task<IActionResult> GetEmployeeBirthdays(Guid id) //test edildi
         {
-            IEnumerable<User> users = await userService.GetEmployeesWithClosingBirthdays(id);
-            IEnumerable<UserBirthdayDTO> userBirthdays = mapper.Map<IEnumerable<User>, IEnumerable<UserBirthdayDTO>>(users);
-            return Ok(userBirthdays);
+            try
+            {
+                IEnumerable<User> users = await userService.GetEmployeesWithClosingBirthdays(id);
+                IEnumerable<UserBirthdayDTO> userBirthdays = mapper.Map<IEnumerable<User>, IEnumerable<UserBirthdayDTO>>(users);
+                return Ok(userBirthdays);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
     }
 }
