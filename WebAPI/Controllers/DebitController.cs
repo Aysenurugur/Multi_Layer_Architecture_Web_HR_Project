@@ -24,27 +24,46 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetDebitsByEmployeeId(Guid id) // test edildi
         {
-            var debits = mapper.Map<IEnumerable<Debit>, IEnumerable<DebitDTO>>(debitService.GetDebitsByEmployeeId(id));
-            return Ok(debits);
+            try
+            {
+                var debits = mapper.Map<IEnumerable<Debit>, IEnumerable<DebitDTO>>(debitService.GetDebitsByEmployeeId(id));
+                return Ok(debits);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(DebitDTO debitDTO) //test edildi
         {
-            Debit debit = mapper.Map<DebitDTO, Debit>(debitDTO);
-            debit.CreatedDate = DateTime.Now;
-            DebitDTO newDebit = mapper.Map<Debit, DebitDTO>(await debitService.CreateDebit(debit));
+            try
+            {
+                Debit debit = mapper.Map<DebitDTO, Debit>(debitDTO);
+                debit.CreatedDate = DateTime.Now;
+                DebitDTO newDebit = mapper.Map<Debit, DebitDTO>(await debitService.CreateDebit(debit));
 
-            return Ok(newDebit);
+                return Ok(newDebit);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpDelete]
-        public async Task<IActionResult> SetDebitStatus(DebitDTO debitDTO)
+        public async Task<IActionResult> SetDebitStatus(DebitDTO debitDTO) //test edildi
         {
-            Debit debit = mapper.Map<DebitDTO, Debit>(debitDTO);
-            await debitService.SetDebitStatus(debitDTO.DebitID, (bool)debitDTO.IsApproved);
-            if ((bool)debitDTO.IsApproved) return Ok(true); //success te if(data) diye işlem yapabiliriz, eğer false ise veto message ekranı açılır
-            return Ok(false);
+            try
+            {
+                await debitService.SetDebitStatus(debitDTO.DebitID, (bool)debitDTO.IsApproved);
+                return Ok(debitDTO.IsApproved);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
     }
 }

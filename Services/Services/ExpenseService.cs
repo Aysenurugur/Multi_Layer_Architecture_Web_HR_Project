@@ -38,7 +38,6 @@ namespace Services.Services
         {
             Expense expense = await unitOfWork.Expense.GetByIDAsync(id);
             expense.IsApproved = status;
-            unitOfWork.Expense.Update(expense);
             bool check = await unitOfWork.CommitAsync() > 0;
             return await Task.FromResult(check);
         }

@@ -26,37 +26,63 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetExpensesByEmployeeId(Guid id) //test edildi
         {
-            var expenses = expenseService.GetExpensesByEmployeeId(id);
-            var expensesDTO = mapper.Map<IEnumerable<Expense>, IEnumerable<ExpenseDTO>>(expenses);
-            return Ok(expensesDTO);
+            try
+            {
+                var expenses = expenseService.GetExpensesByEmployeeId(id);
+                var expensesDTO = mapper.Map<IEnumerable<Expense>, IEnumerable<ExpenseDTO>>(expenses);
+                return Ok(expensesDTO);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetExpensesByCompanyId(Guid id) //test edildi
         {
-            var expenses = await expenseService.GetExpenseByCompanyId(id);
-            var expensesDTO = mapper.Map<IEnumerable<Expense>, IEnumerable<ExpenseDTO>>(expenses);
-            return Ok(expensesDTO);
+            try
+            {
+                IEnumerable<Expense> expenses = await expenseService.GetExpenseByCompanyId(id);
+                IEnumerable<ExpenseDTO> expensesDTO = mapper.Map<IEnumerable<Expense>, IEnumerable<ExpenseDTO>>(expenses);
+                return Ok(expensesDTO);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(ExpenseDTO expenseDTO) //test edildi
         {
-            expenseDTO.ExpenseId = Guid.NewGuid();
-            var expenseToCreate = mapper.Map<ExpenseDTO, Expense>(expenseDTO);
-            expenseToCreate.CreatedDate = DateTime.Now;
-            var newExpense = await expenseService.CreateExpense(expenseToCreate);
-            var expenseResource = mapper.Map<Expense, ExpenseDTO>(newExpense);
-            return Ok(expenseResource);
+            try
+            {
+                expenseDTO.ExpenseId = Guid.NewGuid();
+                Expense expenseToCreate = mapper.Map<ExpenseDTO, Expense>(expenseDTO);
+                expenseToCreate.CreatedDate = DateTime.Now;
+                Expense newExpense = await expenseService.CreateExpense(expenseToCreate);
+                ExpenseDTO expenseResource = mapper.Map<Expense, ExpenseDTO>(newExpense);
+                return Ok(expenseResource);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpDelete]
-        public async Task<IActionResult> SetExpenseStatus(ExpenseDTO expenseDTO)
+        public async Task<IActionResult> SetExpenseStatus(ExpenseDTO expenseDTO) //test edildi
         {
-            Expense expense = mapper.Map<ExpenseDTO, Expense>(expenseDTO);
-            await expenseService.SetExpenseStatus(expenseDTO.ExpenseId, expenseDTO.IsApproved);
-            if (expenseDTO.IsApproved) return Ok(true); //success te if(data) diye işlem yapabiliriz, eğer false ise veto message ekranı açılır
-            return Ok(false); 
+            try
+            {
+                await expenseService.SetExpenseStatus(expenseDTO.ExpenseId, (bool)expenseDTO.IsApproved);
+                return Ok(expenseDTO.IsApproved);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
     }
 }

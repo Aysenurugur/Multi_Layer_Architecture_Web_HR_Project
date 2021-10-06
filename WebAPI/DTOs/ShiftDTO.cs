@@ -10,7 +10,6 @@ namespace WebAPI.DTOs
         //Manager vardiya sayfası
         public Guid ShiftID { get; set; }
         public Guid UserID { get; set; }
-        public string FullName { get; set; }
         public DateTime? BeginDate { get; set; }
         public DateTime? EndDate { get; set; }
         

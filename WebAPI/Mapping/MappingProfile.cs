@@ -27,6 +27,7 @@ namespace WebAPI.Mapping
             CreateMap<Company, UpdateCompanyDTO>();
             CreateMap<Promotion, PromotionDTO>();
             CreateMap<User, UserBirthdayDTO>();
+            CreateMap<Debit, DebitDTO>();
 
 
             //DTO to Entity
@@ -46,6 +47,7 @@ namespace WebAPI.Mapping
             CreateMap<UpdateCompanyDTO, Company>();
             CreateMap<PromotionDTO, Promotion>();
             CreateMap<UserBirthdayDTO, User>();
+            CreateMap<DebitDTO, Debit>();
         }
     }
 }

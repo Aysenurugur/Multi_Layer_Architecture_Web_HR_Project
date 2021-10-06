@@ -27,33 +27,61 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetShiftsByUserId(Guid id) //test edildi
         {
-            IEnumerable<Shift> shifts = await shiftService.GetShiftsByUserIdAsync(id);
-            IEnumerable<ShiftDTO> shiftDTOs = mapper.Map<IEnumerable<Shift>, IEnumerable<ShiftDTO>>(shifts);
-            return Ok(shiftDTOs);
+            try
+            {
+                IEnumerable<Shift> shifts = await shiftService.GetShiftsByUserIdAsync(id);
+                IEnumerable<ShiftDTO> shiftDTOs = mapper.Map<IEnumerable<Shift>, IEnumerable<ShiftDTO>>(shifts);
+                return Ok(shiftDTOs);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetShiftById(Guid id)
+        public async Task<IActionResult> GetShiftById(Guid id) //test edildi
         {
-            Shift shift = await shiftService.GetShiftByIdAsync(id);
-            ShiftDTO shiftDTO = mapper.Map<Shift, ShiftDTO>(shift);
-            return Ok(shiftDTO);
+            try
+            {
+                Shift shift = await shiftService.GetShiftByIdAsync(id);
+                ShiftDTO shiftDTO = mapper.Map<Shift, ShiftDTO>(shift);
+                return Ok(shiftDTO);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateShift(ShiftDTO shiftDTO) //test edildi
         {
-            Shift shift = mapper.Map<ShiftDTO, Shift>(shiftDTO);
-            await shiftService.CreateShiftAsync(shift);
-            return Ok(mapper.Map<Shift, ShiftDTO>(shift));
+            try
+            {
+                Shift shift = mapper.Map<ShiftDTO, Shift>(shiftDTO);
+                await shiftService.CreateShiftAsync(shift);
+                return Ok(mapper.Map<Shift, ShiftDTO>(shift));
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateShift(ShiftDTO shiftDTO) //test edildi
         {
-            Shift shift = mapper.Map<ShiftDTO, Shift>(shiftDTO);
-            await shiftService.UpdateShiftAsync(shift);
-            return Ok(mapper.Map<Shift, ShiftDTO>(shift));
+            try
+            {
+                Shift shift = mapper.Map<ShiftDTO, Shift>(shiftDTO);
+                await shiftService.UpdateShiftAsync(shift);
+                return Ok(mapper.Map<Shift, ShiftDTO>(shift));
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
     }
 }
