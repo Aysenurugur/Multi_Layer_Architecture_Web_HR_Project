@@ -67,7 +67,10 @@ namespace Services.Services
 
         public async Task<IEnumerable<DayOff>> GetDayOffsByUserId(Guid userId)
         {
-            return await Task.FromResult(unitOfWork.DayOff.List(x => x.UserID == userId).ToList());
+         
+            List<DayOff> dayOffs = unitOfWork.DayOff.List(x => x.UserID == userId).ToList();
+            return await Task.FromResult(dayOffs);
+
         }
 
     }
