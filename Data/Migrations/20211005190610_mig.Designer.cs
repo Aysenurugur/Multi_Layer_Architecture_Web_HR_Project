@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ProjectIdentityDbContext))]
-    [Migration("20211005123054_CreateDB")]
-    partial class CreateDB
+    [Migration("20211005190610_mig")]
+    partial class mig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
