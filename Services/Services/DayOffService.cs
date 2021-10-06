@@ -20,6 +20,7 @@ namespace Services.Services
         public async Task<DayOff> CreateDayOff(DayOff newDayOff)
         {
             await unitOfWork.DayOff.AddAsync(newDayOff);
+            await unitOfWork.CommitAsync();
             return newDayOff;
         }
 
@@ -66,7 +67,10 @@ namespace Services.Services
 
         public async Task<IEnumerable<DayOff>> GetDayOffsByUserId(Guid userId)
         {
-            return await Task.FromResult(unitOfWork.DayOff.List(x => x.UserID == userId).ToList());
+         
+            List<DayOff> dayOffs = unitOfWork.DayOff.List(x => x.UserID == userId).ToList();
+            return await Task.FromResult(dayOffs);
+
         }
 
     }

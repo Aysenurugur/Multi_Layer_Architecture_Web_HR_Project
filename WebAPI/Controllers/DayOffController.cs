@@ -24,7 +24,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetDayOffs()
+        public async Task<IActionResult> GetDayOffs() //Kontrol edildi.
         {
             try
             {
@@ -43,29 +43,22 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetDayOffsByUserId(Guid userId)
         {
-            try
-            {
-                var dayOffs = await dayOffService.GetDayOffsByUserId(userId);
-                var dayOffDTO = mapper.Map<IEnumerable<DayOff>, IEnumerable<DayOffDTO>>(dayOffs);
-                return  Ok(dayOffDTO);
-            }
-            catch (Exception)
-            {
-
-                return BadRequest();
-            }
+            
+                IEnumerable<DayOff> dayOffs = await dayOffService.GetDayOffsByUserId(userId);
+                IEnumerable<DayOffDTO> dayOffDTO = mapper.Map<IEnumerable<DayOff>, IEnumerable<DayOffDTO>>(dayOffs);
+                return Ok(dayOffDTO);
+          
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateDayOff(DayOffDTO dayOffDTO)
+        public async Task<IActionResult> CreateDayOff(DayOffDTO dayOffDTO) //test edildi.
         {
             try
             {
                 dayOffDTO.DayOffID = Guid.NewGuid();
                 var dayOffToCreate = mapper.Map<DayOffDTO, DayOff>(dayOffDTO);
-                var newdayOff = await dayOffService.CreateDayOff(dayOffToCreate);
-                var dayOff = await dayOffService.GetDayOffById(newdayOff.DayOffID);
-                var dayOffResource = mapper.Map<DayOff, DayOffDTO>(dayOff);
+                await dayOffService.CreateDayOff(dayOffToCreate);
+                DayOffDTO dayOffResource = mapper.Map<DayOff, DayOffDTO>(dayOffToCreate);
                 return Ok(dayOffResource);
             }
             catch (Exception)
@@ -73,7 +66,8 @@ namespace WebAPI.Controllers
 
                 return BadRequest();
             }
-           
+                
+            
 
         }
     }
