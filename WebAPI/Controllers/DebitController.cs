@@ -52,7 +52,7 @@ namespace WebAPI.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpPut]
         public async Task<IActionResult> SetDebitStatus(DebitDTO debitDTO) //test edildi
         {
             try

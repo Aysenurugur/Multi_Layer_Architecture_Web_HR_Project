@@ -11,7 +11,7 @@ namespace Core.AbstractRepositories
     public interface IUserRepository
     {        
         Task SendVetoMessageAsync(VetoMessage vetoMessage);
-        Task<IEnumerable<VetoMessage>> GetUserVetoMessages(Guid userId);
+        Task<List<VetoMessage>> GetUserVetoMessages(Guid userId);
         IEnumerable<User> List(Expression<Func<User, bool>> predicate);
         User Find(Expression<Func<User, bool>> predicate);
 
