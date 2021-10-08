@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/Guess/_GuessLayout.cshtml";
+}
+
+
+<!-- Form -->
+
+<section class="register-page mb-4">
+    <div class="p-standart">
+        <div class="txt-center">
+            <h1 class="my-2">Şirketlerinizi yönetmenin yeni yolu</h1>
+            <span class="my-1">Kayıt yaptırarak 15 gün ücretsiz deneyebilirsiniz.</span>
+            <div class="d-flex jc-center ai-center mt-2">
+                <span>Zaten bir üyeliğiniz var mı?</span>
+                <a href="login.html" class="btn btn-primary mx-2">GİRİŞ YAP</a>
+            </div>
+        </div>
+        <div class="form-group px-4">
+            <div class="my-3 width-100 floating-label">
+                <input class="form-control width-100" type="text" id="firstName" placeholder=" ">
+                <label class="label" for="firstName">Ad</label>
+            </div>
+            <div class="mb-3 width-100 floating-label">
+                <input class="form-control width-100" type="text" id="lastName" placeholder=" ">
+                <label class="label" for="lastName">Soyad</label>
+
+            </div>
+            <div class="mb-3 width-100 floating-label">
+                <input class="form-control width-100" type="text" id="companyPhone" placeholder=" ">
+                <label class="label" for="companyPhone">Şirket Telefonu</label>
+
+            </div>
+            <div class="mb-3 width-100 floating-label">
+                <input class="form-control width-100" type="text" id="companyMail" placeholder=" ">
+                <label class="label" for="companyMail">Şirket Mailiniz</label>
+
+            </div>
+            <div class="mb-3 width-100 floating-label">
+                <input class="form-control width-100" type="text" id="companyName" placeholder=" ">
+                <label class="label" for="companyName">Şirket Adı</label>
+
+            </div>
+            <div class="mb-3 width-100 floating-label">
+                <input class="form-control width-100" type="text" id="password" placeholder=" ">
+                <label class="label" for="password">Şifre</label>
+
+            </div>
+            <div class="mb-3 width-100">
+                <a href="#" class="btn btn-primary py-1">Kayıt Ol</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-standart bg-primary clr-white pb-4">
+        <div class="mySlides">
+            <div class="d-flex flex-column jc-between">
+                <img class="slide-logo"
+                     src="/images/kd_logo.png"
+                     alt="">
+                <span class="slide-comment">
+                    "Çalışanlarımın izin taleplerini onaylamıyorum, zaten benim yüzümü gören
+                    yok?"
+                </span>
+                <div class="company-manager">
+                    <h1>Onur Çekiç</h1>
+                    <span>Şirket Yöneticisi</span>
+                </div>
+            </div>
+        </div>
+        <div class="mySlides">
+            <div class="d-flex flex-column jc-between">
+                <img class="slide-logo"
+                     src="/images/performance.png"
+                     alt="">
+                <span class="slide-comment">"Çalışanlarıma değer verdiğim için bu platformu kullanıyorum."</span>
+                <div class="company-manager">
+                    <h1>Kübra Coşkun</h1>
+                    <span>Şirket Yöneticisi</span>
+                </div>
+            </div>
+        </div>
+        <div class="mySlides">
+            <div class="d-flex flex-column jc-between">
+                <img class="slide-logo"
+                     src="https://seeklogo.com/images/K/kahve-dunyasi-logo-65084B42BA-seeklogo.com.png" alt="">
+                <span class="slide-comment">"Hızlı, kolay ve efektif yönetim sağlamak için kullanıyorum."</span>
+                <div class="company-manager">
+                    <h1>Ayşenur Uğur</h1>
+                    <span>Şirket Yöneticisi</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Admin/_AdminLayout.cshtml";
+}
+
+<div class="employee-details">
+
+    <div class="card">
+        <div class="card-header">
+            <h3><i class="fas fa-chart-bar"></i> Çalışan Dağılımı</h3>
+            <span>X</span>
+        </div>
+        <div class="content">
+            <canvas id="employeesByCompany"></canvas>
+        </div>
+        <div class="card-footer">
+            <span>Toplam Çalışan Sayısı 3000</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h3><i class="fas fa-chart-bar"></i> Çalışan Dağılımı</h3>
+            <span>X</span>
+        </div>
+        <div class="content">
+            <canvas id="managersByCompany"></canvas>
+        </div>
+        <div class="card-footer">
+            <span>Toplam Şirket Yöneticisi Sayısı 3000</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h3><i class="fas fa-chart-bar"></i> Çalışan Dağılımı</h3>
+            <span>X</span>
+        </div>
+        <div class="content">
+            <canvas id="membersOfSite"></canvas>
+        </div>
+        <div class="card-footer">
+            <span>Toplam Abone Şirket Sayısı 15</span>
+            <span>Toplam Abonelikten Çıkan Şirket Sayısı 2</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h3><i class="fas fa-umbrella-beach"></i> Resmi Tatiller Listesi</h3>
+            <span>X</span>
+        </div>
+        <div class="content">
+            <div class="d-flex jc-between fs-xs mb-1">
+                <span>Cumhuriyet Baramı Arifesi</span>
+                <span>28 Ekim 2021</span>
+            </div>
+
+            <div class="d-flex jc-between fs-xs mb-1">
+                <span>Cumhuriyet Baramı</span>
+                <span>29 Ekim 2021</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div>
+    <table class="table table-striped width-100">
+        <thead>
+            <tr>
+                <th>Şirket Adı</th>
+                <th>Başlangıç Tarihi</th>
+                <th>Kalan Gün</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Çikolatacım</td>
+                <td>28 Ekim 1996</td>
+                <td>2</td>
+                <td>
+                    <button class="btn btn-danger btn-xs btn-sq">Sonlandır</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Çikolatacım</td>
+                <td>28 Ekim 1996</td>
+                <td>2</td>
+                <td>
+                    <button class="btn btn-danger btn-xs btn-sq">Sonlandır</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Çikolatacım</td>
+                <td>28 Ekim 1996</td>
+                <td>2</td>
+                <td>
+                    <button class="btn btn-danger btn-xs btn-sq">Sonlandır</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Çikolatacım</td>
+                <td>28 Ekim 1996</td>
+                <td>2</td>
+                <td>
+                    <button class="btn btn-danger btn-xs btn-sq">Sonlandır</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Çikolatacım</td>
+                <td>28 Ekim 1996</td>
+                <td>2</td>
+                <td>
+                    <button class="btn btn-danger btn-xs btn-sq">Sonlandır</button>
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+@section scripts {
+    <script>
+        makeChart('employeesByCompany');
+        makeChart('managersByCompany');
+        makeChart('membersOfSite');
+    </script>
+}
+

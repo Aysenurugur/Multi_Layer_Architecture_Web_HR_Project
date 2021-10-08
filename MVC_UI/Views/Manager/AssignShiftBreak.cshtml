@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewData["Title"] = "AssignShiftBreak";
+    Layout = "~/Views/Shared/Employeer/_EmployeerDetailsLayout.cshtml";
+}
+
+@section header {
+    <h3>Vardiya/Mola Atama</h3>
+}
+
+@section tabs{
+    <div class="tabs">
+        <a href=@Url.Action("ShiftBreak","Manager")>Genel</a>
+        <a href=@Url.Action("AssignShiftBreak","Manager")>Vardiya/Mola Ata</a>
+    </div>
+}
+
+@section functionality {
+    <!-- Search Bar -->
+    <input type="text" class="square-input square-input-md" placeholder="Arama">
+}
+
+<div>
+
+    <table class="table table-striped width-100">
+        <thead>
+            <tr>
+                <th>Ad Soyad</th>
+                <th>Ünvan</th>
+                <th>Telefon</th>
+                <th>Mail</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td><a href="/employeeeditpanel.html">Onur Çekiç</a></td>
+                <td>Yazılım Mühendisi</td>
+                <td>053564564</td>
+                <td>xd@gmail.com</td>
+                <td><a href="#" class="btn btn-success" onclick="openModal('shiftBreakModal')">Atama</a></td>
+            </tr>
+
+            <tr>
+                <td><a href="/employeeeditpanel.html">Onur Çekiç</a></td>
+                <td>Yazılım Mühendisi</td>
+                <td>053564564</td>
+                <td>xd@gmail.com</td>
+                <td><a href="#" class="btn btn-success" onclick="openModal('shiftBreakModal')">Atama</a></td>
+            </tr>
+
+            <tr>
+                <td><a href="/employeeeditpanel.html">Onur Çekiç</a></td>
+                <td>Yazılım Mühendisi</td>
+                <td>053564564</td>
+                <td>xd@gmail.com</td>
+                <td><a href="#" class="btn btn-success" onclick="openModal('shiftBreakModal')">Atama</a></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+</div>
+
+@section modal {
+    <!-- Modal -->
+    <div class="crud-modal" id="shiftBreakModal">
+        <div class="modal-inside">
+            <div class="d-flex jc-between ai-center mb-3">
+                <h4>Vardiya/Mola Ata</h4>
+                <span class="btnCloseModal" onclick="closeModal('shiftBreakModal')">&times;</span>
+            </div>
+
+            <div class="modal-content">
+                <!-- Put What u Want -->
+                <div class="my-3 d-flex">
+                    <div>
+                        <label for="typeName" class="square-input-label">Tip</label>
+                        <select name="typeName" id="typeName" class="square-input">
+                            <option value="1">Vardiya</option>
+                            <option value="2">Mola</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="my-3 d-flex">
+                    <div>
+                        <label for="breakName" class="square-input-label">Ad</label>
+                        <select name="breakName" id="breakName" class="square-input">
+                            <option value="1">Öğlen Molası</option>
+                            <option value="2">Tam Gün Vardiya</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="my-1">
+                    <a href="#" class="btn btn-primary ml-auto">Kaydet</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

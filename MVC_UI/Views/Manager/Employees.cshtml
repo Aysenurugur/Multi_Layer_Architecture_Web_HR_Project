@@ -1,0 +1,167 @@
+﻿
+@{
+    ViewData["Title"] = "Employees";
+    Layout = "~/Views/Shared/Employeer/_EmployeerListLayout.cshtml";
+}
+
+@section header {
+    <h2>Merhaba Şirket Adı</h2>
+}
+
+@section modal {
+    <!-- Modal -->
+    <div class="crud-modal" id="addEmployeeModal">
+        <div class="modal-inside">
+            <div class="d-flex jc-between ai-center mb-3">
+                <h4>Zimmet Ekle</h4>
+                <span class="btnCloseModal" onclick="closeModal('addEmployeeModal')">&times;</span>
+            </div>
+
+            <div class="modal-content">
+                <!-- Put What u Want -->
+                <div class="my-3 d-flex">
+
+                    <div class="mr-1">
+                        <label for="firstName" class="square-input-label">Ad</label>
+                        <input type="text" class="square-input" id="firstName">
+                    </div>
+
+                    <div>
+                        <label for="lastName" class="square-input-label">Soyad</label>
+                        <input type="text" class="square-input" id="lastName">
+                    </div>
+                </div>
+
+                <div class="my-3 d-flex">
+                    <div class="mr-1">
+                        <label for="title" class="square-input-label">Ünvan</label>
+                        <input type="text" class="square-input" id="title">
+                    </div>
+
+                    <div>
+                        <label for="email" class="square-input-label">Mail Adresi</label>
+                        <input type="mail" class="square-input" id="email">
+                    </div>
+                </div>
+
+                <div class="my-3 d-flex">
+                    <div class="mr-1">
+                        <label for="phoneNumber" class="square-input-label">Telefon</label>
+                        <input type="tel" class="square-input" id="phoneNumber">
+                    </div>
+                </div>
+
+                <div class="my-3 d-flex">
+                    <div class="mr-1">
+                        <label for="birthDate" class="square-input-label">Doğum Tarihi</label>
+                        <input type="datetime-local" class="square-input" id="birthDate">
+                    </div>
+
+                    <div>
+                        <label for="startDate" class="square-input-label">İşe Başlama Tarihi</label>
+                        <input type="datetime-local" class="square-input" id="startDate">
+                    </div>
+                </div>
+
+
+
+                <div class="my-1">
+                    <a href="#" class="btn btn-primary ml-auto">Kaydet</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Funtionality -->
+
+<div class="func-list-page mb-2">
+
+    <!-- Search Bar -->
+    <input type="text" class="square-input square-input-md" placeholder="Arama">
+
+    <!-- List Type -->
+    <div class="d-flex radio-group">
+        <input type="radio" name="list_type" id="card-type-list" class="d-none square-input" checked>
+        <label for="card-type-list" class="square-input-label-solid">
+            <img src="/images/card-list.png" alt="">
+        </label>
+
+        <input type="radio" name="list_type" id="table-type-list" class="d-none square-input">
+        <label for="table-type-list" class="square-input-label-solid">
+            <img src="/images/table-list.png" alt="">
+        </label>
+        <!-- Add Employee -->
+        <button class="btn btn-primary ml-2" onclick="openModal('addEmployeeModal')">Çalışan Ekle</button>
+    </div>
+</div>
+
+<!-- Table List -->
+
+<div id="employee-table">
+    <div>
+        <table class="table table-striped width-100">
+            <thead>
+                <tr>
+                    <th>Ad Soyad</th>
+                    <th>Ünvan</th>
+                    <th>Telefon</th>
+                    <th>Mail</th>
+                    <th>Durum</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td><a href="@Url.Action("EditEmployee","Manager")">Onur Çekiç</a></td>
+                    <td>Yazılım Mühendisi</td>
+                    <td>053564564</td>
+                    <td>xd@gmail.com</td>
+                    <td><a href="#" class="btn btn-danger">P</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Card List -->
+
+<div id="employee-cards">
+    <div class="card-grid">
+        <a href="@Url.Action("EditEmployee","Manager")" class="c-card width-100">
+            <div class="c-card-header">
+                <img src="/images/profile-user.png" alt="">
+            </div>
+            <div class="c-card-body">
+                <span>Onur Çekiç</span>
+                <span>Yazılım Mühendisi</span>
+                <span>xd@gmail.com</span>
+                <span>05315656565</span>
+            </div>
+        </a>
+        <a href="@Url.Action("EditEmployee","Manager")" class="c-card width-100">
+            <div class="c-card-header">
+                <img src="/images/profile-user.png" alt="">
+            </div>
+            <div class="c-card-body">
+                <span>Onur Çekiç</span>
+                <span>Yazılım Mühendisi</span>
+                <span>xd@gmail.com</span>
+                <span>05315656565</span>
+            </div>
+        </a>
+        <a href="@Url.Action("EditEmployee","Manager")" class="c-card width-100">
+            <div class="c-card-header">
+                <img src="/images/profile-user.png" alt="">
+            </div>
+            <div class="c-card-body">
+                <span>Onur Çekiç</span>
+                <span>Yazılım Mühendisi</span>
+                <span>xd@gmail.com</span>
+                <span>05315656565</span>
+            </div>
+        </a>
+    </div>
+</div>
+
