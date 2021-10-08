@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Employee/_EmployeeLayout.cshtml";
+}
+
+<div class="header">
+    <h2>Merhaba Onur Çekiç</h2>
+    <span>KD-34'e hoş geldiniz!</span>
+    <input type="checkbox" name="" id="dropdown-toggle" class="dropdown-toggle">
+    <div class="dropdown-task">
+        <ul>
+            <li><a href="employee.html"><i class="fas fa-home"></i>Ana Sayfa</a></li>
+            <li><a href="listpageforemployee.html"><i class="fas fa-users "></i>Çalışanlar</a></li>
+            <li><a href="dayoffsforemployee.html"><i class="fas fa-plane "></i>İzinlerim</a></li>
+            <li><a href="debitsforemployee.html"><i class="fas fa-plane "></i>Zimmetlerim</a></li>
+            <li><a href="expansesforemployee.html"><i class="fas fa-plane "></i>Harcamalarım</a></li>
+            <li><a href="#"><i class="fas fa-calendar "></i>Takvim</a></li>
+            <li><a href="usersettings.html"><i class="fas fa-cogs "></i>Ayarlar</a></li>
+        </ul>
+    </div>
+    <label for="dropdown-toggle" class="dropdown-toggle-label">
+        <span><i class="fas fa-plus fa-2x as-center"></i></span>
+    </label>
+</div>
+<hr>
+
+<div class="employee-details">
+
+    <div class="card">
+        <div class="card-header">
+            <h3><i class="fas fa-plane "></i> İzin Bilgilerim/Yıllık İzin</h3>
+            <span>X</span>
+        </div>
+
+        <div class="content">
+            <div class="d-flex jc-between fs-xs">
+                <span>Kalan</span>
+                <span>Kullanılan</span>
+            </div>
+            <div class="d-flex jc-between fs-xl fw-bold">
+                <span class="clr-primary">0.00 gün</span>
+                <span class="clr-fade-black">0 gün</span>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <button class="btn btn-outline-primary btn-sq" onclick="openModal('dayOffRequestModal')">
+                İzin
+                Talep Et
+            </button>
+
+            <div>
+                <div class="d-flex jc-between fs-xs mt-1">
+                    <span>Son izinlerim:</span>
+                    <span></span>
+                </div>
+
+                <div class="d-flex jc-between fs-xs mt-1">
+                    <span>4 Ekim 2021 (Mazaret İzni)</span>
+                    <span><button class="btn btn-danger btn-xs">iptal et</button></span>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <a class="pretty-link float-right mt-2" href="dayoffsforemployee.html">İzin Geçmişi -></a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h3><i class="fas fa-umbrella-beach"></i> Resmi Tatiller</h3>
+            <span>X</span>
+        </div>
+        <div class="content">
+            <div class="d-flex jc-between fs-xs mb-1">
+                <span>Cumhuriyet Baramı Arifesi</span>
+                <span>28 Ekim 2021</span>
+            </div>
+
+            <div class="d-flex jc-between fs-xs mb-1">
+                <span>Cumhuriyet Baramı</span>
+                <span>29 Ekim 2021</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h3><i class="fas fa-plane "></i> İzin Talepleri</h3>
+            <span>X</span>
+        </div>
+        <div class="content">
+            <div class="d-flex jc-between fs-xs mb-1">
+                <span>Onayınızı bekleyen izin talebi yok.</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewData["Title"] = "DayOffs";
+    Layout = "~/Views/Shared/Employeer/_EmployeerDetailsLayout.cshtml";
+}
+
+@section header {
+    <h3>İzinler Paneli</h3>
+}
+
+@section tabs {
+    <div class="tabs">
+        <a href=@Url.Action("DayOffs", "Manager")>Genel</a>
+    </div>
+}
+
+@section functionality{
+    <div class="d-flex radio-group">
+        <input type="radio" value="1" name="approveType" id="upcomings" class="d-none square-input" checked onchange="changeDayoffList(1)">
+        <label for="upcomings" class="square-input-label-solid">
+            Yaklaşanlar (2)
+        </label>
+        <input type="radio" name="approveType" id="waitingApprove" class="d-none square-input" onchange="changeDayoffList(2)">
+        <label for="waitingApprove" class="square-input-label-solid">
+            Onay Bekleyen (3)
+        </label>
+        <input type="radio" value="3" name="approveType" id="approved" class="d-none square-input" onchange="changeDayoffList(3)">
+        <label for="approved" class="square-input-label-solid">
+            Onaylananlar (4)
+        </label>
+        <input type="radio" value="4" name="approveType" id="rejected" class="d-none square-input" onchange="changeDayoffList(4)">
+        <label for="rejected" class="square-input-label-solid">
+            Reddedilenler (0)
+        </label>
+    </div>
+}
+
+<div>
+    <table class="table table-striped width-100">
+        <thead>
+            <tr>
+                <th>Ad Soyad</th>
+                <th>Tür</th>
+                <th>Gün</th>
+                <th>Başlangıç Tarihi</th>
+                <th>Bitiş Tarihi</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr onclick="openModal('dayoffModal')">
+                <td>Onur Çekiç</td>
+                <td>Yıllık İzin</td>
+                <td>8</td>
+                <td>28 Eylül 2021</td>
+                <td>5 Ekim 2021</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+@section modal{
+    <!-- Modal -->
+
+    <div class="crud-modal" id="dayoffModal">
+        <div class="modal-inside">
+            <div class="d-flex jc-between ai-center mb-3">
+                <h4>İzin Talep</h4>
+                <span class="btnCloseModal" onclick="closeModal('dayoffModal')">&times;</span>
+            </div>
+
+            <div class="modal-content">
+                <!-- Put What u Want -->
+                <div>
+                    <div>
+                        <div class="my-3 d-flex jc-between fs-xs m-second">
+                            <span>Durum</span>
+                            <span class="btn btn-success btn-xs">Onaylandı</span>
+                        </div>
+                        <hr>
+
+                        <div class="my-3 d-flex jc-between fs-xs m-second">
+                            <span>İzin Türü</span>
+                            <span>Yıllık İzin</span>
+                        </div>
+                        <hr>
+
+                        <div class="my-3 d-flex jc-between fs-xs m-second">
+                            <span>Toplam izin</span>
+                            <span>8</span>
+                        </div>
+                        <hr>
+
+                        <div class="my-3 d-flex jc-between fs-xs m-second">
+                            <span>İzin Başlangıç</span>
+                            <span class="">28 Eylül 2021</span>
+                        </div>
+                        <hr>
+
+                        <div class="my-3 d-flex jc-between fs-xs m-second">
+                            <span>İzin Bitiş</span>
+                            <span>5 Ekim 2021</span>
+                        </div>
+                        <hr>
+
+                        <div class="my-3 d-flex jc-between fs-xs m-second">
+                            <span>Mesai Başangıç</span>
+                            <span>6 Ekim 2021 09:00</span>
+                        </div>
+                        <hr>
+
+                        <div class="my-3 d-flex jc-between fs-xs m-second">
+                            <span>Oluşturulma Tarihi</span>
+                            <span>25 Eylül 2021 14:41</span>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

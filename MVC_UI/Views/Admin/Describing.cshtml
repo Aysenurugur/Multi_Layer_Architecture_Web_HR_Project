@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "Describing";
+    Layout = "~/Views/Shared/Admin/_AdminDetailsLayout.cshtml";
+}
+
+
+<div class="d-grid">
+    <div>
+        <div class="d-flex flex-column my-4">
+            <input type="text" placeholder="İzin Adı" required class="square-input square-input-md" id="dayofftype">
+            <label for="dayofftype" class="square-input-label">İzin Adı</label>
+        </div>
+
+        <div class="d-flex flex-column my-4">
+            <input type="number" placeholder="Gün" required class="square-input square-input-md" id="dayoffday">
+            <label for="dayoffday" class="square-input-label">Gün</label>
+        </div>
+
+        <div class="d-flex flex-column my-4">
+            <label for="description" class="square-input-label">Açıklama</label>
+            <textarea name="description" id="description" cols="50" rows="20"
+                      class="square-input"></textarea>
+        </div>
+
+        <div class="d-grid mb-4">
+            <button class="btn btn-primary">Oluştur</button>
+        </div>
+    </div>
+
+    <div>
+        <table class="table table-striped width-100">
+            <thead>
+                <tr>
+                    <th>İzin Türü</th>
+                    <th>Açıklama</th>
+                    <th>Gün</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Yıllık İzin</td>
+                    <td>Çalışanların 1 seneden sonra edineceği izin</td>
+                    <td>60</td>
+                    <td><a href="#" class="btn btn-danger">Kaldır</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

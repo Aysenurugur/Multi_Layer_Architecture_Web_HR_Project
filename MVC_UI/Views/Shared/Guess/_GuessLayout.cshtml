@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="~/custom/css/mystyle.css">
+    <link rel="stylesheet" href="~/custom/css/utilities.css">
+
+    <!-- Fontawesome for İcons -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+          integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- Navbar -->
+
+    <div class="navbar p-standart">
+        <a href="index.html"><img class="nav-logo" src="/images/kd_logo_white.png" alt=""></a>
+        <input type="checkbox" name="" id="nav-toggle" class="nav-toggle">
+        <nav>
+            <ul>
+                <li><a href="index.html">ANA SAYFA</a></li>
+                <li><a href="comments.html">KULLANICI YORUMLARI</a></li>
+                <li><a href="#">FİYATLAR</a></li>
+                <li><a href="#">KAYNAKLAR</a></li>
+            </ul>
+            <div class="d-flex">
+                <a href="register.html" class="btn clr-primary mx-2">ÜCRETSİZ DENE</a>
+                <a href="login.html" class="btn btn-outline-white clr-white">GİRİŞ YAP</a>
+            </div>
+        </nav>
+        <label for="nav-toggle" class="nav-toggle-label">
+            <Span><i class="fas fa-bars clr-white"></i></Span>
+        </label>
+    </div>
+
+    @RenderBody()
+
+    <!-- Footer -->
+    <footer class="p-standart mt-4">
+    </footer>
+
+    <!-- Scripts -->
+    <script src="~/custom/js/app.js"></script>
+</body>
+</html>

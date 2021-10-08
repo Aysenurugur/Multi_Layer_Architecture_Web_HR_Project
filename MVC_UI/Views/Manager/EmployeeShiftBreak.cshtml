@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewData["Title"] = "EmployeeShiftBreak";
+    Layout = "~/Views/Shared/Employeer/_EmployeerDetailsLayout.cshtml";
+}
+
+@section header{
+    <h3>Onur Çekiç</h3>
+}
+
+@section tabs{
+    <div class="tabs">
+        <a href="@Url.Action("EditEmployee","Manager")">Genel</a>
+        <a href="@Url.Action("EmployeeRequests","Manager")">Talepler</a>
+        <a href="@Url.Action("EmployeeDebits","Manager")">Zimmetler</a>
+        <a href="@Url.Action("EmployeeBonuses","Manager")">Primler</a>
+        <a href="@Url.Action("EmployeeFiles","Manager")">Dosyalar</a>
+        <a href="@Url.Action("EmployeeShiftBreak","Manager")">Vardiya ve Molalar</a>
+    </div>
+}
+
+<div>
+    <table class="table table-striped width-100">
+        <thead>
+            <tr>
+                <th>Tip</th>
+                <th>Adı</th>
+                <th>Başlangıç Saati</th>
+                <th>Bitiş Saati</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Vardiya</td>
+                <td>Tam Gün</td>
+                <td>09:00</td>
+                <td>17:00</td>
+                <td>
+                    <button class="btn btn-danger mx-auto">Sil</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Mola</td>
+                <td>Öğlen Molası</td>
+                <td>12:30</td>
+                <td>13:30</td>
+                <td>
+                    <button class="btn btn-danger mx-auto">Sil</button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+

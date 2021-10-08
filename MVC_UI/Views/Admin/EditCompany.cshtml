@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewData["Title"] = "EditCompany";
+    Layout = "~/Views/Shared/Admin/_AdminDetailsLayout.cshtml";
+}
+
+<div class="employee-detail-section">
+    <div class="c-card width-100">
+
+        <div class="c-card-header">
+            <img src="/images/profile-user.png" alt="">
+            <span>Şirket Adı: Osmanlı Nargile</span>
+            <span>Yönetici Adı: Osman Tuğra</span>
+            <select class="square-input">
+                <option value="1">Aylık Üyelik</option>
+                <option value="2">Yıllık Üyelik</option>
+            </select>
+            <span><a href="" class="btn btn-success">Aktifleştir</a></span>
+        </div>
+
+        <div class="c-card-body width-100">
+            <div class="d-flex jc-between mb-3 mt-3">
+                <span>Abonelik Başlama</span>
+                <span>-----</span>
+            </div>
+            <div class="d-flex jc-between mb-3">
+                <span>Abonelik Kalan Süre</span>
+                <span>-----</span>
+            </div>
+            <div class="d-flex jc-between mb-3">
+                <span>Abonelik Tipi</span>
+                <span>-----</span>
+            </div>
+        </div>
+    </div>
+    <div class="c-card width-100">
+        <div class="c-card-header">
+            <span>Genel Bilgiler</span>
+        </div>
+        <div class="c-card-body width-100">
+            <div class="my-3 d-flex flex-column">
+                <input class="square-input square-input-md width-100 " type="text" id="firstName">
+                <label class="square-input-label" for="firstName">Ad</label>
+            </div>
+
+            <div class="my-3 d-flex flex-column">
+                <input class="square-input square-input-md width-100 " type="text" id="lastName">
+                <label class="square-input-label" for="lastName">Soyad</label>
+            </div>
+
+            <div class="my-3 d-flex flex-column">
+                <input class="square-input square-input-md width-100 " type="text" id="mail">
+                <label class="square-input-label" for="mail">E-Posta</label>
+            </div>
+
+            <div class="my-3 d-flex flex-column">
+                <input class="square-input square-input-md width-100 " type="text" id="Phone">
+                <label class="square-input-label" for="Phone">Telefon</label>
+            </div>
+
+            <div class="my-3 d-flex flex-column">
+                <input class="square-input square-input-md width-100 " type="text" id="lastName">
+                <label class="square-input-label" for="lastName">Soyad</label>
+            </div>
+
+            <div class="d-grid">
+                <button class="btn btn-primary btn-sq">Güncelle</button>
+            </div>
+        </div>
+    </div>
+</div>
+

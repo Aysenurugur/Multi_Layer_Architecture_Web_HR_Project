@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="~/custom/css/mystyle.css">
+    <link rel="stylesheet" href="~/custom/css/utilities.css">
+
+    <!-- Fontawesome for İcons -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+          integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <section class="listpage d-flex">
+
+        <!-- Side Bar -->
+
+        <div>
+            <div class="side-bar">
+                <div>
+                    <img src="/images/kd_logo_white.png" alt="">
+                    <h2 class="as-center">KD-34</h2>
+                </div>
+
+                <hr>
+
+                <ul>
+                    <li><a href="employee.html"><i class="fas fa-home"></i>Ana Sayfa</a></li>
+                    <li><a href="listpageforemployee.html"><i class="fas fa-users "></i>Çalışanlar</a></li>
+                    <li><a href="dayoffsforemployee.html"><i class="fas fa-plane "></i>İzinlerim</a></li>
+                    <li><a href="debitsforemployee.html"><i class="fas fa-plane "></i>Zimmetlerim</a></li>
+                    <li><a href="expansesforemployee.html"><i class="fas fa-plane "></i>Harcamalarım</a></li>
+                    <li><a href="#"><i class="fas fa-calendar "></i>Takvim</a></li>
+                    <li><a href="usersettings.html"><i class="fas fa-cogs "></i>Ayarlar</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <!-- Header -->
+
+            <div class="header">
+                <h3>Merhaba Onur Çekiç</h3>
+
+                <input type="checkbox" name="" id="dropdown-toggle" class="dropdown-toggle">
+                <div class="dropdown-task">
+                    <ul>
+                        <li><a href="employee.html"><i class="fas fa-home"></i>Ana Sayfa</a></li>
+                        <li><a href="listpageforemployee.html"><i class="fas fa-users "></i>Çalışanlar</a></li>
+                        <li><a href="dayoffsforemployee.html"><i class="fas fa-plane "></i>İzinlerim</a></li>
+                        <li><a href="debitsforemployee.html"><i class="fas fa-plane "></i>Zimmetlerim</a></li>
+                        <li><a href="expansesforemployee.html"><i class="fas fa-plane "></i>Harcamalarım</a></li>
+                        <li><a href="#"><i class="fas fa-calendar "></i>Takvim</a></li>
+                        <li><a href="usersettings.html"><i class="fas fa-cogs "></i>Ayarlar</a></li>
+                    </ul>
+                </div>
+                <label for="dropdown-toggle" class="dropdown-toggle-label">
+                    <span><i class="fas fa-plus fa-2x as-center"></i></span>
+                </label>
+            </div>
+            <hr>
+
+            <!-- Content Body -->
+
+            <div class="py-4">
+
+                <!-- Funtionality -->
+
+                <div class="func-list-page mb-2">
+
+                    <!-- Search Bar -->
+                    <input type="text" class="square-input square-input-md" placeholder="Arama">
+
+                    <!-- List Type -->
+                    <div class="d-flex radio-group">
+                        <input type="radio" name="list_type" id="card-type-list" class="d-none square-input" checked>
+                        <label for="card-type-list" class="square-input-label-solid">
+                            <img src="/images/card-list.png" alt="">
+                        </label>
+
+                        <input type="radio" name="list_type" id="table-type-list" class="d-none square-input">
+                        <label for="table-type-list" class="square-input-label-solid">
+                            <img src="/images/table-list.png" alt="">
+                        </label>
+                    </div>
+                </div>
+
+
+                @RenderBody()
+            </div>
+        </div>
+    </section>
+</body>
+</html>
