@@ -1,0 +1,138 @@
+﻿
+@{
+    ViewData["Title"] = "Expanses";
+    Layout = "~/Views/Shared/Employee/_EmployeeDetailsLayout.cshtml";
+}
+
+@section header{
+    <h3>Onur Çekiç</h3>
+}
+
+@section functionality{
+    <!-- Search Bar -->
+    <input type="text" class="square-input square-input-md" placeholder="Arama">
+
+    <!-- Create Button -->
+    <button class="btn btn-primary btn-sq" onclick="openModal('createExpanseModal')">
+        Harama
+        Oluştur
+    </button>
+
+}
+
+@section modal{
+    <!-- Modal -->
+    <!-- Create Modal -->
+
+    <div class="crud-modal" id="createExpanseModal">
+        <div class="modal-inside">
+            <div class="d-flex jc-between ai-center mb-3">
+                <h4>Reddedilme Nedeni</h4>
+                <span class="btnCloseModal" onclick="closeModal('createExpanseModal')">&times;</span>
+            </div>
+
+            <div class="modal-content">
+                <!-- Put What u Want -->
+                <form id="employeeAddExpanseForm">
+                    <div class="my-4 d-flex">
+                        <div class="mr-1">
+                            <label for="amountOfExpanse" class="square-input-label">Harcama Miktarı</label>
+                            <input min="1" type="number" class="square-input" id="amountOfExpanse" name="amountOfExpanse">
+                        </div>
+
+                        <div>
+                            <label for="expanseDate" class="square-input-label">Harcama Tarihi</label>
+                            <input type="datetime-local" class="square-input" id="expanseDate" name="expanseDate">
+                        </div>
+                    </div>
+
+                    <div class="my-4 d-grid">
+                        <div class="mr-1">
+                            <label for="expanseFiles" class="square-input-label">Harcamaya İlişkin Dosyalar</label>
+                            <input type="file" class="square-input" id="expanseFiles" name="expanseFiles" multiple>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 mb-1">
+                        <label for="description" class="square-input-label">Açıklama</label>
+                        <textarea name="description" id="description" cols="50" rows="10" class="square-input"></textarea>
+                    </div>
+
+                    <div class="my-1">
+                        <a href="#" class="btn btn-primary btn-sq">Kaydet</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Expanse Detail Modal -->
+
+    <div class="crud-modal" id="expanseDetailModal">
+        <div class="modal-inside">
+            <div class="d-flex jc-between ai-center mb-3">
+                <h4>Reddedilme Nedeni</h4>
+                <span class="btnCloseModal" onclick="closeModal('expanseDetailModal')">&times;</span>
+            </div>
+
+            <div class="modal-content">
+                <!-- Put What u Want -->
+                <div class="mb-3 d-grid">
+                    <span>Tutar: </span>
+                    <span>Tarih: </span>
+
+                    <ul>
+                        <li><a href="#" class="pretty-link">Yemek fişi</a></li>
+                        <li><a href="#" class="pretty-link">Yemek fişi</a></li>
+                        <li><a href="#" class="pretty-link">Yemek fişi</a></li>
+                    </ul>
+                </div>
+
+                <div class="mt-3 mb-1">
+                    <label for="description" class="square-input-label">Açıklama</label>
+                    <textarea name="description" id="description" cols="50" rows="10" class="square-input" readonly></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <table class="table table-striped width-100">
+        <thead>
+            <tr>
+                <th>Tarih</th>
+                <th>Miktar</th>
+                <th>Açıklama</th>
+                <th>Dosyalar</th>
+                <th>Durum</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>29 Eylül 2021</td>
+                <td>314,44 ₺</td>
+                <td>İş yemeği</td>
+                <td><a href="#" class="pretty-link" onclick="openModal('expanseDetailModal')">Detaylar</a></td>
+                <td class="warning">Onay Bekliyor</td>
+            </tr>
+
+            <tr>
+                <td>29 Eylül 2021</td>
+                <td>314,44 ₺</td>
+                <td>İş yemeği</td>
+                <td><a href="#" class="pretty-link">Detaylar</a></td>
+                <td class="success">Onaylandı</td>
+            </tr>
+
+            <tr>
+                <td>29 Eylül 2021</td>
+                <td>314,44 ₺</td>
+                <td>İş yemeği</td>
+                <td><a href="#" class="pretty-link">Detaylar</a></td>
+                <td class="danger">Reddedildi</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

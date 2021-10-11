@@ -12,5 +12,30 @@ namespace MVC_UI.Controllers
         {
             return View();
         }
+
+        public IActionResult Employees()
+        {
+            return View();
+        }
+
+        public IActionResult DayOffs()
+        {
+            return View();
+        }
+
+        public IActionResult Debits()
+        {
+            return View();
+        }
+
+        public IActionResult Expanses()
+        {
+            return View();
+        }
+
+        public IActionResult Settings()
+        {
+            return View();
+        }
     }
 }

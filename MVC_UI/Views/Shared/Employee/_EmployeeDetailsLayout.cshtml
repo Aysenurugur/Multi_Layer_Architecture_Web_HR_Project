@@ -46,17 +46,18 @@
             <!-- Header -->
 
             <div class="header">
+                @RenderSection("header", false)
 
                 <input type="checkbox" name="" id="dropdown-toggle" class="dropdown-toggle">
                 <div class="dropdown-task">
                     <ul>
-                        <li><a href="employee.html"><i class="fas fa-home"></i>Ana Sayfa</a></li>
-                        <li><a href="listpageforemployee.html"><i class="fas fa-users "></i>Çalışanlar</a></li>
-                        <li><a href="dayoffsforemployee.html"><i class="fas fa-plane "></i>İzinlerim</a></li>
-                        <li><a href="debitsforemployee.html"><i class="fas fa-plane "></i>Zimmetlerim</a></li>
-                        <li><a href="expansesforemployee.html"><i class="fas fa-plane "></i>Harcamalarım</a></li>
-                        <li><a href="#"><i class="fas fa-calendar "></i>Takvim</a></li>
-                        <li><a href="usersettings.html"><i class="fas fa-cogs "></i>Ayarlar</a></li>
+                        <li><a href="@Url.Action("Index", "Employee")"><i class="fas fa-home"></i>Ana Sayfa</a></li>
+                        <li><a href="@Url.Action("Index", "Employee")"><i class="fas fa-users "></i>Çalışanlar</a></li>
+                        <li><a href="@Url.Action("Index", "Employee")"><i class="fas fa-plane "></i>İzinlerim</a></li>
+                        <li><a href="@Url.Action("Index", "Employee")"><i class="fas fa-plane "></i>Zimmetlerim</a></li>
+                        <li><a href="@Url.Action("Index", "Employee")"><i class="fas fa-plane "></i>Harcamalarım</a></li>
+                        <li><a href="@Url.Action("Index", "Employee")"></i>Takvim</a></li>
+                        <li><a href="@Url.Action("Index", "Employee")"><i class="fas fa-cogs "></i>Ayarlar</a></li>
                     </ul>
                 </div>
                 <label for="dropdown-toggle" class="dropdown-toggle-label">
@@ -68,13 +69,24 @@
             <!-- Content Body -->
 
             <div class="py-4">
+
+                <!-- Functionality -->
+
+                <div class="func-list-page mb-2">
+                    @RenderSection("functionality", false)
+                </div>
+
                 @RenderBody()
             </div>
         </div>
     </section>
 
-    <script src="~/custom/js/app.js"></script>
+    @RenderSection("modal", false)
 
+    <script src="~/jquery/jquery.min.js"></script>
+    <script src="~/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/custom/js/validation.js"></script>
+    <script src="~/custom/js/app.js"></script>
 </body>
 
 </html>
