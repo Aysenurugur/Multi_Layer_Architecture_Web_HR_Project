@@ -38,34 +38,31 @@
             <span>Genel Bilgiler</span>
         </div>
         <div class="c-card-body width-100">
-            <div class="my-3 d-flex flex-column">
-                <input class="square-input square-input-md width-100 " type="text" id="firstName">
-                <label class="square-input-label" for="firstName">Ad</label>
-            </div>
+            <form id="adminEditCompanyForm">
+                <div class="my-4 d-flex flex-column">
+                    <input class="square-input square-input-md width-100 " type="text" id="firstName" name="firstName">
+                    <label class="square-input-label" for="firstName">Ad</label>
+                </div>
 
-            <div class="my-3 d-flex flex-column">
-                <input class="square-input square-input-md width-100 " type="text" id="lastName">
-                <label class="square-input-label" for="lastName">Soyad</label>
-            </div>
+                <div class="my-4 d-flex flex-column">
+                    <input class="square-input square-input-md width-100 " type="text" id="lastName" name="lastName">
+                    <label class="square-input-label" for="lastName">Soyad</label>
+                </div>
 
-            <div class="my-3 d-flex flex-column">
-                <input class="square-input square-input-md width-100 " type="text" id="mail">
-                <label class="square-input-label" for="mail">E-Posta</label>
-            </div>
+                <div class="my-4 d-flex flex-column">
+                    <input class="square-input square-input-md width-100 " type="email" id="companyMail" name="companyMail">
+                    <label class="square-input-label" for="mail">E-Posta</label>
+                </div>
 
-            <div class="my-3 d-flex flex-column">
-                <input class="square-input square-input-md width-100 " type="text" id="Phone">
-                <label class="square-input-label" for="Phone">Telefon</label>
-            </div>
+                <div class="my-4 d-flex flex-column">
+                    <input class="square-input square-input-md width-100 " type="tel" id="phone" name="phone">
+                    <label class="square-input-label" for="phone">Telefon</label>
+                </div>
 
-            <div class="my-3 d-flex flex-column">
-                <input class="square-input square-input-md width-100 " type="text" id="lastName">
-                <label class="square-input-label" for="lastName">Soyad</label>
-            </div>
-
-            <div class="d-grid">
-                <button class="btn btn-primary btn-sq">Güncelle</button>
-            </div>
+                <div class="d-grid">
+                    <button class="btn btn-primary btn-sq">Güncelle</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

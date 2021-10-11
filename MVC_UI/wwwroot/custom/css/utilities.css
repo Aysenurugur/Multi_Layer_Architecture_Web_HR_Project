@@ -871,3 +871,16 @@ textarea.square-input {
     color: black;
 }
 
+.error {
+    border-color: red !important;
+    color: red !important;
+}
+
+.has-error {
+    display: block;
+    width: inherit;
+    font-size: 12px;
+    line-height: 16px;
+    color: red;
+    margin-bottom: 18px;
+}

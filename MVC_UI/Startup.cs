@@ -31,7 +31,7 @@ namespace MVC_UI
             {
                 endpoints.MapControllerRoute(
                name: "default",
-               pattern: "{controller=Author}/{action=GetAuthor}/{id?}");
+               pattern: "{controller=Guess}/{action=Index}/{id?}");
             });
         }
     }

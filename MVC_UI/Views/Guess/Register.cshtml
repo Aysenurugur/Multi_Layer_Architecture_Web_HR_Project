@@ -17,40 +17,42 @@
                 <a href="login.html" class="btn btn-primary mx-2">GİRİŞ YAP</a>
             </div>
         </div>
-        <div class="form-group px-4">
-            <div class="my-3 width-100 floating-label">
-                <input class="form-control width-100" type="text" id="firstName" placeholder=" ">
-                <label class="label" for="firstName">Ad</label>
-            </div>
-            <div class="mb-3 width-100 floating-label">
-                <input class="form-control width-100" type="text" id="lastName" placeholder=" ">
-                <label class="label" for="lastName">Soyad</label>
+        <form id="register-form">
+            <div class="form-group px-4">
+                <div class="my-3 width-100 floating-label">
+                    <input class="form-control width-100" type="text" id="firstName" name="firstName" placeholder=" ">
+                    <label class="label" for="firstName">Ad</label>
+                </div>
+                <div class="mb-3 width-100 floating-label">
+                    <input class="form-control width-100" type="text" id="lastName" name="lastName" placeholder=" ">
+                    <label class="label" for="lastName">Soyad</label>
 
-            </div>
-            <div class="mb-3 width-100 floating-label">
-                <input class="form-control width-100" type="text" id="companyPhone" placeholder=" ">
-                <label class="label" for="companyPhone">Şirket Telefonu</label>
+                </div>
+                <div class="mb-3 width-100 floating-label">
+                    <input class="form-control width-100" type="tel" id="companyPhone" name="companyPhone" placeholder=" ">
+                    <label class="label" for="companyPhone">Şirket Telefonu</label>
 
-            </div>
-            <div class="mb-3 width-100 floating-label">
-                <input class="form-control width-100" type="text" id="companyMail" placeholder=" ">
-                <label class="label" for="companyMail">Şirket Mailiniz</label>
+                </div>
+                <div class="mb-3 width-100 floating-label">
+                    <input class="form-control width-100" type="email" id="companyMail"  placeholder=" " name="companyMail">
+                    <label class="label" for="companyMail">Şirket Mailiniz</label>
 
-            </div>
-            <div class="mb-3 width-100 floating-label">
-                <input class="form-control width-100" type="text" id="companyName" placeholder=" ">
-                <label class="label" for="companyName">Şirket Adı</label>
+                </div>
+                <div class="mb-3 width-100 floating-label">
+                    <input class="form-control width-100" type="text" id="companyName" name="companyName" placeholder=" ">
+                    <label class="label" for="companyName">Şirket Adı</label>
 
-            </div>
-            <div class="mb-3 width-100 floating-label">
-                <input class="form-control width-100" type="text" id="password" placeholder=" ">
-                <label class="label" for="password">Şifre</label>
+                </div>
+                <div class="mb-3 width-100 floating-label">
+                    <input class="form-control width-100" type="password" id="password" name="password" placeholder=" ">
+                    <label class="label" for="password">Şifre</label>
 
+                </div>
+                <div class="mb-3 width-100">
+                    <button type="button" href="#" class="btn btn-primary py-1">Kayıt Ol</button>
+                </div>
             </div>
-            <div class="mb-3 width-100">
-                <a href="#" class="btn btn-primary py-1">Kayıt Ol</a>
-            </div>
-        </div>
+        </form>
     </div>
 
     <div class="p-standart bg-primary clr-white pb-4">
@@ -94,4 +96,3 @@
         </div>
     </div>
 </section>
-
