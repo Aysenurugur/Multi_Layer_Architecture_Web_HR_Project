@@ -14,6 +14,26 @@ namespace Data.Configuration
         public void Configure(EntityTypeBuilder<Role> builder)
         {
             builder.HasKey(x => x.Id);
+
+            builder.HasData(
+            new Role()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Admin",
+                NormalizedName = "ADMIN"
+            },
+            new Role()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Manager",
+                NormalizedName = "MANAGER"
+            },
+            new Role()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Employee",
+                NormalizedName = "EMPLOYEE"
+            });
         }
     }
 }
