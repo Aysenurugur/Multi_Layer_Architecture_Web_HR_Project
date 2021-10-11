@@ -10,42 +10,46 @@
     <span>Çalışanlarınızın Listesi</span>
 }
 
-<div class="d-flex jc-center ai-center">
-    <div class="form-group">
-        <div class="my-3 width-100 floating-label">
-            <input class="form-control width-100" type="text" id="firstName" placeholder=" ">
-            <label class="label" for="firstName">Ad</label>
-        </div>
-        <div class="mb-3 width-100 floating-label">
-            <input class="form-control width-100" type="text" id="lastName" placeholder=" ">
-            <label class="label" for="lastName">Soyad</label>
+@* TODO: formun validation ayarlarını js tarafında yap *@
 
-        </div>
-        <div class="mb-3 width-100 floating-label">
-            <input class="form-control width-100" type="text" id="companyPhone" placeholder=" ">
-            <label class="label" for="companyPhone">Şirket Telefonu</label>
+<form id="managerSettingsForm">
+    <div class="d-flex jc-center ai-center">
+        <div class="form-group">
+            <div class="mb-3 width-100 floating-label">
+                <input class="form-control width-100" type="text" id="firstName" placeholder=" ">
+                <label class="label" for="firstName">Ad</label>
+            </div>
+            <div class="mb-3 width-100 floating-label">
+                <input class="form-control width-100" type="text" id="lastName" placeholder=" ">
+                <label class="label" for="lastName">Soyad</label>
 
-        </div>
-        <div class="mb-3 width-100 floating-label">
-            <input class="form-control width-100" type="text" id="companyMail" placeholder=" ">
-            <label class="label" for="companyMail">Şirket Mailiniz</label>
+            </div>
+            <div class="mb-3 width-100 floating-label">
+                <input class="form-control width-100" type="text" id="companyPhone" placeholder=" ">
+                <label class="label" for="companyPhone">Şirket Telefonu</label>
 
-        </div>
-        <div class="mb-3 width-100 floating-label">
-            <input class="form-control width-100" type="text" id="companyName" placeholder=" ">
-            <label class="label" for="companyName">Şirket Adı</label>
+            </div>
+            <div class="mb-3 width-100 floating-label">
+                <input class="form-control width-100" type="text" id="companyMail" placeholder=" ">
+                <label class="label" for="companyMail">Şirket Mailiniz</label>
 
-        </div>
-        <div class="mb-3 width-100 floating-label">
-            <input class="form-control width-100" type="text" id="password" placeholder=" ">
-            <label class="label" for="password">Şifre</label>
+            </div>
+            <div class="mb-3 width-100 floating-label">
+                <input class="form-control width-100" type="text" id="companyName" placeholder=" ">
+                <label class="label" for="companyName">Şirket Adı</label>
 
-        </div>
-        <div class="mb-3 width-100">
-            <a href="#" class="btn btn-primary py-1">Güncelle</a>
-        </div>
-        <div class="mb-3 width-100">
-            <a href="#" class="btn btn-danger py-1 fw-bold">Pasifleştir</a>
+            </div>
+            <div class="mb-3 width-100 floating-label">
+                <input class="form-control width-100" type="text" id="password" placeholder=" ">
+                <label class="label" for="password">Şifre</label>
+
+            </div>
+            <div class="mb-3 width-100">
+                <a href="#" class="btn btn-primary py-1">Güncelle</a>
+            </div>
+            <div class="mb-3 width-100">
+                <a href="#" class="btn btn-danger py-1 fw-bold">Pasifleştir</a>
+            </div>
         </div>
     </div>
-</div>
+</form>
