@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewData["Title"] = "Debits";
+    Layout = "~/Views/Shared/Employee/_EmployeeDetailsLayout.cshtml";
+}
+
+@section header {
+    <h3>Onur Çekiç</h3>
+}
+
+@section functionality {
+    <!-- Search Bar -->
+    <input type="text" class="square-input square-input-md" placeholder="Arama">
+}
+
+@section modal {
+    <div class="crud-modal" id="rejectReasonModal">
+        <div class="modal-inside">
+            <div class="d-flex jc-between ai-center mb-3">
+                <h4>Reddedilme Nedeni</h4>
+                <span class="btnCloseModal" onclick="closeModal('rejectReasonModal')">&times;</span>
+            </div>
+
+            <div class="modal-content">
+                <!-- Put What u Want -->
+                <div class="my-3 d-flex">
+
+                    <form id="employeeDebitRejectForm">
+                        <div>
+                            <label for="description" class="square-input-label">Açıklama</label>
+                            <textarea name="description" id="description" cols="50" rows="10"
+                                      class="square-input"></textarea>
+                        </div>
+                <button class="btn btn-primary btn-sq">Kaydet</button>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+        </div>
+}
+
+<div>
+    <table class="table table-striped width-100">
+        <thead>
+            <tr>
+                <th>Kategori</th>
+                <th>Seri Numarası</th>
+                <th>Veriliş Tarihi</th>
+                <th>İade Tarihi</th>
+                <th>Açıklama</th>
+                <th>Durum</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Telefon</td>
+                <td>123123123</td>
+                <td>29 Eylül 2021</td>
+                <td>29 Eylül 2021</td>
+                <td>Kodlaman için gerekli olan Dell marka dizüstü bilgisayarın</td>
+                <td class="warning">Onay Bekliyor</td>
+                <td>
+                    <button class="btn btn-danger btn-xs mx-auto" onclick="openModal('rejectReasonModal')">İptal et</button>
+                    <br>
+                    <button class="btn btn-success btn-xs mx-auto">Onayla</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

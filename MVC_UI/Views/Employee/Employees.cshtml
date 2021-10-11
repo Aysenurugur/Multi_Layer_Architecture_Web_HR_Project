@@ -1,0 +1,186 @@
+﻿
+@{
+    ViewData["Title"] = "Employees";
+    Layout = "~/Views/Shared/Employee/_EmployeeListLayout.cshtml";
+}
+
+
+@section header {
+    <h3>Merhaba Onur Çekiç</h3>
+}
+
+@section functionality {
+    <!-- Search Bar -->
+    <input type="text" class="square-input square-input-md" placeholder="Arama">
+
+    <!-- List Type -->
+    <div class="d-flex radio-group">
+        <input type="radio" name="list_type" id="card-type-list" class="d-none square-input" checked>
+        <label for="card-type-list" class="square-input-label-solid">
+            <img src="/images/card-list.png" alt="">
+        </label>
+
+        <input type="radio" name="list_type" id="table-type-list" class="d-none square-input">
+        <label for="table-type-list" class="square-input-label-solid">
+            <img src="/images/table-list.png" alt="">
+        </label>
+    </div>
+}
+
+<!-- Table List -->
+
+<div id="employee-table">
+    <div>
+        <table class="table table-striped width-100">
+            <thead>
+                <tr>
+                    <th>Ad Soyad</th>
+                    <th>Ünvan</th>
+                    <th>Telefon</th>
+                    <th>Mail</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Onur Çekiç</td>
+                    <td>Yazılım Mühendisi</td>
+                    <td>053564564</td>
+                    <td>xd@gmail.com</td>
+                </tr>
+
+                <tr>
+                    <td>Onur Çekiç</td>
+                    <td>Yazılım Mühendisi</td>
+                    <td>053564564</td>
+                    <td>xd@gmail.com</td>
+                </tr>
+
+                <tr>
+                    <td>Onur Çekiç</td>
+                    <td>Yazılım Mühendisi</td>
+                    <td>053564564</td>
+                    <td>xd@gmail.com</td>
+                </tr>
+
+                <tr>
+                    <td>Onur Çekiç</td>
+                    <td>Yazılım Mühendisi</td>
+                    <td>053564564</td>
+                    <td>xd@gmail.com</td>
+                </tr>
+
+                <tr>
+                    <td>Onur Çekiç</td>
+                    <td>Yazılım Mühendisi</td>
+                    <td>053564564</td>
+                    <td>xd@gmail.com</td>
+                </tr>
+
+                <tr>
+                    <td>Onur Çekiç</td>
+                    <td>Yazılım Mühendisi</td>
+                    <td>053564564</td>
+                    <td>xd@gmail.com</td>
+                </tr>
+
+                <tr>
+                    <td>Onur Çekiç</td>
+                    <td>Yazılım Mühendisi</td>
+                    <td>053564564</td>
+                    <td>xd@gmail.com</td>
+                </tr>
+
+                <tr>
+                    <td>Onur Çekiç</td>
+                    <td>Yazılım Mühendisi</td>
+                    <td>053564564</td>
+                    <td>xd@gmail.com</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Card List -->
+
+<div id="employee-cards">
+    <div class="card-grid">
+        <div class="c-card width-100">
+            <div class="c-card-header">
+                <img src="/images/profile-user.png" alt="">
+            </div>
+            <div class="c-card-body">
+                <span>Onur Çekiç</span>
+                <span>Yazılım Mühendisi</span>
+                <span>xd@gmail.com</span>
+                <span>05315656565</span>
+            </div>
+        </div>
+
+        <div class="c-card width-100">
+            <div class="c-card-header">
+                <img src="/images/profile-user.png" alt="">
+            </div>
+            <div class="c-card-body">
+                <span>Onur Çekiç</span>
+                <span>Yazılım Mühendisi</span>
+                <span>xd@gmail.com</span>
+                <span>05315656565</span>
+            </div>
+        </div>
+
+        <div class="c-card width-100">
+            <div class="c-card-header">
+                <img src="/images/profile-user.png" alt="">
+            </div>
+            <div class="c-card-body">
+                <span>Onur Çekiç</span>
+                <span>Yazılım Mühendisi</span>
+                <span>xd@gmail.com</span>
+                <span>05315656565</span>
+            </div>
+        </div>
+
+        <div class="c-card width-100">
+            <div class="c-card-header">
+                <img src="/images/profile-user.png" alt="">
+            </div>
+            <div class="c-card-body">
+                <span>Onur Çekiç</span>
+                <span>Yazılım Mühendisi</span>
+                <span>xd@gmail.com</span>
+                <span>05315656565</span>
+            </div>
+        </div>
+
+        <div class="c-card width-100">
+            <div class="c-card-header">
+                <img src="/images/profile-user.png" alt="">
+            </div>
+            <div class="c-card-body">
+                <span>Onur Çekiç</span>
+                <span>Yazılım Mühendisi</span>
+                <span>xd@gmail.com</span>
+                <span>05315656565</span>
+            </div>
+        </div>
+
+        <div class="c-card width-100">
+            <div class="c-card-header">
+                <img src="/images/profile-user.png" alt="">
+            </div>
+            <div class="c-card-body">
+                <span>Onur Çekiç</span>
+                <span>Yazılım Mühendisi</span>
+                <span>xd@gmail.com</span>
+                <span>05315656565</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
