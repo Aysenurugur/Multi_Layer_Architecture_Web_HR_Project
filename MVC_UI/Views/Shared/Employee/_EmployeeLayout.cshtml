@@ -25,13 +25,13 @@
                 </div>
                 <hr>
                 <ul>
-                    <li><a href="employee.html"><i class="fas fa-home"></i>Ana Sayfa</a></li>
-                    <li><a href="listpageforemployee.html"><i class="fas fa-users "></i>Çalışanlar</a></li>
-                    <li><a href="dayoffsforemployee.html"><i class="fas fa-plane "></i>İzinlerim</a></li>
-                    <li><a href="debitsforemployee.html"><i class="fas fa-plane "></i>Zimmetlerim</a></li>
-                    <li><a href="expansesforemployee.html"><i class="fas fa-plane "></i>Harcamalarım</a></li>
-                    <li><a href="#"><i class="fas fa-calendar "></i>Takvim</a></li>
-                    <li><a href="usersettings.html"><i class="fas fa-cogs "></i>Ayarlar</a></li>
+                    <li><a href="@Url.Action("Index", "Employee")"><i class="fas fa-home"></i>Ana Sayfa</a></li>
+                    <li><a href="@Url.Action("Employees", "Employee")"><i class="fas fa-users "></i>Çalışanlar</a></li>
+                    <li><a href="@Url.Action("DayOffs", "Employee")"><i class="fas fa-plane "></i>İzinlerim</a></li>
+                    <li><a href="@Url.Action("Debits", "Employee")"><i class="fas fa-credit-card "></i>Zimmetlerim</a></li>
+                    <li><a href="@Url.Action("Expanses", "Employee")"><i class="fas fa-money-bill-alt "></i>Harcamalarım</a></li>
+                    <li><a href="@Url.Action("Calendar", "Employee")"><i class="fas fa-calendar"></i>Takvim</a></li>
+                    <li><a href="@Url.Action("Settings", "Employee")"><i class="fas fa-cogs "></i>Ayarlar</a></li>
                 </ul>
             </div>
         </div>
