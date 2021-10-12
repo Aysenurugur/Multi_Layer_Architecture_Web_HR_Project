@@ -37,5 +37,10 @@ namespace MVC_UI.Controllers
         {
             return View();
         }
+
+        public IActionResult Calendar()
+        {
+            return View();
+        }
     }
 }
