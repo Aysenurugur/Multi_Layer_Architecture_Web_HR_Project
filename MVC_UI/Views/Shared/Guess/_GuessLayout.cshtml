@@ -18,16 +18,18 @@
     <!-- Navbar -->
 
     <div class="navbar p-standart">
-        <a href="@Url.Action("Index", "Guess")"><img class="nav-logo" src="/images/kd_logo_white.png" alt=""></a>
+        <a asp-action="Index" asp-controller="Guess"><img class="nav-logo" src="/images/kd_logo_white.png" alt=""></a>
         <input type="checkbox" name="" id="nav-toggle" class="nav-toggle">
         <nav>
             <ul>
-                <li><a href="@Url.Action("Index", "Guess")">ANA SAYFA</a></li>
-                <li><a href="@Url.Action("Comments", "Guess")">KULLANICI YORUMLARI</a></li>
+                <li><a asp-action="Index" asp-controller="Guess">ANA SAYFA</a></li>
+                <li><a asp-action="Comments" asp-controller="Guess">KULLANICI YORUMLARI</a></li>
+                <li><a href="#">FİYATLAR</a></li>
+                <li><a href="#">KAYNAKLAR</a></li>
             </ul>
             <div class="d-flex">
-                <a href="@Url.Action("Register", "Guess")" class="btn clr-primary mx-2">ÜCRETSİZ DENE</a>
-                <a href="@Url.Action("Login", "Guess")" class="btn btn-outline-white clr-white">GİRİŞ YAP</a>
+                <a asp-action="Register" asp-controller="Guess" class="btn clr-primary mx-2">ÜCRETSİZ DENE</a>
+                <a asp-action="Login" asp-controller="Guess" class="btn btn-outline-white clr-white">GİRİŞ YAP</a>
             </div>
         </nav>
         <label for="nav-toggle" class="nav-toggle-label">
@@ -46,5 +48,6 @@
     <script src="~/jquery-validate/jquery.validate.min.js"></script>
     <script src="~/custom/js/validation.js"></script>
     <script src="~/custom/js/app.js"></script>
+    @RenderSection("scripts", false)
 </body>
 </html>

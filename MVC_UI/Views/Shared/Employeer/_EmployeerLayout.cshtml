@@ -1,5 +1,8 @@
-﻿<!DOCTYPE html>
-
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@{
+    string id = HttpContextAccessor.HttpContext.Session.GetString("id");
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -19,6 +22,7 @@
     <section class="com-manager-page">
         <div>
             <div class="side-bar">
+                <input type="hidden" value="@id" id="companyId"/>
                 <div>
                     <img src="~/images/kd_logo_white.png" alt="">
                     <h2 class="as-center">KD-34</h2>
@@ -69,6 +73,9 @@
     <script src="~/Chart.js/chart.min.js"></script>
     <script src="~/custom/js/app.js"></script>
     <script src="~/custom/js/validation.js"></script>
+    <script>
+        console.log($("#companyId").val());
+    </script>
 </body>
 </html>
 

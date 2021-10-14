@@ -1,61 +1,43 @@
 ﻿
-@{
-    Layout = null;
-}
-<!DOCTYPE html>
-<html lang="en">
+<div class="modal" id="forgetPasswordModal">
+    <div class="modal-inside">
+        <span class="btnCloseModal" onclick="closeModal('forgetPasswordModal')">&times;</span>
+        <div class="modal-content">
+            Put What u Want
+            <label for="newPasswordMail" class="mb-3">
+                Lütfen sistemde kayıtlı olan mail adresinizi
+                girin.
+            </label>
+            <input type="email" class="mb-3" id="newPasswordMail">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="~/custom/css/mystyle.css">
-    <link rel="stylesheet" href="~/custom/css/utilities.css">
-</head>
+            <a class="btn btn-white fw-bold">Maile Yenileme Linki Gönder</a>
 
-<body>
-    <div class="modal" id="forgetPasswordModal">
-        <div class="modal-inside">
-            <span class="btnCloseModal" onclick="closeModal('forgetPasswordModal')">&times;</span>
-            <div class="modal-content">
-                <!-- Put What u Want -->
-
-                <label for="newPasswordMail" class="mb-3">
-                    Lütfen sistemde kayıtlı olan mail adresinizi
-                    girin.
-                </label>
-                <input type="email" class="mb-3" id="newPasswordMail">
-
-                <a class="btn btn-white fw-bold">Maile Yenileme Linki Gönder</a>
-
-            </div>
         </div>
     </div>
+</div>
 
-    <section class="login-page d-flex flex-column jc-center ai-center">
-        <a href=@Url.Action("Index","Guess")><img class="mb-3 nav-logo" src="/images/kd_logo.png" alt=""></a>
+<section class="login-page d-flex flex-column jc-center ai-center">
+    <a href=@Url.Action("Index","Guess")><img class="mb-3 nav-logo" src="/images/kd_logo.png" alt=""></a>
+    <form>
         <div class="my-4 d-flex flex-column">
-            <input class="square-input" type="email" id="email" required>
+            <input class="square-input form-control" type="email" id="email" required>
             <label class="square-input-label" for="email">E-mail Adresi</label>
         </div>
 
         <div class="my-3 d-flex flex-column">
-            <input class="square-input" type="password" id="email" required>
+            <input class="square-input form-control" type="password" id="password" required>
             <label class="square-input-label" for="email">Parola</label>
         </div>
 
-        <div class="mb-1">
-            <a href="companymanager.html" type="button" class="btn btn-outline-primary width-100" id="btnForgetPassword">Giriş Yap</a>
+        <div class="mb-3 width-100">
+            <button type="button" href="#" id="btnLogin" class="btn btn-primary py-1">Giriş Yap</button>
         </div>
 
         <div>
             <a href="#" onclick="openModal('forgetPasswordModal')">Şifremi unuttum.</a>
         </div>
-    </section>
-
-    <script src="~/custom/js/app.js"></script>
-</body>
-
-</html>
+    </form>
+</section>
+@section scripts{
+    <script src="~/ajax/Guest/guest.js"></script>
+}

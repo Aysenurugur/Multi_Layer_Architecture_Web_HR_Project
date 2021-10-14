@@ -1,10 +1,12 @@
 let slideIndex = 0;
-slider();
+/*slider();*/
 window.addEventListener('click', outsideClick);
 
 function slider() {
+    console.log("silder");
     var i;
     var x = document.getElementsByClassName("mySlides");
+    console.log(x);
 
     if (x.length > 0) {
         for (i = 0; i < x.length; i++) {

@@ -33,7 +33,7 @@ namespace Data.CustomPolicies
                 };
                 errors.Add(error);
             }
-            if (user.PhoneNumber.Length != 11 && user.PhoneNumber.StartsWith("0"))
+            if (user.PhoneNumber.Length != 10 && user.PhoneNumber.StartsWith("0"))
             {
                 IdentityError error = new ()
                 {
