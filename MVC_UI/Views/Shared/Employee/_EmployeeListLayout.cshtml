@@ -29,13 +29,13 @@
                 <hr>
 
                 <ul>
-                    <li><a href="employee.html"><i class="fas fa-home"></i>Ana Sayfa</a></li>
-                    <li><a href="listpageforemployee.html"><i class="fas fa-users "></i>Çalışanlar</a></li>
-                    <li><a href="dayoffsforemployee.html"><i class="fas fa-plane "></i>İzinlerim</a></li>
-                    <li><a href="debitsforemployee.html"><i class="fas fa-plane "></i>Zimmetlerim</a></li>
-                    <li><a href="expansesforemployee.html"><i class="fas fa-plane "></i>Harcamalarım</a></li>
-                    <li><a href="#"><i class="fas fa-calendar "></i>Takvim</a></li>
-                    <li><a href="usersettings.html"><i class="fas fa-cogs "></i>Ayarlar</a></li>
+                    <li><a href="@Url.Action("Index", "Employee")"><i class="fas fa-home"></i>Ana Sayfa</a></li>
+                    <li><a href="@Url.Action("Employees", "Employee")"><i class="fas fa-users "></i>Çalışanlar</a></li>
+                    <li><a href="@Url.Action("DayOffs", "Employee")"><i class="fas fa-plane "></i>İzinlerim</a></li>
+                    <li><a href="@Url.Action("Debits", "Employee")"><i class="fas fa-credit-card "></i>Zimmetlerim</a></li>
+                    <li><a href="@Url.Action("Expanses", "Employee")"><i class="fas fa-money-bill-alt "></i>Harcamalarım</a></li>
+                    <li><a href="@Url.Action("Calendar", "Employee")"><i class="fas fa-calendar"></i>Takvim</a></li>
+                    <li><a href="@Url.Action("Settings", "Employee")"><i class="fas fa-cogs "></i>Ayarlar</a></li>
                 </ul>
             </div>
         </div>
@@ -45,18 +45,18 @@
             <!-- Header -->
 
             <div class="header">
-                <h3>Merhaba Onur Çekiç</h3>
+                @RenderSection("header", false)
 
                 <input type="checkbox" name="" id="dropdown-toggle" class="dropdown-toggle">
                 <div class="dropdown-task">
                     <ul>
-                        <li><a href="employee.html"><i class="fas fa-home"></i>Ana Sayfa</a></li>
-                        <li><a href="listpageforemployee.html"><i class="fas fa-users "></i>Çalışanlar</a></li>
-                        <li><a href="dayoffsforemployee.html"><i class="fas fa-plane "></i>İzinlerim</a></li>
-                        <li><a href="debitsforemployee.html"><i class="fas fa-plane "></i>Zimmetlerim</a></li>
-                        <li><a href="expansesforemployee.html"><i class="fas fa-plane "></i>Harcamalarım</a></li>
-                        <li><a href="#"><i class="fas fa-calendar "></i>Takvim</a></li>
-                        <li><a href="usersettings.html"><i class="fas fa-cogs "></i>Ayarlar</a></li>
+                        <li><a href="@Url.Action("Index", "Employee")"><i class="fas fa-home"></i>Ana Sayfa</a></li>
+                        <li><a href="@Url.Action("Employees", "Employee")"><i class="fas fa-users "></i>Çalışanlar</a></li>
+                        <li><a href="@Url.Action("DayOffs", "Employee")"><i class="fas fa-plane "></i>İzinlerim</a></li>
+                        <li><a href="@Url.Action("Debits", "Employee")"><i class="fas fa-credit-card "></i>Zimmetlerim</a></li>
+                        <li><a href="@Url.Action("Expanses", "Employee")"><i class="fas fa-money-bill-alt "></i>Harcamalarım</a></li>
+                        <li><a href="@Url.Action("Calendar", "Employee")"><i class="fas fa-calendar"></i>Takvim</a></li>
+                        <li><a href="@Url.Action("Settings", "Employee")"><i class="fas fa-cogs "></i>Ayarlar</a></li>
                     </ul>
                 </div>
                 <label for="dropdown-toggle" class="dropdown-toggle-label">
@@ -72,22 +72,8 @@
                 <!-- Funtionality -->
 
                 <div class="func-list-page mb-2">
-
-                    <!-- Search Bar -->
-                    <input type="text" class="square-input square-input-md" placeholder="Arama">
-
-                    <!-- List Type -->
-                    <div class="d-flex radio-group">
-                        <input type="radio" name="list_type" id="card-type-list" class="d-none square-input" checked>
-                        <label for="card-type-list" class="square-input-label-solid">
-                            <img src="/images/card-list.png" alt="">
-                        </label>
-
-                        <input type="radio" name="list_type" id="table-type-list" class="d-none square-input">
-                        <label for="table-type-list" class="square-input-label-solid">
-                            <img src="/images/table-list.png" alt="">
-                        </label>
-                    </div>
+                    @RenderSection("functionality", false)
+                    
                 </div>
 
 

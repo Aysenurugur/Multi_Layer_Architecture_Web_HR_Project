@@ -558,7 +558,7 @@
 
     //TODO settings formunun validasyon ayalarını yap
 
-    $('managerSettingsForm').validate({
+    $('#managerSettingsForm').validate({
         rules: {
 
         },
@@ -567,5 +567,96 @@
         }
     });
 
+    //Employee Validations
 
+    $('#employeeDayoffRequestForm').validate({
+        rules: {
+            dayoffType: {
+                required: true,
+            },
+            dayoffDay: {
+                required: true,
+            },
+            startDate: {
+                required: true,
+                greaterThanToday: true,
+            },
+            endDate: {
+                required: true,
+                greaterThanDate: "#startDate",
+            },
+        },
+        messages: {
+            dayoffType: {
+                required: "Bir izin türü seçiniz.",
+            },
+            dayoffDay: {
+                required: "Kaç gün izin istediğinizi belirtiniz."
+            },
+            startDate: {
+                required: "Başlangıç tarihi seçin.",
+            },
+            endDate: {
+                required: "Bitiş tarihi seçiniz.",
+            }
+
+        }
+    });
+
+    $('#employeeDebitRejectForm').validate({
+        rules: {
+
+            description: {
+                required: true,
+                minlength: 20,
+                maxlength: 100,
+            },
+        },
+        messages: {
+            description: {
+                required: "Lütfen reddetme nedeninizi giriniz.",
+                minlength: "En az 20 karakterden oluşmalıdır.",
+                maxlength: "En fazla 100 karakterden oluşmalıdır.",
+            },
+        }
+    });
+
+    $('#employeeAddExpanseForm').validate({
+        rules: {
+            amountOfExpanse: {
+                required: true,
+            },
+            expanseDate: {
+                required: true,
+            },
+            expanseFiles: {
+                required: true,
+                maxsize: 10000000,
+                accept: "image/*,application/pdf",
+            },
+            description: {
+                required: true,
+                minlength: 10,
+                maxlength: 100,
+            },
+        },
+        messages: {
+            amountOfExpanse: {
+                required: "Harcama miktarını giriniz."
+            },
+            expanseDate: {
+                required: "Harcamanın yapıldığı tarihi giriniz",
+            },
+            expanseFiles: {
+                required: "Harcamaya ilişkin dosyaları seçiniz.",
+                maxsize: "Dosyaların boyunu 15 MB ve altında olmalıdır.",
+                accept: "png|jpg|jpeg|pdf formatında dosya yükleyin."
+            },
+            description: {
+                required: "Harcamayla ilgili açıklamayı giriniz.",
+                minlength: "Açıklama en az 10 karakterden oluşmalıdır.",
+                maxlength: "Açıklama en fazla 100 karakterden oluşmalıdır."
+            },
+        }
+    })
 })
