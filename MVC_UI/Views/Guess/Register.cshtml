@@ -34,7 +34,7 @@
 
                 </div>
                 <div class="mb-3 width-100 floating-label">
-                    <input class="form-control width-100" type="email" id="companyMail"  placeholder=" " name="companyMail">
+                    <input class="form-control width-100" type="email" id="companyMail" placeholder=" " name="companyMail">
                     <label class="label" for="companyMail">Şirket Mailiniz</label>
 
                 </div>
@@ -49,7 +49,7 @@
 
                 </div>
                 <div class="mb-3 width-100">
-                    <button type="button" href="#" class="btn btn-primary py-1">Kayıt Ol</button>
+                    <button type="button" href="#" id="btnRegister" class="btn btn-primary py-1">Kayıt Ol</button>
                 </div>
             </div>
         </form>
@@ -96,3 +96,7 @@
         </div>
     </div>
 </section>
+
+@section scripts{
+    <script src="~/ajax/Guest/guest.js"></script>
+}

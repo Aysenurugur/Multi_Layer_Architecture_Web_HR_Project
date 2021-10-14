@@ -37,7 +37,7 @@ namespace WebAPI.Controllers
 
                 return BadRequest();
             }
-            
+
         }
 
         [HttpGet("{id}")]
@@ -58,32 +58,16 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateDayOff(DayOffDTO dayOffDTO) //test edildi
-
-            
-                IEnumerable<DayOff> dayOffs = await dayOffService.GetDayOffsByUserId(userId);
-                IEnumerable<DayOffDTO> dayOffDTO = mapper.Map<IEnumerable<DayOff>, IEnumerable<DayOffDTO>>(dayOffs);
-                return Ok(dayOffDTO);
-          
-        }
-
-        [HttpPost]
         public async Task<IActionResult> CreateDayOff(DayOffDTO dayOffDTO) //test edildi.
 
         {
             try
             {
                 dayOffDTO.DayOffID = Guid.NewGuid();
-
                 DayOff dayOffToCreate = mapper.Map<DayOffDTO, DayOff>(dayOffDTO);
                 DayOff newdayOff = await dayOffService.CreateDayOff(dayOffToCreate);
                 DayOffDTO createdDayOffDTO = mapper.Map<DayOff, DayOffDTO>(newdayOff);
                 return Ok(createdDayOffDTO);
-
-                var dayOffToCreate = mapper.Map<DayOffDTO, DayOff>(dayOffDTO);
-                await dayOffService.CreateDayOff(dayOffToCreate);
-                DayOffDTO dayOffResource = mapper.Map<DayOff, DayOffDTO>(dayOffToCreate);
-                return Ok(dayOffResource);
 
             }
             catch (Exception)

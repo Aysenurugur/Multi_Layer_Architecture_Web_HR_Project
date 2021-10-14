@@ -69,8 +69,6 @@ namespace WebAPI
 
             #endregion
 
-            
-
             services.Configure<Admin>(Configuration.GetSection("Admin"));
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
 
@@ -100,6 +98,20 @@ namespace WebAPI
             services.AddScoped<IVetoMessageService, VetoMessageService>();
 
             #endregion
+
+            #region Cors
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "MyCorsPolicy",
+                    builder =>
+                    {
+                        builder.AllowAnyMethod();
+                        builder.AllowAnyHeader();
+                        //builder.WithOrigins("https://hrwebapi.azurewebsites.net/");
+                        builder.AllowAnyOrigin();
+                    });
+            }); 
+            #endregion
         }
 
 
@@ -115,6 +127,10 @@ namespace WebAPI
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseStaticFiles();
+
+            app.UseCors("MyCorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {

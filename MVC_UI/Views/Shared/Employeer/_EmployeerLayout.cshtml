@@ -1,5 +1,8 @@
-﻿<!DOCTYPE html>
-
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@{
+    string id = HttpContextAccessor.HttpContext.Session.GetString("id");
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -19,19 +22,20 @@
     <section class="com-manager-page">
         <div>
             <div class="side-bar">
+                <input type="hidden" value="@id" id="companyId"/>
                 <div>
                     <img src="~/images/kd_logo_white.png" alt="">
                     <h2 class="as-center">KD-34</h2>
                 </div>
                 <hr>
                 <ul>
-                    <li><a href=@Url.Action("Index","Manager")><i class="fas fa-home"></i>Ana Sayfa</a></li>
-                    <li><a href=@Url.Action("Employees","Manager")><i class="fas fa-users "></i>Çalışanlar</a></li>
-                    <li><a href=@Url.Action("DayOffs","Manager")><i class="fas fa-plane "></i>İzinler</a></li>
-                    <li><a href=@Url.Action("ShiftBreak","Manager")><i class="fas fa-flag "></i>Vardiya/Mola</a></li>
+                    <li><a asp-action="Index" asp-controller="Manager" asp-route-id="@id"><i class="fas fa-home"></i>Ana Sayfa</a></li>
+                    <li><a asp-action="Employees" asp-controller="Manager" asp-route-id="@id"><i class="fas fa-users "></i>Çalışanlar</a></li>
+                    <li><a asp-action="DayOffs" asp-controller="Manager" asp-route-id="@id"><i class="fas fa-plane "></i>İzinler</a></li>
+                    <li><a asp-action="ShiftBreak" asp-controller="Manager" asp-route-id="@id"><i class="fas fa-flag "></i>Vardiya/Mola</a></li>
                     <li><a href="#"><i class="fas fa-calendar "></i>Takvim</a></li>
-                    <li><a href=@Url.Action("Comment","Manager")><i class="fas fa-comment"></i>Yorum</a></li>
-                    <li><a href=@Url.Action("Settings","Manager")><i class="fas fa-cogs "></i>Ayarlar</a></li>
+                    <li><a asp-action="Comment" asp-controller="Manager" asp-route-id="@id"><i class="fas fa-comment"></i>Yorum</a></li>
+                    <li><a asp-action="Settings" asp-controller="Manager" asp-route-id="@id"><i class="fas fa-cogs "></i>Ayarlar</a></li>
                 </ul>
             </div>
         </div>
@@ -71,6 +75,9 @@
     <script src="~/Chart.js/chart.min.js"></script>
     <script src="~/custom/js/app.js"></script>
     <script src="~/custom/js/validation.js"></script>
+    <script>
+        console.log($("#companyId").val());
+    </script>
 </body>
 </html>
 

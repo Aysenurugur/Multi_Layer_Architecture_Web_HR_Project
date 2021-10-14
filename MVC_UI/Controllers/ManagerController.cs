@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,42 +9,44 @@ namespace MVC_UI.Controllers
 {
     public class ManagerController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(Guid id)
+        {
+            ViewBag.CompanyId = id;
+            HttpContext.Session.SetString("id", id.ToString());
+            return View();
+        }
+
+        public IActionResult Employees(Guid id)
         {
             return View();
         }
 
-        public IActionResult Employees()
+        public IActionResult Settings(Guid id)
         {
             return View();
         }
 
-        public IActionResult Settings()
+        public IActionResult DayOffs(Guid id)
         {
             return View();
         }
 
-        public IActionResult DayOffs()
+        public IActionResult ShiftBreak(Guid id)
         {
             return View();
         }
 
-        public IActionResult ShiftBreak()
+        public IActionResult AssignShiftBreak(Guid id)
         {
             return View();
         }
 
-        public IActionResult AssignShiftBreak()
+        public IActionResult Comment(Guid id)
         {
             return View();
         }
 
-        public IActionResult Comment()
-        {
-            return View();
-        }
-
-        public IActionResult EditEmployee()
+        public IActionResult EditEmployee(Guid id)
         {
             return View();
         }

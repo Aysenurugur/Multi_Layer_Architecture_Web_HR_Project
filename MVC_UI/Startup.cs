@@ -15,6 +15,8 @@ namespace MVC_UI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSession(options => options.IdleTimeout = new TimeSpan(5, 5, 5));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -26,6 +28,7 @@ namespace MVC_UI
 
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
