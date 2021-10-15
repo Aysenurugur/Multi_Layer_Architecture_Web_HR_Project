@@ -10,7 +10,7 @@ $("#btnRegister").click(function () {
     }
 
     $.ajax({
-        url: "https://hrwebapi.azurewebsites.net/api/User/Register",
+        url: "http://localhost:12430/api/User/Register",
         type: "POST",
         data: JSON.stringify(user),
         contentType: 'application/json;charset=utf-8',
@@ -32,13 +32,13 @@ $(document).ready(function () {
             password: $("#password").val()
         };
         $.ajax({
-            url: "https://hrwebapi.azurewebsites.net/api/User/Login",
+            url: "http://localhost:12430/api/User/Login",
             type: "POST",
             data: JSON.stringify(loginInfo),
             contentType: 'application/json;charset=utf-8',
             success: function (response) {
                 console.log(response);
-                window.location.href = "https://hrwebapi.azurewebsites.net/Manager/Index/" + response.companyID;
+                window.location.href = "http://localhost:5000/Manager/Index/" + response.companyID;
             },
             error: function (err) {
                 console.log(err);
@@ -100,7 +100,7 @@ $(document).ready(function () {
                                                 <span class="card-title mb-2">3000+ Çalışan</span>
                                             </div>
                                             <h2 class="card-content my-4">${item.title}</h2>
-                                            <a class="btn btn-primary" onclick=openDetail(${item.commentId})>İncele</a>
+                                            <button href="#" class="btn btn-primary" onclick="openDetail(${item.companyId})">İncele</button>
                                         </div>`;
                         $("#comments").append(commentInfo);
                     }
@@ -109,6 +109,25 @@ $(document).ready(function () {
         }
     });
 })
+
+function openDetail(id) {
+    window.location.href = "http://localhost:500/Guess/CommentDetail/" + id;
+    $.ajax({
+        url: "http://localhost:12430/api/Company/GetCommentByCompanyId/"+id,
+        type: "GET",
+        success: function (response) {
+            $.ajax({
+                url: "http://localhost:12430/api/Company/GetCompanyById/"+id,
+                type: "GET",
+                success: function (data) {
+                    $("#commentTitle").html(response.title);
+                    $("#commentContent").html(response.content);
+                    $("#companyName").html(data.companyName);
+                }
+            })
+        }
+    })
+}
 
 
 

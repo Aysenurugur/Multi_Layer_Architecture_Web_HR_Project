@@ -1,4 +1,7 @@
-﻿
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@{
+    Guid id = @Guid.Parse(HttpContextAccessor.HttpContext.Session.GetString("id"));
+}
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/Employeer/_EmployeerLayout.cshtml";
@@ -17,7 +20,7 @@
     </div>
 }
 
-<input type="hidden" id="companyId" value="@ViewBag.CompanyId" />
+<input type="hidden" id="companyId" value="@id" />
 
 <div class="card first-card">
     <div class="card-header">

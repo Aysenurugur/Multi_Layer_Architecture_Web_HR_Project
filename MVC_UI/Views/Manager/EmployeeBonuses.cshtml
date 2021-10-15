@@ -1,4 +1,7 @@
-﻿
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@{
+    Guid employeeId = @Guid.Parse(HttpContextAccessor.HttpContext.Session.GetString("employeeId"));
+}
 @{
     ViewData["Title"] = "EmployeeBonuses";
     Layout = "~/Views/Shared/Employeer/_EmployeerDetailsLayout.cshtml";
@@ -10,12 +13,12 @@
 
 @section tabs{
     <div class="tabs">
-        <a href="@Url.Action("EditEmployee","Manager")">Genel</a>
-        <a href="@Url.Action("EmployeeRequests","Manager")">Talepler</a>
-        <a href="@Url.Action("EmployeeDebits","Manager")">Zimmetler</a>
-        <a href="@Url.Action("EmployeeBonuses","Manager")">Primler</a>
-        <a href="@Url.Action("EmployeeFiles","Manager")">Dosyalar</a>
-        <a href="@Url.Action("EmployeeShiftBreak","Manager")">Vardiya ve Molalar</a>
+        <a asp-action="EditEmployee" asp-controller="Manager" asp-route-id="@employeeId">Genel</a>
+        <a asp-action="EmployeeRequests" asp-controller="Manager" asp-route-id="@employeeId">Talepler</a>
+        <a asp-action="EmployeeDebits" asp-controller="Manager" asp-route-id="@employeeId">Zimmetler</a>
+        <a asp-action="EmployeeBonuses" asp-controller="Manager" asp-route-id="@employeeId">Primler</a>
+        <a asp-action="EmployeeFiles" asp-controller="Manager" asp-route-id="@employeeId">Dosyalar</a>
+        <a asp-action="EmployeeShiftBreak" asp-controller="Manager" asp-route-id="@employeeId">Vardiya ve Molalar</a>
     </div>
 }
 
@@ -27,29 +30,20 @@
         <button class="btn btn-primary ml-2" onclick="openModal('bonusModal')">Prim Ekle</button>
     </div>
 }
+<input type="hidden" id="employeeId" value="@employeeId" />
 
 <div>
     <table class="table table-striped width-100">
         <thead>
             <tr>
+                <th>Başlık</th>
                 <th>Açıklama</th>
-                <th>Veriliş Tarihi</th>
                 <th>Miktar</th>
                 <th></th>
             </tr>
         </thead>
+        <tbody id="table">
 
-        <tbody>
-            <tr>
-                <td>Şirket görüşmeleri için cep telefonu aldı.</td>
-                <td>29 Eylül 2021</td>
-                <td>3149,90 ₺</td>
-                <td>
-                    <button class="btn btn-danger mx-auto">Sil</button>
-                    <br>
-                    <button class="btn btn-warning mx-auto" onclick="openModal('bonusModal')">Güncelle</button>
-                </td>
-            </tr>
         </tbody>
     </table>
 </div>
@@ -65,12 +59,15 @@
             <div class="modal-content">
                 <!-- Put What u Want -->
                 <form id="managerAddBonusForm">
+                    <div class="my-3">
+                        <label for="title" class="square-input-label">Title</label>
+                        <input type="text" class="square-input" id="title" name="title">
+                    </div>
                     <div class="my-4 d-flex">
                         <div class="mr-1">
                             <label for="amountOfBonus" class="square-input-label">Prim Miktarı</label>
                             <input min="1" type="number" class="square-input" id="amountOfBonus" name="amountOfBonus">
                         </div>
-
                         <div>
                             <label for="givenDate" class="square-input-label">Veriliş Tarihi</label>
                             <input type="datetime-local" class="square-input" id="givenDate" name="givenDate">
@@ -83,7 +80,7 @@
                                   class="square-input"></textarea>
                     </div>
                     <div class="my-1">
-                        <button id="savebtn" href="#" class="btn btn-primary ml-auto">Kaydet</button>
+                        <button href="#" id="saveBtn" class="btn btn-primary ml-auto">Kaydet</button>
                     </div>
                 </form>
             </div>
@@ -92,3 +89,49 @@
 
 }
 
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://localhost:12430/api/Expense/GetExpensesByEmployeeId/" + $("#employeeId").val(),
+                type: "GET",
+                success: function (response) {
+                    console.log(response);
+                    response.map((item) => {
+                        $("#table").append(`<tr>
+                                                        <td>${item.title}</td>
+                                                        <td>${item.content}</td>
+                                                        <td>${item.totalPrice}</td>
+                                                        <td>
+                                                            <button class="btn btn-danger mx-auto">Sil</button>
+                                                            <br>
+                                                            <button class="btn btn-warning mx-auto" onclick="openModal('bonusModal')">Güncelle</button>
+                                                        </td>
+                                                    </tr>`)
+                    })
+                }
+            })
+        });
+
+        $("#saveBtn").click(function () {
+            var expense = {
+                userId: $("#employeeId").val(),
+                title: $("#title").val(),
+                content: $("#description").val(),
+                totalPrice: $("#amountOfBonus").val(),
+                createdDate: $("#givenDate").val(),
+                isApproved: false
+            };
+            $.ajax({
+                url: "http://localhost:12430/api/Expense/Create",
+                type: "POST",
+                data: JSON.stringify(debit),
+                contentType: 'application/json;charset=utf-8',
+                success: function (expense) {
+                    console.log(response);
+                }
+            })
+        })
+
+    </script>
+}

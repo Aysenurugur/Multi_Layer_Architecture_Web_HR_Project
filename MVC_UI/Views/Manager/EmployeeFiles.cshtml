@@ -1,4 +1,7 @@
-﻿
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@{
+    Guid employeeId = @Guid.Parse(HttpContextAccessor.HttpContext.Session.GetString("employeeId"));
+}
 @{
     ViewData["Title"] = "EmployeeFiles";
     Layout = "~/Views/Shared/Employeer/_EmployeerDetailsLayout.cshtml";
@@ -10,12 +13,12 @@
 
 @section tabs{
     <div class="tabs">
-        <a href="@Url.Action("EditEmployee","Manager")">Genel</a>
-        <a href="@Url.Action("EmployeeRequests","Manager")">Talepler</a>
-        <a href="@Url.Action("EmployeeDebits","Manager")">Zimmetler</a>
-        <a href="@Url.Action("EmployeeBonuses","Manager")">Primler</a>
-        <a href="@Url.Action("EmployeeFiles","Manager")">Dosyalar</a>
-        <a href="@Url.Action("EmployeeShiftBreak","Manager")">Vardiya ve Molalar</a>
+        <a asp-action="EditEmployee" asp-controller="Manager" asp-route-id="@employeeId">Genel</a>
+        <a asp-action="EmployeeRequests" asp-controller="Manager" asp-route-id="@employeeId">Talepler</a>
+        <a asp-action="EmployeeDebits" asp-controller="Manager" asp-route-id="@employeeId">Zimmetler</a>
+        <a asp-action="EmployeeBonuses" asp-controller="Manager" asp-route-id="@employeeId">Primler</a>
+        <a asp-action="EmployeeFiles" asp-controller="Manager" asp-route-id="@employeeId">Dosyalar</a>
+        <a asp-action="EmployeeShiftBreak" asp-controller="Manager" asp-route-id="@employeeId">Vardiya ve Molalar</a>
     </div>
 }
 

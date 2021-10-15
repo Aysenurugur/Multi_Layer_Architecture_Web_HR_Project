@@ -5,7 +5,7 @@
         success: function (response) {
             console.log(response);
             $("#companyName").html(response.companyName);
-            $("#companyId").val();
         }
     })
 })
+

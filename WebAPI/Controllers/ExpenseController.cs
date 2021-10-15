@@ -60,7 +60,7 @@ namespace WebAPI.Controllers
             {
                 expenseDTO.ExpenseId = Guid.NewGuid();
                 Expense expenseToCreate = mapper.Map<ExpenseDTO, Expense>(expenseDTO);
-                expenseToCreate.CreatedDate = DateTime.Now;
+                //expenseToCreate.CreatedDate = DateTime.Now;
                 Expense newExpense = await expenseService.CreateExpense(expenseToCreate);
                 ExpenseDTO expenseResource = mapper.Map<Expense, ExpenseDTO>(newExpense);
                 return Ok(expenseResource);

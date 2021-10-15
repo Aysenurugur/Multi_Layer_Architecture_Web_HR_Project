@@ -42,6 +42,7 @@ namespace WebAPI.Controllers
             {
                 Debit debit = mapper.Map<DebitDTO, Debit>(debitDTO);
                 debit.CreatedDate = DateTime.Now;
+                debit.IsApproved = false;
                 DebitDTO newDebit = mapper.Map<Debit, DebitDTO>(await debitService.CreateDebit(debit));
 
                 return Ok(newDebit);

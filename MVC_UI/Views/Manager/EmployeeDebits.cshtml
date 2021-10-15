@@ -1,4 +1,7 @@
-﻿
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@{
+    Guid employeeId = @Guid.Parse(HttpContextAccessor.HttpContext.Session.GetString("employeeId"));
+}
 @{
     ViewData["Title"] = "EmployeeDebits";
     Layout = "~/Views/Shared/Employeer/_EmployeerDetailsLayout.cshtml";
@@ -10,12 +13,12 @@
 
 @section tabs {
     <div class="tabs">
-        <a href="@Url.Action("EditEmployee","Manager")">Genel</a>
-        <a href="@Url.Action("EmployeeRequests","Manager")">Talepler</a>
-        <a href="@Url.Action("EmployeeDebits","Manager")">Zimmetler</a>
-        <a href="@Url.Action("EmployeeBonuses","Manager")">Primler</a>
-        <a href="@Url.Action("EmployeeFiles","Manager")">Dosyalar</a>
-        <a href="@Url.Action("EmployeeShiftBreak","Manager")">Vardiya ve Molalar</a>
+        <a asp-action="EditEmployee" asp-controller="Manager" asp-route-id="@employeeId">Genel</a>
+        <a asp-action="EmployeeRequests" asp-controller="Manager" asp-route-id="@employeeId">Talepler</a>
+        <a asp-action="EmployeeDebits" asp-controller="Manager" asp-route-id="@employeeId">Zimmetler</a>
+        <a asp-action="EmployeeBonuses" asp-controller="Manager" asp-route-id="@employeeId">Primler</a>
+        <a asp-action="EmployeeFiles" asp-controller="Manager" asp-route-id="@employeeId">Dosyalar</a>
+        <a asp-action="EmployeeShiftBreak" asp-controller="Manager" asp-route-id="@employeeId">Vardiya ve Molalar</a>
     </div>
 }
 
@@ -27,52 +30,22 @@
         <button class="btn btn-primary ml-2" onclick="openModal('debitModal')">Zimmet Ekle</button>
     </div>
 }
+<input type="hidden" id="employeeId" value="@employeeId" />
 
 <div>
     <table class="table table-striped width-100">
         <thead>
             <tr>
                 <th>Kategori</th>
-                <th>Seri Numarası</th>
+                <th>Id</th>
                 <th>Veriliş Tarihi</th>
-                <th>İade Tarihi</th>
                 <th>Açıklama</th>
                 <th></th>
             </tr>
         </thead>
 
-        <tbody>
-            <tr>
-                <td>Cep Telefonu</td>
-                <td>546545645645</td>
-                <td>28 Eylül 2021</td>
-                <td>5 Ekim 2021</td>
-                <td>-------------</td>
-                <td>
-                    <button class="btn btn-danger mx-auto">Sil</button>
-                    <br>
-                    <button class="btn btn-warning mx-auto"
-                            onclick="openModal('debitModal')">
-                        Güncelle
-                    </button>
-                </td>
-            </tr>
+        <tbody id="debitTable">
 
-            <tr>
-                <td>Bilgisayar</td>
-                <td>21321333213</td>
-                <td>28 Eylül 2021</td>
-                <td>5 Ekim 2021</td>
-                <td>Ekstra bellek gerekli</td>
-                <td>
-                    <button class="btn btn-danger mx-auto">Sil</button>
-                    <br>
-                    <button class="btn btn-warning mx-auto"
-                            onclick="openModal('debitModal')">
-                        Güncelle
-                    </button>
-                </td>
-            </tr>
         </tbody>
     </table>
 </div>
@@ -90,20 +63,9 @@
                 <!-- Put What u Want -->
                 <form id="managerAddDebitForm">
                     <div class="my-3 d-flex">
-                        <div class="mr-1">
-                            <label for="category" class="square-input-label">Kategori</label>
-                            <select name="category" id="category" class="square-input">
-                                <option value="">Kategori Seçin</option>
-                                <option value="1">Bence</option>
-                                <option value="2">Bu</option>
-                                <option value="3">Bizim</option>
-                                <option value="4">Yok</option>
-                            </select>
-                        </div>
-
                         <div>
-                            <label for="serialnumber" class="square-input-label">Seri Numarası</label>
-                            <input type="text" class="square-input" id="serialnumber" name="serialNumber">
+                            <label for="serialnumber" class="square-input-label">Title</label>
+                            <input type="text" class="square-input" id="title" name="title">
                         </div>
                     </div>
 
@@ -112,11 +74,6 @@
                             <label for="givenDate" class="square-input-label">Veriliş Tarihi</label>
                             <input type="datetime-local" class="square-input" id="givenDate" name="givenDate">
                         </div>
-
-                        <div>
-                            <label for="returnDate" class="square-input-label">İade Tarihi</label>
-                            <input type="datetime-local" class="square-input" id="returnDate" name="returnDate">
-                        </div>
                     </div>
 
                     <div class="mt-4 mb-1">
@@ -124,11 +81,60 @@
                         <textarea name="description" id="description" cols="50" rows="10" class="square-input"></textarea>
                     </div>
                     <div class="my-1">
-                        <button href="#" class="btn btn-primary ml-auto">Kaydet</button>
+                        <button href="#" id="saveDebit" class="btn btn-primary ml-auto">Kaydet</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://localhost:12430/api/Debit/GetDebitsByEmployeeId/" + $("#employeeId").val(),
+                type: "GET",
+                success: function (response) {
+                    console.log(response);
+                    response.map((item) => {
+                        $("#debitTable").append(`<tr>
+                                                <td>${item.title}</td>
+                                                <td>${item.debitID}</td>
+                                                <td>${item.createdDate}</td>
+                                                <td>${item.content}</td>
+                                                <td>
+                                                    <button class="btn btn-danger mx-auto">Sil</button>
+                                                    <br>
+                                                    <button class="btn btn-warning mx-auto"
+                                                            onclick="openModal('debitModal')">
+                                                        Güncelle
+                                                    </button>
+                                                </td>
+                                            </tr>`)
+                    })
+                }
+            })
+        })
+
+        $("#saveDebit").click(function () {
+            var debit = {
+                userId: $("#employeeId").val(),
+                title: $("#title").val(),
+                content: $("#description").val(),
+                createdDate: $("#givenDate").val()
+            };
+            $.ajax({
+                url: "http://localhost:12430/api/Debit/Create",
+                type: "POST",
+                data: JSON.stringify(debit),
+                contentType: 'application/json;charset=utf-8',
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        })
+
+    </script>
 }
 

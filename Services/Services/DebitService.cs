@@ -20,6 +20,7 @@ namespace Services.Services
 
         public async Task<Debit> CreateDebit(Debit newDebit)
         {
+            //newDebit.DebitID = Guid.NewGuid();
             await unitOfWork.Debit.AddAsync(newDebit);
             await unitOfWork.CommitAsync();
             return newDebit;

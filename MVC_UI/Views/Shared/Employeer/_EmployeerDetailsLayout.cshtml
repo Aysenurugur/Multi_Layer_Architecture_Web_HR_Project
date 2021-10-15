@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@{
+    Guid id = Guid.Parse(HttpContextAccessor.HttpContext.Session.GetString("id"));
+}
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -28,12 +32,12 @@
                 </div>
                 <hr>
                 <ul>
-                    <li><a href=@Url.Action("Index","Manager")><i class="fas fa-home"></i>Ana Sayfa</a></li>
-                    <li><a href=@Url.Action("Employees","Manager")><i class="fas fa-users "></i>Çalışanlar</a></li>
-                    <li><a href=@Url.Action("DayOffs","Manager")><i class="fas fa-plane "></i>İzinler</a></li>
-                    <li><a href=@Url.Action("ShiftBreak","Manager")><i class="fas fa-flag "></i>Vardiya/Mola</a></li>
-                    <li><a href=@Url.Action("Comment","Manager")><i class="fas fa-comment"></i>Yorum</a></li>
-                    <li><a href=@Url.Action("Settings","Manager")><i class="fas fa-cogs "></i>Ayarlar</a></li>
+                    <li><a asp-action="Index" asp-controller="Manager" asp-route-id="@id"><i class="fas fa-home"></i>Ana Sayfa</a></li>
+                    <li><a asp-action="Employees" asp-controller="Manager" asp-route-id="@id"><i class="fas fa-users "></i>Çalışanlar</a></li>
+                    <li><a asp-action="DayOffs" asp-controller="Manager" asp-route-id="@id"><i class="fas fa-plane "></i>İzinler</a></li>
+                    <li><a asp-action="ShiftBreak" asp-controller="Manager" asp-route-id="@id"><i class="fas fa-flag "></i>Vardiya/Mola</a></li>
+                    <li><a asp-action="Comment" asp-controller="Manager" asp-route-id="@id"><i class="fas fa-comment"></i>Yorum</a></li>
+                    <li><a asp-action="Settings" asp-controller="Manager" asp-route-id="@id"><i class="fas fa-cogs "></i>Ayarlar</a></li>
                 </ul>
             </div>
         </div>
@@ -47,12 +51,12 @@
                 <input type="checkbox" name="" id="dropdown-toggle" class="dropdown-toggle">
                 <div class="dropdown-task">
                     <ul>
-                        <li><a href=@Url.Action("Index","Manager")><i class="fas fa-home"></i>Ana Sayfa</a></li>
-                        <li><a href=@Url.Action("Employees","Manager")><i class="fas fa-users "></i>Çalışanlar</a></li>
-                        <li><a href=@Url.Action("DayOffs","Manager")><i class="fas fa-plane "></i>İzinler</a></li>
-                        <li><a href=@Url.Action("ShiftBreak","Manager")><i class="fas fa-flag "></i>Vardiya/Mola</a></li>
-                        <li><a href=@Url.Action("Comment","Manager")><i class="fas fa-comment"></i>Yorum</a></li>
-                        <li><a href=@Url.Action("Settings","Manager")><i class="fas fa-cogs "></i>Ayarlar</a></li>
+                        <li><a asp-action="Index" asp-controller="Manager" asp-route-id="@id"><i class="fas fa-home"></i>Ana Sayfa</a></li>
+                        <li><a asp-action="Employees" asp-controller="Manager" asp-route-id="@id"><i class="fas fa-users "></i>Çalışanlar</a></li>
+                        <li><a asp-action="DayOffs" asp-controller="Manager" asp-route-id="@id"><i class="fas fa-plane "></i>İzinler</a></li>
+                        <li><a asp-action="ShiftBreak" asp-controller="Manager" asp-route-id="@id"><i class="fas fa-flag "></i>Vardiya/Mola</a></li>
+                        <li><a asp-action="Comment" asp-controller="Manager" asp-route-id="@id"><i class="fas fa-comment"></i>Yorum</a></li>
+                        <li><a asp-action="Settings" asp-controller="Manager" asp-route-id="@id"><i class="fas fa-cogs "></i>Ayarlar</a></li>
                     </ul>
                 </div>
                 <label for="dropdown-toggle" class="dropdown-toggle-label">

@@ -13,8 +13,9 @@ namespace WebAPI.DTOs
         public string Title { get; set; } // Unvan
         public string Department { get; set; }
         public string PhoneNumber { get; set; }
+        public DateTime HiredDate { get; set; }
+        public DateTime BirthDate { get; set; }
         public string Email { get; set; }
-        public decimal? Salary { get; set; }
         public string PasswordHash { get; set; }
     }
 }
