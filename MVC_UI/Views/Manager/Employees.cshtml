@@ -1,19 +1,21 @@
-﻿
+﻿@inject IHttpContextAccessor HttpContextAccessor
 @{
     ViewData["Title"] = "Employees";
     Layout = "~/Views/Shared/Employeer/_EmployeerListLayout.cshtml";
 }
 
 @section header {
-    <h2>Merhaba Şirket Adı</h2>
+    <h2>Merhaba </h2>
 }
+
+<input type="hidden" id="compId" value="@Guid.Parse(HttpContextAccessor.HttpContext.Session.GetString("id"))" />
 
 @section modal {
     <!-- Modal -->
     <div class="crud-modal" id="addEmployeeModal">
         <div class="modal-inside">
             <div class="d-flex jc-between ai-center mb-3">
-                <h4>Zimmet Ekle</h4>
+                <h4>Çalışan Ekle</h4>
                 <span class="btnCloseModal" onclick="closeModal('addEmployeeModal')">&times;</span>
             </div>
 
@@ -47,7 +49,7 @@
                     <div class="my-4 d-flex">
                         <div class="mr-1">
                             <label for="phoneNumber" class="square-input-label">Telefon</label>
-                            <input type="tel" class="square-input" id="phoneNumber" name="phoneNumber">
+                            <input type="text" class="square-input" id="phoneNumber" name="phoneNumber">
                         </div>
                     </div>
 
@@ -65,7 +67,7 @@
 
 
                     <div class="my-1">
-                        <button type="button" href="#" class="btn btn-primary ml-auto btn-sq">Kaydet</button>
+                        <button type="button" href="#" id="saveEmployee" class="btn btn-primary ml-auto btn-sq">Kaydet</button>
                     </div>
                 </form>
             </div>
@@ -111,14 +113,8 @@
                 </tr>
             </thead>
 
-            <tbody>
-                <tr>
-                    <td><a href="@Url.Action("EditEmployee","Manager")">Onur Çekiç</a></td>
-                    <td>Yazılım Mühendisi</td>
-                    <td>053564564</td>
-                    <td>xd@gmail.com</td>
-                    <td><a href="#" class="btn btn-danger">P</a></td>
-                </tr>
+            <tbody id="employeeTable">
+                @*ajax ile çekildi*@
             </tbody>
         </table>
     </div>
@@ -128,40 +124,10 @@
 <!-- Card List -->
 
 <div id="employee-cards">
-    <div class="card-grid">
-        <a href="@Url.Action("EditEmployee","Manager")" class="c-card width-100">
-            <div class="c-card-header">
-                <img src="/images/profile-user.png" alt="">
-            </div>
-            <div class="c-card-body">
-                <span>Onur Çekiç</span>
-                <span>Yazılım Mühendisi</span>
-                <span>xd@gmail.com</span>
-                <span>05315656565</span>
-            </div>
-        </a>
-        <a href="@Url.Action("EditEmployee","Manager")" class="c-card width-100">
-            <div class="c-card-header">
-                <img src="/images/profile-user.png" alt="">
-            </div>
-            <div class="c-card-body">
-                <span>Onur Çekiç</span>
-                <span>Yazılım Mühendisi</span>
-                <span>xd@gmail.com</span>
-                <span>05315656565</span>
-            </div>
-        </a>
-        <a href="@Url.Action("EditEmployee","Manager")" class="c-card width-100">
-            <div class="c-card-header">
-                <img src="/images/profile-user.png" alt="">
-            </div>
-            <div class="c-card-body">
-                <span>Onur Çekiç</span>
-                <span>Yazılım Mühendisi</span>
-                <span>xd@gmail.com</span>
-                <span>05315656565</span>
-            </div>
-        </a>
+    <div class="card-grid" id="employees">
+        @*Ajax ile çekildi.*@
     </div>
 </div>
-
+@section scripts{
+    <script src="~/ajax/Manager/managerEmployee.js"></script>
+}

@@ -12,7 +12,7 @@ namespace MVC_UI.Controllers
         public IActionResult Index(Guid id)
         {
             ViewBag.CompanyId = id;
-            HttpContext.Session.SetString("id", id.ToString());
+            HttpContext.Session.SetString("id",id.ToString());
             return View();
         }
 
@@ -48,6 +48,7 @@ namespace MVC_UI.Controllers
 
         public IActionResult EditEmployee(Guid id)
         {
+            HttpContext.Session.SetString("employeeId", id.ToString());
             return View();
         }
 

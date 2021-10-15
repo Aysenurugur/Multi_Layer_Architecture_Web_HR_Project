@@ -1,8 +1,12 @@
-﻿
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@{
+    Guid employeeId = @Guid.Parse(HttpContextAccessor.HttpContext.Session.GetString("employeeId"));
+}
 @{
     ViewData["Title"] = "EditEmployee";
     Layout = "~/Views/Shared/Employeer/_EmployeerDetailsLayout.cshtml";
 }
+
 
 @section header{ 
 <h3>Onur Çekiç</h3>
@@ -10,22 +14,21 @@
 
 @section tabs{ 
     <div class="tabs">
-        <a href="@Url.Action("EditEmployee","Manager")">Genel</a>
-        <a href="@Url.Action("EmployeeRequests","Manager")">Talepler</a>
-        <a href="@Url.Action("EmployeeDebits","Manager")">Zimmetler</a>
-        <a href="@Url.Action("EmployeeBonuses","Manager")">Primler</a>
-        <a href="@Url.Action("EmployeeFiles","Manager")">Dosyalar</a>
-        <a href="@Url.Action("EmployeeShiftBreak","Manager")">Vardiya ve Molalar</a>
+        <a asp-action="EditEmployee" asp-controller="Manager" asp-route-id="@employeeId">Genel</a>
+        <a asp-action="EmployeeRequests" asp-controller="Manager" asp-route-id="@employeeId">Talepler</a>
+        <a asp-action="EmployeeDebits" asp-controller="Manager" asp-route-id="@employeeId">Zimmetler</a>
+        <a asp-action="EmployeeBonuses" asp-controller="Manager" asp-route-id="@employeeId">Primler</a>
+        <a asp-action="EmployeeFiles" asp-controller="Manager" asp-route-id="@employeeId">Dosyalar</a>
+        <a asp-action="EmployeeShiftBreak" asp-controller="Manager" asp-route-id="@employeeId">Vardiya ve Molalar</a>
     </div>
 }
 
+<input type="hidden" id="employeeId" value="@employeeId" />
+
 <div class="employee-detail-section">
     <div class="c-card width-100">
-        <div class="c-card-header">
-            <img src="/images/profile-user.png" alt="">
-            <span>Onur Çekiç</span>
-            <span>Yazılım Mühendisi</span>
-            <span><a href="" class="btn btn-danger">Pasifleştir</a></span>
+        <div class="c-card-header" id="employeeDetail">
+
         </div>
         <div class="c-card-body width-100">
             <div class="d-flex jc-between mb-3 mt-3">
@@ -57,7 +60,7 @@
         <div class="c-card-body width-100">
             <form id="managerEmployeeEditForm">
                 <div class="mb-4 d-flex flex-column">
-                    <input class="square-input square-input-md width-100 " type="text" id="firstName" name="firstName">
+                    <input class="square-input square-input-md width-100" type="text" id="firstName" name="firstName">
                     <label class="square-input-label" for="firstName">Ad</label>
                 </div>
 
@@ -90,11 +93,13 @@
                     <label class="square-input-label" for="birthDate">Doğum Tarihi</label>
                 </div>
                 <div class="mt-3 d-grid">
-                    <button class="btn btn-warning btn-sq ">Güncelle</button>
-
+                    <button class="btn btn-warning btn-sq" id="updateEmployee">Güncelle</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+@section scripts{ 
+    <script src="~/ajax/Manager/employeeDetail.js"></script>
+}
 

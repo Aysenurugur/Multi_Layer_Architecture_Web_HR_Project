@@ -42,9 +42,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CommentDTO commentDTO) //test edildi
         {
-            commentDTO.CommentId = Guid.NewGuid();
             var commentToCreate = mapper.Map<CommentDTO, Comment>(commentDTO);
-            commentToCreate.CreatedDate = DateTime.Now;
             var newComment = await commentService.CreateComment(commentToCreate);
             var comment = await commentService.GetCommentById(newComment.CommentID);
             var commentResource = mapper.Map<Comment, CommentDTO>(comment);

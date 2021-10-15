@@ -1,23 +1,47 @@
-﻿
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@{
+    Guid id = @Guid.Parse(HttpContextAccessor.HttpContext.Session.GetString("id"));
+}
 @{
     ViewData["Title"] = "Comment";
     Layout = "~/Views/Shared/Employeer/_EmployeerDetailsLayout.cshtml";
 }
 
 
-@section header{ 
- <h3>Şirket Yorumu</h3>
+@section header{
+    <h3>Şirket Yorumu</h3>
 }
-
+<input type="hidden" value="@id" id="companyId"/>
 <div>
     <div class="d-grid">
-        <h3>Şirket Yorumunuz</h3>        
+        <h3>Şirket Yorumunuz</h3>
         <form>
-            <textarea cols="50" rows="50" class="square-input"></textarea>
-            
-            <button type="button" class="btn btn-primary btn-sq">Kaydet</button>
-        </form>
-        
-    </div>
+            <input id="title" type="text" class="square-input my-3"/>
+            <textarea cols="50" rows="50" class="square-input" id="comment"></textarea>
 
+            <button id="saveComment" type="button" class="btn btn-primary btn-sq">Kaydet</button>
+        </form>
+
+    </div>
 </div>
+
+@section scripts{
+    <script>
+        $("#saveComment").click(function () {
+            var comment = {
+                companyId: $("#companyId").val(),
+                title: $("#title").val(),
+                content: $("#comment").val()
+            };
+            $.ajax({
+                url: "http://localhost:12430/api/Comment/Create",
+                type: "POST",
+                data: JSON.stringify(comment),
+                contentType: 'application/json;charset=utf-8',
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        })
+    </script>
+}

@@ -91,6 +91,24 @@ namespace WebAPI.Controllers
             }
         }
 
+        [HttpPut]
+        public async Task<IActionResult> ChangeUserStatus(Guid id)
+        {
+            User user = await userService.GetUserById(id);
+            bool check;
+            if (user.IsActive)
+            {
+                await userService.SetUserStatusAsync(id, false);
+                check = false;
+            }
+            else
+            {
+                await userService.SetUserStatusAsync(id, true);
+                check = true;
+            }
+            return Ok(check);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Login(LoginDTO loginDTO) //test edildi
         {
